@@ -1,0 +1,22 @@
+<html>
+<head>
+<title>测试</title>
+
+</head>
+<body>
+<div id="test">测试</div>
+<div id="images"></div>
+</body>
+<!-- http://localhost:8080/SchoolMarketServer/json.jhtml?path=images.json -->
+<script src="js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript">
+$("#test").click(function(){
+$.post("json.jhtml?path=images.json",function(data){
+             $.each(data,function(i,item){
+               $("<img/>").attr("src","uploadDir/"+item.filename).appendTo("#images");
+             });
+             
+		  })
+});
+</script>
+</html>
