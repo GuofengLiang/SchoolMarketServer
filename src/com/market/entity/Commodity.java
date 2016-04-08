@@ -35,7 +35,7 @@ public class Commodity {
 	/**
 	 * 分类id
 	 */
-	@ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER,optional = false)
+	@ManyToOne(fetch = FetchType.EAGER,optional = false)
 	@JoinColumn(name="classification_id")
 	private Classification classification;
 	/**
@@ -68,16 +68,16 @@ public class Commodity {
 	/**
 	 * 购物车
 	 */
-	@OneToOne(optional = true, cascade = CascadeType.ALL, mappedBy="commodity")
+	@OneToOne(optional = true, mappedBy="commodity")
 	private ShopCart shopCart;
 	
-	@OneToOne(optional = true, cascade = CascadeType.ALL, mappedBy="commodity") 
+	@OneToOne(optional = true, mappedBy="commodity") 
 	private OrderComm orderComm;
 	
-	@OneToOne(optional = true, cascade = CascadeType.ALL, mappedBy="commodity") 
+	@OneToOne(optional = true, mappedBy="commodity") 
 	private SpecialComm specialComm;
 	
-	@OneToOne(optional = true, cascade = CascadeType.ALL, mappedBy="commodity") 
+	@OneToOne(optional = true, mappedBy="commodity") 
 	private Recommend recommend;
 	public int getCommodityId() {
 		return commodityId;

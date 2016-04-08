@@ -26,7 +26,7 @@ public class Message {
 	/**
 	 * 用户id
 	 */
-	@ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER,optional = false)
+	@ManyToOne(fetch = FetchType.EAGER,optional = false)
 	@JoinColumn(name="user_id")
 	private User user;
 	/**

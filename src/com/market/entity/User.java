@@ -47,16 +47,16 @@ public class User {
 	@Column(length=100)
 	private String portrait;
 	
-	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "user")
+	@OneToMany( fetch = FetchType.LAZY,mappedBy = "user")
 	private Set<Message> messages=new HashSet<Message>();
 	
-	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "user")
+	@OneToMany( fetch = FetchType.LAZY,mappedBy = "user")
 	private Set<Address> address=new HashSet<Address>();
 	
-	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "user")
+	@OneToMany( fetch = FetchType.LAZY,mappedBy = "user")
 	private Set<ShopCart> shopCart=new HashSet<ShopCart>();
 	
-	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "user")
+	@OneToMany( fetch = FetchType.LAZY,mappedBy = "user")
 	private Set<Order> order=new HashSet<Order>();
 
 	public int getUserId() {

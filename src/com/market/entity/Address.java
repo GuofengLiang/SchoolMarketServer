@@ -1,6 +1,5 @@
 package com.market.entity;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -24,7 +23,7 @@ public class Address {
 	/**
 	 * 用户id
 	 */
-	@ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER,optional = false)
+	@ManyToOne(fetch = FetchType.EAGER,optional = false)
 	@JoinColumn(name="user_id")
 	private User user;
 	/**
@@ -45,7 +44,7 @@ public class Address {
 	private String phone;
 	
 	
-	@OneToOne(optional = true, cascade = CascadeType.ALL, mappedBy="addressId") 
+	@OneToOne(optional = true, mappedBy="addressId") 
 	private Order order;
 	public int getAddressId() {
 		return addressId;

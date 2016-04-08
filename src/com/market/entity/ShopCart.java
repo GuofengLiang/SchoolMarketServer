@@ -23,13 +23,13 @@ public class ShopCart {
 	/**
 	 * 用户id
 	 */
-	@ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER,optional = false)
+	@ManyToOne(fetch = FetchType.EAGER,optional = false)
 	@JoinColumn(name="user_id")
 	private User user;
 	/**
 	 * 商品id
 	 */
-	@OneToOne(cascade = CascadeType.ALL, optional = false)
+	@OneToOne( optional = false)
     @JoinColumn(name = "commodity_id",unique = true)
 	private Commodity commodity;
 	/**

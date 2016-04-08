@@ -44,16 +44,16 @@ public class Supermarket {
 	@Column(length=100)
 	private String notice;
 	
-	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "supermarket")
+	@OneToMany( fetch = FetchType.LAZY,mappedBy = "supermarket")
 	private Set<Commodity> commodity=new HashSet<Commodity>();
 	
-	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "supermarket")
+	@OneToMany( fetch = FetchType.LAZY,mappedBy = "supermarket")
 	private Set<SpecialComm> specialComm=new HashSet<SpecialComm>();
 	
-	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "supermarket")
+	@OneToMany( fetch = FetchType.LAZY,mappedBy = "supermarket")
 	private Set<Advertise> advertise=new HashSet<Advertise>();
 	
-	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "supermarket")
+	@OneToMany( fetch = FetchType.LAZY,mappedBy = "supermarket")
 	private Set<Recommend> recommend=new HashSet<Recommend>();
 	
 	public int getSupermarketId() {

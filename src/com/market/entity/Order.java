@@ -32,13 +32,13 @@ public class Order {
 	/**
 	 * 收货地址编号
 	 */
-	@OneToOne(cascade = CascadeType.ALL, optional = false)
+	@OneToOne( optional = false)
     @JoinColumn(name = "address_id",unique = true)
 	private Address addressId;
 	/**
 	 * 用户id
 	 */
-	@ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER,optional = false)
+	@ManyToOne(fetch = FetchType.EAGER,optional = false)
 	@JoinColumn(name="user_id")
 	private User user;
 	/**
@@ -67,7 +67,7 @@ public class Order {
 	@Column(length=100)
 	private String remarks;
     
-	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "order")
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "order")
 	private Set<OrderComm> orderComm=new HashSet<OrderComm>();
 	public int getOrderId() {
 		return orderId;

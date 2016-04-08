@@ -23,7 +23,7 @@ public class Advertise {
 	/**
 	 * 超市id
 	 */
-	@ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER,optional = false)
+	@ManyToOne(fetch = FetchType.EAGER,optional = false)
 	@JoinColumn(name="supermarket_id")
 	private Supermarket supermarket;
 	/**

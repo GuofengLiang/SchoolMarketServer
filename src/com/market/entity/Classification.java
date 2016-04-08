@@ -30,7 +30,7 @@ public class Classification {
 	 */
 	private int subdivide;
 	
-	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "classification")
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "classification")
 	private Set<Commodity> commodity=new HashSet<Commodity>();
 
 	public int getClassId() {

@@ -23,13 +23,13 @@ public class OrderComm {
 	/**
 	 * 商品id
 	 */
-	@OneToOne(cascade = CascadeType.ALL, optional = false)
+	@OneToOne( optional = false)
 	@JoinColumn(name = "commodity_id",unique = true)
 	private Commodity commodity;
 	/**
 	 * 订单id
 	 */
-	@ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER,optional = false)
+	@ManyToOne(fetch = FetchType.EAGER,optional = false)
 	@JoinColumn(name="order_id")
 	private Order order;
 	/**
