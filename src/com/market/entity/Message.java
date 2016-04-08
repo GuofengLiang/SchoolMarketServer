@@ -1,5 +1,7 @@
 package com.market.entity;
 
+import java.util.Date;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import org.joda.time.DateTime;
 /**
  * 信息表
  * @author guofeng
@@ -41,11 +42,11 @@ public class Message {
 	/**
 	 * 日期
 	 */
-	private DateTime date;
+	private Date date;
 	/**
 	 * 已读
 	 */
-	private int read;
+	private int alreadyRead;
 	public int getMessageId() {
 		return messageId;
 	}
@@ -70,17 +71,17 @@ public class Message {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public DateTime getDate() {
+	public Date getDate() {
 		return date;
 	}
-	public void setDate(DateTime date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
-	public int getRead() {
-		return read;
+	public int getAlreadyRead() {
+		return alreadyRead;
 	}
-	public void setRead(int read) {
-		this.read = read;
+	public void setAlreadyRead(int alreadyRead) {
+		this.alreadyRead = alreadyRead;
 	}
 
 }

@@ -7,7 +7,6 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 /**
  * 商品表
@@ -56,7 +55,7 @@ public class Commodity {
 	 * 描述
 	 */
 	@Column(length=10)
-	private String describe;
+	private String describes;
 	/**
 	 * 库存
 	 */
@@ -117,11 +116,11 @@ public class Commodity {
 	public void setSpercification(String spercification) {
 		this.spercification = spercification;
 	}
-	public String getDescribe() {
-		return describe;
+	public String getDescribes() {
+		return describes;
 	}
-	public void setDescribe(String describe) {
-		this.describe = describe;
+	public void setDescribes(String describes) {
+		this.describes = describes;
 	}
 	public int getStock() {
 		return stock;

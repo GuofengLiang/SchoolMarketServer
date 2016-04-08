@@ -1,5 +1,6 @@
 package com.market.entity;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import org.joda.time.DateTime;
 /**
@@ -20,6 +22,7 @@ import org.joda.time.DateTime;
  *
  */
 @Entity
+@Table(name="orders")
 public class Order {
 	
 	/**
@@ -46,11 +49,11 @@ public class Order {
 	/**
 	 * 下单时间
 	 */
-	private DateTime orderTime;
+	private Date orderTime;
 	/**
 	 * 配送时间
 	 */
-	private DateTime deliverTime;
+	private Date deliverTime;
 	/**
 	 * 运费
 	 */
@@ -91,16 +94,16 @@ public class Order {
 	public void setState(int state) {
 		this.state = state;
 	}
-	public DateTime getOrderTime() {
+	public Date getOrderTime() {
 		return orderTime;
 	}
-	public void setOrderTime(DateTime orderTime) {
+	public void setOrderTime(Date orderTime) {
 		this.orderTime = orderTime;
 	}
-	public DateTime getDeliverTime() {
+	public Date getDeliverTime() {
 		return deliverTime;
 	}
-	public void setDeliverTime(DateTime deliverTime) {
+	public void setDeliverTime(Date deliverTime) {
 		this.deliverTime = deliverTime;
 	}
 	public float getFreight() {
