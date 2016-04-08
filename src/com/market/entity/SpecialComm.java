@@ -1,5 +1,7 @@
 package com.market.entity;
 
+import java.util.Date;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -8,7 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
-import org.joda.time.DateTime;
+
 /**
  * 特价商品表
  * @author
@@ -41,7 +43,7 @@ public class SpecialComm {
 	/**
 	 * 折扣时间
 	 */
-	private DateTime specialTime;
+	private Date specialTime;
 	public int getSpecialCommId() {
 		return specialCommId;
 	}
@@ -66,10 +68,10 @@ public class SpecialComm {
 	public void setDiscount(float discount) {
 		this.discount = discount;
 	}
-	public DateTime getSpecialTime() {
+	public Date getSpecialTime() {
 		return specialTime;
 	}
-	public void setSpecialTime(DateTime specialTime) {
+	public void setSpecialTime(Date specialTime) {
 		this.specialTime = specialTime;
 	}
 }

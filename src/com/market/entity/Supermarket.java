@@ -1,5 +1,6 @@
 package com.market.entity;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,7 +11,6 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import org.joda.time.DateTime;
 /**
  * 超市表
  * @author guofeng
@@ -37,7 +37,7 @@ public class Supermarket {
 	/**
 	 * 营业时间
 	 */
-	private DateTime datetime;
+	private Date datetime;
 	/**
 	 * 公告
 	 */
@@ -74,10 +74,10 @@ public class Supermarket {
 	public void setSuperRegion(String superRegion) {
 		this.superRegion = superRegion;
 	}
-	public DateTime getDatetime() {
+	public Date getDatetime() {
 		return datetime;
 	}
-	public void setDatetime(DateTime datetime) {
+	public void setDatetime(Date datetime) {
 		this.datetime = datetime;
 	}
 	public String getNotice() {

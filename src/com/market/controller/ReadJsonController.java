@@ -10,7 +10,7 @@ import com.market.javabean.Images;
 
 @Controller
 public class ReadJsonController {
-    @SuppressWarnings("finally")
+ 
     @ResponseBody
     @RequestMapping(value="/json")
 	public List<Images> getUser(){

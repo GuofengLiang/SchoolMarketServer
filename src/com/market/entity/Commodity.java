@@ -22,9 +22,14 @@ public class Commodity {
 	@Id
 	private int commodityId;
 	/**
+	 * 商品名称
+	 */
+	@Column(length=20)
+	private String commName;
+	/**
 	 * 超市id
 	 */
-	@ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER,optional = false)
+	@ManyToOne(fetch = FetchType.EAGER,optional = false)
 	@JoinColumn(name="supermarket_id")
 	private Supermarket supermarket;
 	/**
@@ -82,6 +87,12 @@ public class Commodity {
 	}
 	public Supermarket getSupermarket() {
 		return supermarket;
+	}
+	public String getCommName() {
+		return commName;
+	}
+	public void setCommName(String commName) {
+		this.commName = commName;
 	}
 	public void setSupermarket(Supermarket supermarket) {
 		this.supermarket = supermarket;
