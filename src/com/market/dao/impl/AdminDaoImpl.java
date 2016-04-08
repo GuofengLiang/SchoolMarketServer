@@ -6,19 +6,19 @@ import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 
-import com.market.dao.UserDao;
-import com.market.entity.User;
+import com.market.dao.AdminDao;
+import com.market.entity.Admin;
 @Repository
-public class UserDaoImpl implements UserDao {
+public class AdminDaoImpl implements AdminDao {
 	@PersistenceContext
 	protected EntityManager entityManager;
 	@Override
-	public User findSingleUser(String username) {
+	public Admin findSingleUser(String adminname) {
 		Query query = entityManager
-				.createQuery("select u from User u where u.userName=?1");
-		query.setParameter(1, username);
+				.createQuery("select a from Admin a where a.adminname=?1");
+		query.setParameter(1, adminname);
 		try {
-			User teacher = (User) query.getSingleResult();
+			Admin teacher = (Admin) query.getSingleResult();
 			return teacher;
 		} catch (Exception e) {
 			return null;

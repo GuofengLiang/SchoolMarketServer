@@ -1,4 +1,4 @@
-package com.market.controller;
+package com.market.javabean;
 
 public class Images {
   private String descripe;

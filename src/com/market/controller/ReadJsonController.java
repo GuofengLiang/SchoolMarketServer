@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.market.javabean.Images;
+
 @Controller
 public class ReadJsonController {
     @SuppressWarnings("finally")
