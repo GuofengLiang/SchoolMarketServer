@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import com.market.dao.SupermarketDao;
 import com.market.entity.Commodity;
 import com.market.entity.Supermarket;
+import com.market.javabean.SupermarketBean;
 
 @Repository
 public class SupermarketDaoImpl implements SupermarketDao{
@@ -28,6 +29,20 @@ public class SupermarketDaoImpl implements SupermarketDao{
 		List<Commodity> list = new ArrayList<Commodity>(commodities);
 		
 		return list;
+	}
+
+	@Override
+	public SupermarketBean findSingleSuper(int supermarketId) {
+		Query query =entityManager.createQuery("select s from Supermarket s where s.supermarketId=?1");
+		query.setParameter(1, supermarketId);
+		Supermarket supermarket=  (Supermarket) query.getSingleResult();
+		SupermarketBean supermarketBean=new SupermarketBean();
+		supermarketBean.setSupermarketId(supermarket.getSupermarketId());
+		supermarketBean.setSupermarketName(supermarket.getSupermarketName());
+		supermarketBean.setNotice(supermarket.getNotice());
+		supermarketBean.setSuperRegion(supermarket.getSuperRegion());
+		supermarketBean.setDatetime(supermarket.getDatetime());
+		return supermarketBean;
 	}
 
 }
