@@ -29,15 +29,15 @@ public class Commodity {
 	/**
 	 * 超市id
 	 */
-	@ManyToOne(fetch = FetchType.EAGER,optional = false)
-	@JoinColumn(name="supermarket_id")
-	private Supermarket supermarket;
+//	@ManyToOne(fetch = FetchType.EAGER,optional = false)
+//	@JoinColumn(name="supermarket_id")
+//	private Supermarket supermarket;
 	/**
 	 * 分类id
 	 */
-	@ManyToOne(fetch = FetchType.EAGER,optional = false)
-	@JoinColumn(name="classification_id")
-	private Classification classification;
+//	@ManyToOne(fetch = FetchType.EAGER,optional = false)
+//	@JoinColumn(name="classification_id")
+//	private Classification classification;
 	/**
 	 * 图片
 	 */
@@ -68,41 +68,41 @@ public class Commodity {
 	/**
 	 * 购物车
 	 */
-	@OneToOne(optional = true, mappedBy="commodity")
-	private ShopCart shopCart;
-	
-	@OneToOne(optional = true, mappedBy="commodity") 
-	private OrderComm orderComm;
-	
-	@OneToOne(optional = true, mappedBy="commodity") 
-	private SpecialComm specialComm;
-	
-	@OneToOne(optional = true, mappedBy="commodity") 
-	private Recommend recommend;
+//	@OneToOne(optional = true, mappedBy="commodity")
+//	private ShopCart shopCart;
+//	
+//	@OneToOne(optional = true, mappedBy="commodity") 
+//	private OrderComm orderComm;
+//	
+//	@OneToOne(optional = true, mappedBy="commodity") 
+//	private SpecialComm specialComm;
+//	
+//	@OneToOne(optional = true, mappedBy="commodity") 
+//	private Recommend recommend;
 	public int getCommodityId() {
 		return commodityId;
 	}
 	public void setCommodityId(int commodityId) {
 		this.commodityId = commodityId;
 	}
-	public Supermarket getSupermarket() {
-		return supermarket;
-	}
+//	public Supermarket getSupermarket() {
+//		return supermarket;
+//	}
 	public String getCommName() {
 		return commName;
 	}
 	public void setCommName(String commName) {
 		this.commName = commName;
 	}
-	public void setSupermarket(Supermarket supermarket) {
-		this.supermarket = supermarket;
-	}
-	public Classification getClassification() {
-		return classification;
-	}
-	public void setClassification(Classification classification) {
-		this.classification = classification;
-	}
+//	public void setSupermarket(Supermarket supermarket) {
+//		this.supermarket = supermarket;
+//	}
+//	public Classification getClassification() {
+//		return classification;
+//	}
+//	public void setClassification(Classification classification) {
+//		this.classification = classification;
+//	}
 	public String getPicture() {
 		return picture;
 	}
@@ -139,29 +139,29 @@ public class Commodity {
 	public void setStock(int stock) {
 		this.stock = stock;
 	}
-	public ShopCart getShopCart() {
-		return shopCart;
-	}
-	public void setShopCart(ShopCart shopCart) {
-		this.shopCart = shopCart;
-	}
-	public OrderComm getOrderComm() {
-		return orderComm;
-	}
-	public void setOrderComm(OrderComm orderComm) {
-		this.orderComm = orderComm;
-	}
-	public SpecialComm getSpecialComm() {
-		return specialComm;
-	}
-	public void setSpecialComm(SpecialComm specialComm) {
-		this.specialComm = specialComm;
-	}
-	public Recommend getRecommend() {
-		return recommend;
-	}
-	public void setRecommend(Recommend recommend) {
-		this.recommend = recommend;
-	}
-	
+//	public ShopCart getShopCart() {
+//		return shopCart;
+//	}
+//	public void setShopCart(ShopCart shopCart) {
+//		this.shopCart = shopCart;
+//	}
+//	public OrderComm getOrderComm() {
+//		return orderComm;
+//	}
+//	public void setOrderComm(OrderComm orderComm) {
+//		this.orderComm = orderComm;
+//	}
+//	public SpecialComm getSpecialComm() {
+//		return specialComm;
+//	}
+//	public void setSpecialComm(SpecialComm specialComm) {
+//		this.specialComm = specialComm;
+//	}
+//	public Recommend getRecommend() {
+//		return recommend;
+//	}
+//	public void setRecommend(Recommend recommend) {
+//		this.recommend = recommend;
+//	}
+//	
 }

@@ -26,6 +26,7 @@ public class SupermarketDaoImpl implements SupermarketDao{
 		Supermarket supermarket=  (Supermarket) query.getSingleResult();
 		Set<Commodity> commodities=supermarket.getCommodity();
 		List<Commodity> list = new ArrayList<Commodity>(commodities);
+		
 		return list;
 	}
 

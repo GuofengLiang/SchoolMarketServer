@@ -7,6 +7,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 /**
  * 商品分类表
@@ -30,7 +31,9 @@ public class Classification {
 	 */
 	private int subdivide;
 	
-	@OneToMany(fetch = FetchType.LAZY,mappedBy = "classification")
+//	@OneToMany(fetch = FetchType.LAZY,mappedBy = "classification")
+	@OneToMany(fetch = FetchType.LAZY)
+	@JoinColumn(name="classification_id")
 	private Set<Commodity> commodity=new HashSet<Commodity>();
 
 	public int getClassId() {

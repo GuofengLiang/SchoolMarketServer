@@ -9,6 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 /**
@@ -44,17 +45,19 @@ public class Supermarket {
 	@Column(length=100)
 	private String notice;
 	
-	@OneToMany( fetch = FetchType.LAZY,mappedBy = "supermarket")
+//	@OneToMany( fetch = FetchType.LAZY,mappedBy = "supermarket")
+	@JoinColumn(name="supermarket_id")
+	@OneToMany( fetch = FetchType.LAZY)
 	private Set<Commodity> commodity=new HashSet<Commodity>();
 	
-	@OneToMany( fetch = FetchType.LAZY,mappedBy = "supermarket")
-	private Set<SpecialComm> specialComm=new HashSet<SpecialComm>();
-	
-	@OneToMany( fetch = FetchType.LAZY,mappedBy = "supermarket")
-	private Set<Advertise> advertise=new HashSet<Advertise>();
-	
-	@OneToMany( fetch = FetchType.LAZY,mappedBy = "supermarket")
-	private Set<Recommend> recommend=new HashSet<Recommend>();
+//	@OneToMany( fetch = FetchType.LAZY,mappedBy = "supermarket")
+//	private Set<SpecialComm> specialComm=new HashSet<SpecialComm>();
+//	
+//	@OneToMany( fetch = FetchType.LAZY,mappedBy = "supermarket")
+//	private Set<Advertise> advertise=new HashSet<Advertise>();
+//	
+//	@OneToMany( fetch = FetchType.LAZY,mappedBy = "supermarket")
+//	private Set<Recommend> recommend=new HashSet<Recommend>();
 	
 	public int getSupermarketId() {
 		return supermarketId;
@@ -92,23 +95,23 @@ public class Supermarket {
 	public void setCommodity(Set<Commodity> commodity) {
 		this.commodity = commodity;
 	}
-	public Set<SpecialComm> getSpecialComm() {
-		return specialComm;
-	}
-	public void setSpecialComm(Set<SpecialComm> specialComm) {
-		this.specialComm = specialComm;
-	}
-	public Set<Advertise> getAdvertise() {
-		return advertise;
-	}
-	public void setAdvertise(Set<Advertise> advertise) {
-		this.advertise = advertise;
-	}
-	public Set<Recommend> getRecommend() {
-		return recommend;
-	}
-	public void setRecommend(Set<Recommend> recommend) {
-		this.recommend = recommend;
-	}
+//	public Set<SpecialComm> getSpecialComm() {
+//		return specialComm;
+//	}
+//	public void setSpecialComm(Set<SpecialComm> specialComm) {
+//		this.specialComm = specialComm;
+//	}
+//	public Set<Advertise> getAdvertise() {
+//		return advertise;
+//	}
+//	public void setAdvertise(Set<Advertise> advertise) {
+//		this.advertise = advertise;
+//	}
+//	public Set<Recommend> getRecommend() {
+//		return recommend;
+//	}
+//	public void setRecommend(Set<Recommend> recommend) {
+//		this.recommend = recommend;
+//	}
 	
 }
