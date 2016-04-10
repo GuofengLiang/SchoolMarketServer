@@ -11,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -54,6 +55,7 @@ public class Supermarket {
 //	@OneToMany( fetch = FetchType.LAZY,mappedBy = "supermarket")
 	@JoinColumn(name="supermarket_id")
 	@OneToMany( fetch = FetchType.LAZY)
+	@OrderBy("commodityId desc")  
 	private Set<Commodity> commodity=new HashSet<Commodity>();
 	
 //	@OneToMany( fetch = FetchType.LAZY,mappedBy = "supermarket")
