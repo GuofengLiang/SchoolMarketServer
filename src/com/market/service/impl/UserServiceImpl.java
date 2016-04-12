@@ -16,5 +16,10 @@ public class UserServiceImpl implements UserService {
 		User user=userDao.findSingleUser(username);
 		return user;
 	}
+	@Override
+	public void updatePassword(String username, String oldPassword,
+			String newPassword) throws Exception {
+		userDao.updatePassword(username, oldPassword, newPassword);		
+	}
 
 }

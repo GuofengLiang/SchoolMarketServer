@@ -10,7 +10,11 @@ public interface UserDao {
    */
   User findSingleUser(String username);
   /**
-   * 
+   * 根据新的密码来修改验证码
+   * @param username
+   * @param oldPassword
+   * @param newPassword
+   * @throws Exception
    */
-  void addsingleUser();
+  void updatePassword(String username,String oldPassword,String newPassword)throws Exception;
 }

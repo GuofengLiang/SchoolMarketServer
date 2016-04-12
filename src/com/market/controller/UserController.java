@@ -7,7 +7,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.market.entity.User;
 import com.market.service.UserService;
 /**
@@ -37,7 +36,33 @@ public class UserController {
 			 map.put("message", "userError");
 			 return map;
 		}
+		session.setAttribute("username", username);
 		 map.put("message", "success");
+		 return map;
+	}
+	/**
+	 * 根据原来的密码和新的密码来修改密码
+	 * @param oldPassword
+	 * @param newPassword
+	 * @param session
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value="/updateUserPassword")
+	public Map<String,String> updatePassword(String oldPassword,String newPassword,HttpSession session) {
+		String username=(String) session.getAttribute("username");
+		Map<String,String> map=new HashMap<String, String>();
+		if(username==null){
+			 map.put("message", "userError");
+			 return map;
+		}
+		try{
+			userService.updatePassword(username, oldPassword, newPassword);
+		}catch(Exception e){
+			 map.put("message", "OldPwdError");
+			 return map;
+		}
+		 map.put("message", "updatePwdsuccess");
 		 return map;
 	}	
 }

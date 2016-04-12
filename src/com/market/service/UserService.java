@@ -9,4 +9,12 @@ public interface UserService {
 	   * @return
 	   */
 	  User findSingleUser(String username);
+	  /**
+	   * 根据新的密码来修改验证码
+	   * @param username
+	   * @param oldPassword
+	   * @param newPassword
+	   * @throws Exception
+	   */
+	  void updatePassword(String username,String oldPassword,String newPassword)throws Exception;
 }

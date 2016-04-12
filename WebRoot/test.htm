@@ -9,16 +9,34 @@
 </body>
 <!-- http://localhost:8080/SchoolMarketServer/json.jhtml?path=images.json -->
 <script src="js/jquery-1.11.1.min.js"></script>
+
 <script type="text/javascript">
-$("#test").click(function(){
+<!--测试登陆-->
+$("#test1").click(function(){
 $.post("userLogin.jhtml",
   {
-   username:"junyang",
-   password:"13456"
+   username:"18814182438",
+   password:"123456"
+  },
+function(data){
+           alert(data.message);
+});
+});
+<!--测试修改密码-->
+$("#test").click(function(){
+$.post("updatePassword.jhtml",
+  {
+   oldPassword:"123456",
+   newPassword:"1234567"
   },
 function(data){
            alert(data.message);
 });
 });
 </script>
+<!-- 
+http://schoolserver.nat123.net/updateUserPassword.jhtml
+接收参数：String oldPassword,String newPassword
+输出参数：OldPwdError原密码错误 ，updatePwdsuccess修改密码成功
+ -->
 </html>
