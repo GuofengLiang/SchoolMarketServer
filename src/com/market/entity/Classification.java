@@ -31,7 +31,6 @@ public class Classification {
 	 */
 	private int subdivide;
 	
-//	@OneToMany(fetch = FetchType.LAZY,mappedBy = "classification")
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name="classification_id")
 	private Set<Commodity> commodity=new HashSet<Commodity>();

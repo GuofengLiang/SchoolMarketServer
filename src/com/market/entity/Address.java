@@ -42,10 +42,7 @@ public class Address {
 	 */
 	@Column(length=11)
 	private String phone;
-	
-	
-	@OneToOne(optional = true, mappedBy="addressId") 
-	private Order order;
+
 	public int getAddressId() {
 		return addressId;
 	}
@@ -75,12 +72,6 @@ public class Address {
 	}
 	public void setPhone(String phone) {
 		this.phone = phone;
-	}
-	public Order getOrder() {
-		return order;
-	}
-	public void setOrder(Order order) {
-		this.order = order;
 	}
 	
 }

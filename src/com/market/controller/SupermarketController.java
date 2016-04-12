@@ -39,4 +39,5 @@ public class SupermarketController {
 	    SupermarketBean supermarketBean=supermarketService.findSingleSuper(supermarketId);
 		return supermarketBean;
 	}
+ 
 }

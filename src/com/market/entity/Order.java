@@ -66,9 +66,7 @@ public class Order {
 	 */
 	@Column(length=100)
 	private String remarks;
-    
-	@OneToMany(fetch = FetchType.LAZY,mappedBy = "order")
-	private Set<OrderComm> orderComm=new HashSet<OrderComm>();
+
 	public int getOrderId() {
 		return orderId;
 	}
@@ -122,11 +120,5 @@ public class Order {
 	}
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
-	}
-	public Set<OrderComm> getOrderComm() {
-		return orderComm;
-	}
-	public void setOrderComm(Set<OrderComm> orderComm) {
-		this.orderComm = orderComm;
 	}
 }

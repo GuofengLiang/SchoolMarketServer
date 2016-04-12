@@ -9,4 +9,8 @@ public interface UserDao {
    * @return
    */
   User findSingleUser(String username);
+  /**
+   * 
+   */
+  void addsingleUser();
 }

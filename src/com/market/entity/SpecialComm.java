@@ -2,7 +2,7 @@ package com.market.entity;
 
 import java.util.Date;
 
-import javax.persistence.CascadeType;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;

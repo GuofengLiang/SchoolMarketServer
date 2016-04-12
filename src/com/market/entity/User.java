@@ -1,14 +1,7 @@
 package com.market.entity;
-
-import java.util.HashSet;
-import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 /**
  * 用户表
  * @author
@@ -46,19 +39,6 @@ public class User {
 	 */
 	@Column(length=100)
 	private String portrait;
-	
-	@OneToMany( fetch = FetchType.LAZY,mappedBy = "user")
-	private Set<Message> messages=new HashSet<Message>();
-	
-	@OneToMany( fetch = FetchType.LAZY,mappedBy = "user")
-	private Set<Address> address=new HashSet<Address>();
-	
-	@OneToMany( fetch = FetchType.LAZY,mappedBy = "user")
-	private Set<ShopCart> shopCart=new HashSet<ShopCart>();
-	
-	@OneToMany( fetch = FetchType.LAZY,mappedBy = "user")
-	private Set<Order> order=new HashSet<Order>();
-
 	public int getUserId() {
 		return userId;
 	}
@@ -94,29 +74,5 @@ public class User {
 	}
 	public void setPortrait(String portrait) {
 		this.portrait = portrait;
-	}
-	public Set<Message> getMessages() {
-		return messages;
-	}
-	public void setMessages(Set<Message> messages) {
-		this.messages = messages;
-	}
-	public Set<Address> getAddress() {
-		return address;
-	}
-	public void setAddress(Set<Address> address) {
-		this.address = address;
-	}
-	public Set<ShopCart> getShopCart() {
-		return shopCart;
-	}
-	public void setShopCart(Set<ShopCart> shopCart) {
-		this.shopCart = shopCart;
-	}
-	public Set<Order> getOrder() {
-		return order;
-	}
-	public void setOrder(Set<Order> order) {
-		this.order = order;
 	}
 }
