@@ -29,11 +29,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <fieldset>
                         <div class="form-group">
                             <input data-placement="right"
-                                   class="form-control popover-show1" placeholder="账号" id="txtYhm" type="email"  autofocus="">
+                                   class="form-control popover-show1" placeholder="账号" id="adminName" type="email"  autofocus="">
                         </div>
                         <div class="form-group">
                             <input class="form-control popover-show2" data-placement="right"
-                                   placeholder="请输入密码" id="txtMm" type="password">
+                                   placeholder="请输入密码" id="password" type="password">
                         </div>
 
                         <div class="row" >
@@ -42,7 +42,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             </div>
                             <div class="col-md-4" style="line-height: 40px">
                                 <input class="form-control popover-show3" data-placement="bottom"
-                                       id="txtValidator" placeholder="验证码">
+                                       id="validator" placeholder="验证码">
                             </div>
                             <div class="col-md-0"style="line-height: 28px">
                                 <img class="img-rounded" id="imgValidate" title="看不清，点击换一张" src="captcha.jhtml?captchaId=<%=captchaId%>" align="absbottom" style="width: 80px;height: 33px;cursor:hand">
@@ -61,19 +61,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <script type="text/javascript" language="javascript">
 
     function Isvalid() {
-        if ($("#txtYhm").val() == "") {
+        if ($("#adminName").val() == "") {
 
 
             return false;
         }
-        if ($("#txtMm").val() == "") {
+        if ($("#password").val() == "") {
 
-            $("#txtMm").focus();
+            $("#password").focus();
             return false;
         }
-        if ($("#txtValidator").val() == "") {
+        if ($("#validator").val() == "") {
 
-            $("#txtValidator").focus();
+            $("#validator").focus();
             return false;
         }
         return true;
@@ -87,7 +87,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     type: "POST",
                     dataType:"json",
                     url: "<%=base%>/login.jhtml?captchaId=<%=captchaId%>",
-                    data: {txtYhm:$("#txtYhm").val(),txtMm:$("#txtMm").val(),txtValidator:$("#txtValidator").val()},
+                    data: {adminName:$("#adminName").val(),password:$("#password").val(),validator:$("#validator").val()},
                     success:function(data){
                        alert(data.message);
                     }

@@ -13,13 +13,12 @@ public class AdminDaoImpl implements AdminDao {
 	@PersistenceContext
 	protected EntityManager entityManager;
 	@Override
-	public Admin findSingleUser(String adminname) {
-		Query query = entityManager
-				.createQuery("select a from Admin a where a.adminname=?1");
-		query.setParameter(1, adminname);
+	public Admin findSingleAdmin(String adminName) {
+		Query query = entityManager.createQuery("select a from Admin a where a.adminName=?1");
+		query.setParameter(1, adminName);
 		try {
-			Admin teacher = (Admin) query.getSingleResult();
-			return teacher;
+			Admin amdin = (Admin) query.getSingleResult();
+			return amdin;
 		} catch (Exception e) {
 			return null;
 		}
