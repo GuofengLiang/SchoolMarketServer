@@ -33,23 +33,23 @@ public class AdminController {
 	public Map<String,String> login(String adminName ,String password,String validator,@RequestParam String captchaId,HttpSession session) {
 		Map<String,String> map=new HashMap<String, String>();
 		if(!(captchaService.isValid(captchaId,validator))){
-		    map.put("message", "验证码错误");
+		    map.put("message", "codeError");
 		    return map;
 	    } 
 		try{
 			Admin admin=adminService.login(adminName, password);
 			if(admin==null){
-			   map.put("message", "账号不存在");
+			   map.put("message", "adminError");
 			   return map;
 			}
 			if(!admin.getPassword().equals(password)){
-		    	map.put("message", "密码错误");
+		    	map.put("message", "passwordError");
 				return map;
 		    }
 		}catch(Exception e){
-			 map.put("message", "登陆失败");
+			 map.put("message", "exception");
 		}
-		 map.put("message", "登陆成功");
+		 map.put("message", "success");
 		 return map;
 	}	
 }

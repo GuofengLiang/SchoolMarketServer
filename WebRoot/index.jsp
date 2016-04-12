@@ -62,17 +62,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
     function Isvalid() {
         if ($("#adminName").val() == "") {
-
-
+            alert("用户名不能为空");
             return false;
         }
         if ($("#password").val() == "") {
-
+             alert("密码不能为空");
             $("#password").focus();
             return false;
         }
         if ($("#validator").val() == "") {
-
+             alert("验证码不能为空");
             $("#validator").focus();
             return false;
         }
@@ -89,7 +88,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     url: "<%=base%>/login.jhtml?captchaId=<%=captchaId%>",
                     data: {adminName:$("#adminName").val(),password:$("#password").val(),validator:$("#validator").val()},
                     success:function(data){
-                       alert(data.message);
+                    if(data.message!="success"){
+                       $("#imgValidate").attr("src", "captcha.jhtml?captchaId=<%=captchaId%>&timestamp=" + (new Date()).valueOf());
+                      if(data.message=="codeError"){            
+                       alert("验证码错误");
+                       }
+                       else if(data.message=="adminError"){            
+                       alert("登陆账号错误");
+                       }
+                       else if(data.message=="passwordError"){            
+                       alert("密码错误");
+                       }
+                       else if(data.message=="exception"){            
+                       alert("服务异常，请重新输入");
+                       }
+                  
+                    }else{
+                        alert("登陆成功");
+                    }  
                     }
                 });
             }
