@@ -15,11 +15,7 @@ import com.market.entity.Admin;
 import com.market.service.AdminService;
 import com.market.service.CaptchaService;
 
-/**
- * 登陆验证控制器
- * @author 
- *
- */
+
 @Controller
 public class AdminController {
 
@@ -27,7 +23,15 @@ public class AdminController {
 	AdminService adminService;
 	@Resource(name="captchaServiceImpl")
 	CaptchaService captchaService;
-	
+	/**
+	 * 对管理员登陆进行验证
+	 * @param adminName
+	 * @param password
+	 * @param validator
+	 * @param captchaId
+	 * @param session
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping(value="/login",method= RequestMethod.POST)
 	public Map<String,String> login(String adminName ,String password,String validator,@RequestParam String captchaId,HttpSession session) {
@@ -47,7 +51,8 @@ public class AdminController {
 				return map;
 		    }
 		}catch(Exception e){
-			 map.put("message", "exception");
+			 map.put("message", "adminError");
+			 return map;
 		}
 		 map.put("message", "success");
 		 return map;

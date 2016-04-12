@@ -98,12 +98,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                        }
                        else if(data.message=="passwordError"){            
                        alert("密码错误");
-                       }
-                       else if(data.message=="exception"){            
-                       alert("服务异常，请重新输入");
-                       }
-                  
-                    }else{
+                       }                
+                 }else{
                         alert("登陆成功");
                     }  
                     }

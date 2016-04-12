@@ -14,15 +14,10 @@ public class UserDaoImpl implements UserDao {
 	protected EntityManager entityManager;
 	@Override
 	public User findSingleUser(String username) {
-		Query query = entityManager
-				.createQuery("select u from User u where u.userName=?1");
+		Query query = entityManager.createQuery("select u from User u where u.userName=?1");
 		query.setParameter(1, username);
-		try {
-			User teacher = (User) query.getSingleResult();
-			return teacher;
-		} catch (Exception e) {
-			return null;
-		}
+			User user= (User) query.getSingleResult();
+			return user;
 	}
 
 }
