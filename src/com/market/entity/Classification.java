@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 /**
  * 商品分类表
  * @author guofeng
@@ -23,13 +24,17 @@ public class Classification {
 	@Id
 	private int classId;
 	/**
-	 * 食品分类
+	 * 商品主分类id
 	 */
-	private int foodclass;
+	@OneToOne( optional = false)
+    @JoinColumn(name = "mainclass_id",unique = true)
+	private MainClassify mainclassId;
 	/**
-	 * 细分
+	 * 商品次分类id
 	 */
-	private int subdivide;
+	@OneToOne( optional = false)
+    @JoinColumn(name = "subclass_id",unique = true)
+	private SubClassify subclassId;
 	
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name="classification_id")
@@ -41,22 +46,22 @@ public class Classification {
 	public void setClassId(int classId) {
 		this.classId = classId;
 	}
-	public int getFoodclass() {
-		return foodclass;
-	}
-	public void setFoodclass(int foodclass) {
-		this.foodclass = foodclass;
-	}
-	public int getSubdivide() {
-		return subdivide;
-	}
-	public void setSubdivide(int subdivide) {
-		this.subdivide = subdivide;
-	}
 	public Set<Commodity> getCommodity() {
 		return commodity;
 	}
 	public void setCommodity(Set<Commodity> commodity) {
 		this.commodity = commodity;
+	}
+	public MainClassify getMainclassId() {
+		return mainclassId;
+	}
+	public void setMainclassId(MainClassify mainclassId) {
+		this.mainclassId = mainclassId;
+	}
+	public SubClassify getSubclassId() {
+		return subclassId;
+	}
+	public void setSubclassId(SubClassify subclassId) {
+		this.subclassId = subclassId;
 	}
 }
