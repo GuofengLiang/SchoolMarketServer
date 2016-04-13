@@ -13,7 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 
-public class FileTools {
+public class FileUtils {
 	private static final String UPLOADDIR = "uploadDir/";
 public static void upload(MultipartHttpServletRequest request) throws Exception{
 	

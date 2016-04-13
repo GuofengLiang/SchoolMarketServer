@@ -17,6 +17,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 /**
  * 订单表
  * @author 
@@ -51,10 +55,14 @@ public class Order {
 	/**
 	 * 下单时间
 	 */
+	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm")
 	private Date orderTime;
 	/**
 	 * 配送时间
 	 */
+	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm")
 	private Date deliverTime;
 	/**
 	 * 运费
