@@ -11,6 +11,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 /**
  * 商品表
  * @author guofeng
@@ -64,6 +68,8 @@ public class Commodity {
 	/**
 	 * 折扣时间
 	 */
+	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm")
 	private Date specialTime;
 	/**
 	 * 商品类别  0表示普通商品，1表示特价商品  2表示推荐商品

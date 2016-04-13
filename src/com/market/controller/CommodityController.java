@@ -5,12 +5,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.market.entity.Commodity;
 import com.market.service.CommodityService;
@@ -45,12 +47,14 @@ public class CommodityController {
 		int stock, 
 		float discount,
 		int type,
-		HttpSession session) {
+		HttpSession session,
+		HttpServletRequest request) {
 		 Map<String,String> map=new HashMap<String, String>();
 	    Date specialTime=new Date();
-		int supermarketId=(Integer) session.getAttribute("supermarketId");   
+		int supermarketId=(Integer) session.getAttribute("supermarketId");
+		MultipartHttpServletRequest mRequest = (MultipartHttpServletRequest) request;
 		try{
-			commodityService.addSingleCommodity(mainclassName, subclassName, commName, picture, price, spercification, describes, stock, discount, specialTime, type, supermarketId);
+			commodityService.addSingleCommodity(mainclassName, subclassName, commName, picture, price, spercification, describes, stock, discount, specialTime, type, supermarketId,mRequest);
 		}catch(Exception e){
 			 map.put("message", "addCommodityError");
 			 return map;
