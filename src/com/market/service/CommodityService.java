@@ -2,6 +2,8 @@ package com.market.service;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
 import com.market.entity.Commodity;
 
 public interface CommodityService {
@@ -38,5 +40,6 @@ public interface CommodityService {
 				float discount,
 				Date specialTime,
 				int type,
-				int supermarketId);
+				int supermarketId,
+				MultipartHttpServletRequest mRequest) throws Exception;
 }
