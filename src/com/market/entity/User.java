@@ -1,6 +1,8 @@
 package com.market.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 /**
  * 用户表
@@ -12,7 +14,8 @@ public class User {
 	/**
 	 * 用户id
 	 */
-	@Id
+	@Id @GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(nullable=false)
 	private int userId;
 	/**
 	 * 用户名

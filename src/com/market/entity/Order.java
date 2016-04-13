@@ -8,6 +8,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -27,7 +29,8 @@ public class Order {
 	/**
 	 * 订单id
 	 */
-	@Id
+	@Id @GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(nullable=false)
 	private int orderId;
 	/**
 	 * 收货地址编号

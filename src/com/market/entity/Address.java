@@ -3,6 +3,8 @@ package com.market.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -18,7 +20,8 @@ public class Address {
 	/**
 	 * 收货地址编号
 	 */
-	@Id
+	@Id @GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(nullable=false)
 	private int addressId;
 	/**
 	 * 用户id

@@ -1,5 +1,7 @@
 package com.market.service.impl;
 
+import java.util.Date;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -20,6 +22,15 @@ public class CommodityServiceImpl implements CommodityService {
 
 		Commodity commodity=commodityDao.findSingleComm(commodityId);
 		return commodity;
+	}
+
+	@Override
+	public void addSingleCommodity(String mainclassName, String subclassName,
+			String commName, String picture, float price,
+			String spercification, String describes, int stock, float discount,
+			Date specialTime, int type, int supermarketId) {
+		    commodityDao.addSingleCommodity(mainclassName, subclassName, commName, picture, price, spercification, describes, stock, discount, specialTime, type, supermarketId);
+		
 	}
 
 }
