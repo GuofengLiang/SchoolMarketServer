@@ -3,6 +3,8 @@ package com.market.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 /**
  * 管理员信息表
  * @author 
@@ -25,6 +27,13 @@ public class Admin {
     */
    @Column(length=20,nullable=false)
    private String password;
+   /**
+    * 超市id
+    */
+   @OneToOne( optional = false)
+   @JoinColumn(name = "supermarket_id",unique = true)
+   private Supermarket supermarket;
+   
 	public int getAdminId() {
 		return adminId;
 	}
@@ -42,6 +51,12 @@ public class Admin {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public Supermarket getSupermarket() {
+		return supermarket;
+	}
+	public void setSupermarket(Supermarket supermarket) {
+		this.supermarket = supermarket;
 	}
 	   
 }

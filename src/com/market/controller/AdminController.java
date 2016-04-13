@@ -54,6 +54,7 @@ public class AdminController {
 			 map.put("message", "adminError");
 			 return map;
 		}
+		session.setAttribute("adminName", adminName);
 		 map.put("message", "success");
 		 return map;
 	}	
