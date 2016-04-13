@@ -4,7 +4,11 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 /**
  * 商品表
  * @author guofeng
@@ -62,6 +66,18 @@ public class Commodity {
 	 * 商品类别  0表示普通商品，1表示特价商品  2表示推荐商品
 	 */
 	private int type;
+	/**
+	 * 商品主分类id
+	 */
+	@ManyToOne(fetch = FetchType.EAGER,optional = false)
+	@JoinColumn(name="mainclass_id")
+	private MainClassify mainclassId;
+	/**
+	 * 商品次分类id
+	 */
+	@ManyToOne(fetch = FetchType.EAGER,optional = false)
+	@JoinColumn(name="subclass_id")
+	private SubClassify subclassId;
 	public int getCommodityId() {
 		return commodityId;
 	}
@@ -127,6 +143,18 @@ public class Commodity {
 	}
 	public void setType(int type) {
 		this.type = type;
+	}
+	public MainClassify getMainclassId() {
+		return mainclassId;
+	}
+	public void setMainclassId(MainClassify mainclassId) {
+		this.mainclassId = mainclassId;
+	}
+	public SubClassify getSubclassId() {
+		return subclassId;
+	}
+	public void setSubclassId(SubClassify subclassId) {
+		this.subclassId = subclassId;
 	}
 
 }
