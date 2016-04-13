@@ -17,7 +17,7 @@ public class OrderDaoImpl implements OrderDao {
 	@Override
 	public Order findSingleOrder(int orderId) {
 		
-		Query query = entityManager.createQuery("select o from o Order where o.orderId=?1");
+		Query query = entityManager.createQuery("select o from Order o where o.orderId=?1");
 		query.setParameter(1, orderId);
 		Order order = (Order) query.getSingleResult();
 		return order;
