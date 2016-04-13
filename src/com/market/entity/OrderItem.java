@@ -7,18 +7,18 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 /**
- * 推荐商品表
+ * 订单商品表
  * @author 
  *
  */
 @Entity
-public class Recommend {
+public class OrderItem {
 
 	/**
-	 * 推荐商品
+	 * 订单商品id
 	 */
 	@Id
-	private int remommendId;
+	private int orderCommId;
 	/**
 	 * 商品id
 	 */
@@ -26,27 +26,37 @@ public class Recommend {
 	@JoinColumn(name = "commodity_id",unique = true)
 	private Commodity commodity;
 	/**
-	 * 超市id
+	 * 订单id
 	 */
 	@ManyToOne(fetch = FetchType.EAGER,optional = false)
-	@JoinColumn(name="supermarket_id")
-	private Supermarket supermarket;
-	public int getRemommendId() {
-		return remommendId;
+	@JoinColumn(name="order_id")
+	private Order order;
+	/**
+	 * 数量
+	 */
+	private int orderNumber;
+	public int getOrderCommId() {
+		return orderCommId;
 	}
-	public void setRemommendId(int remommendId) {
-		this.remommendId = remommendId;
+	public void setOrderCommId(int orderCommId) {
+		this.orderCommId = orderCommId;
+	}
+	public Order getOrder() {
+		return order;
+	}
+	public void setOrder(Order order) {
+		this.order = order;
+	}
+	public int getOrderNumber() {
+		return orderNumber;
+	}
+	public void setOrderNumber(int orderNumber) {
+		this.orderNumber = orderNumber;
 	}
 	public Commodity getCommodity() {
 		return commodity;
 	}
 	public void setCommodity(Commodity commodity) {
 		this.commodity = commodity;
-	}
-	public Supermarket getSupermarket() {
-		return supermarket;
-	}
-	public void setSupermarket(Supermarket supermarket) {
-		this.supermarket = supermarket;
 	}
 }
