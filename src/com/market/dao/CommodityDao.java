@@ -1,5 +1,7 @@
 package com.market.dao;
 
+import java.util.Date;
+
 import com.market.entity.Commodity;
 
 public interface CommodityDao {
@@ -10,4 +12,31 @@ public interface CommodityDao {
 	   * @return
 	   */
 	Commodity findSingleComm(int commodityId);
+	/**
+	 * 添加单个商品
+	 * @param mainclassName
+	 * @param subclassName
+	 * @param commName
+	 * @param picture
+	 * @param price
+	 * @param spercification
+	 * @param describes
+	 * @param stock
+	 * @param discount
+	 * @param specialTime
+	 * @param type
+	 */
+	void addSingleCommodity(
+			String mainclassName,
+			String subclassName,
+			String commName,
+			String picture,
+			float price,
+			String spercification,//规格，重量
+			String describes,
+			int stock,
+			float discount,
+			Date specialTime,
+			int type,
+			int supermarketId);
 }

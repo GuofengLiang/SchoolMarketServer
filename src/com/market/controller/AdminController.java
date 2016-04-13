@@ -36,12 +36,13 @@ public class AdminController {
 	@RequestMapping(value="/login",method= RequestMethod.POST)
 	public Map<String,String> login(String adminName ,String password,String validator,@RequestParam String captchaId,HttpSession session) {
 		Map<String,String> map=new HashMap<String, String>();
+		Admin admin;
 		if(!(captchaService.isValid(captchaId,validator))){
 		    map.put("message", "codeError");
 		    return map;
 	    } 
 		try{
-			Admin admin=adminService.login(adminName, password);
+			admin=adminService.login(adminName, password);
 			if(admin==null){
 			   map.put("message", "adminError");
 			   return map;
@@ -54,9 +55,12 @@ public class AdminController {
 			 map.put("message", "adminError");
 			 return map;
 		}
+		int supermarketId=admin.getSupermarket().getSupermarketId();
 		session.setAttribute("adminName", adminName);
-		 map.put("message", "success");
-		 return map;
+		session.setAttribute("supermarketId", supermarketId);
+		System.out.println(supermarketId);
+		map.put("message", "success");
+		return map;
 	}	
 }
 

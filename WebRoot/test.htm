@@ -23,11 +23,41 @@ function(data){
 });
 });
 <!--测试修改密码-->
-$("#test").click(function(){
+$("#test2").click(function(){
 $.post("updatePassword.jhtml",
   {
    oldPassword:"123456",
    newPassword:"1234567"
+  },
+function(data){
+           alert(data.message);
+});
+});
+<!--测试添加商品-->
+$("#test").click(function(){
+$.post("addSingleCommodity.jhtml",
+  {
+   mainclassName:"饮料饮品",
+   subclassName:"茶饮料",
+   commName:"脉动",
+   picture:"maidong.jpg",
+   price:4.0,
+   spercification:"600ml",
+   describes:"脉动好生活",
+   stock:2,
+   discount:7.8,
+   type:0
+  },
+function(data){
+           alert(data.message);
+});
+});
+<!--测试登陆-->
+$("#test4").click(function(){
+$.post("login.jhtml",
+  {
+   adminName:"junyang",
+   password:"123456"
   },
 function(data){
            alert(data.message);
