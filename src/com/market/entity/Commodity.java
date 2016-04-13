@@ -1,5 +1,7 @@
 package com.market.entity;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -49,8 +51,17 @@ public class Commodity {
 	 */
 	private int stock;
 	/**
-	 * 购物车
+	 * 折扣
 	 */
+	private float discount;
+	/**
+	 * 折扣时间
+	 */
+	private Date specialTime;
+	/**
+	 * 商品类别  0表示普通商品，1表示特价商品  2表示推荐商品
+	 */
+	private int type;
 	public int getCommodityId() {
 		return commodityId;
 	}
@@ -99,4 +110,23 @@ public class Commodity {
 	public void setStock(int stock) {
 		this.stock = stock;
 	}
+	public float getDiscount() {
+		return discount;
+	}
+	public void setDiscount(float discount) {
+		this.discount = discount;
+	}
+	public Date getSpecialTime() {
+		return specialTime;
+	}
+	public void setSpecialTime(Date specialTime) {
+		this.specialTime = specialTime;
+	}
+	public int getType() {
+		return type;
+	}
+	public void setType(int type) {
+		this.type = type;
+	}
+
 }
