@@ -56,7 +56,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </div>
   </div>
   </body>
-  <script src="js/jquery-1.11.1.min.js"></script>
+  <script src="js/jquery.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script type="text/javascript" language="javascript">
 
@@ -100,7 +100,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                        alert("密码错误");
                        }                
                  }else{
-                        alert("登陆成功");
+                        window.location.href="<%=base%>/managecomm.html"
                     }  
                     }
                 });
