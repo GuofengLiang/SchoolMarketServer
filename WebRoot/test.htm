@@ -12,21 +12,21 @@
 
 <script type="text/javascript">
 <!--测试登陆-->
-$("#test1").click(function(){
+$("#test111").click(function(){
 $.post("userLogin.jhtml",
   {
-   username:"18814182438",
-   password:"123456"
+   username:"123",
+   password:"123"
   },
 function(data){
            alert(data.message);
 });
 });
 <!--测试修改密码-->
-$("#test2").click(function(){
+$("#test4").click(function(){
 $.post("updatePassword.jhtml",
   {
-   oldPassword:"123456",
+   oldPassword:"123",
    newPassword:"1234567"
   },
 function(data){
@@ -53,11 +53,25 @@ function(data){
 });
 });
 <!--测试登陆-->
-$("#test4").click(function(){
+$("#test5").click(function(){
 $.post("login.jhtml",
   {
-   adminName:"junyang",
-   password:"123456"
+   adminName:"123",
+   password:"123"
+  },
+function(data){
+           alert(data.message);
+});
+});
+<!--测试添加用户-->
+$("#test44").click(function(){
+$.post("addSingleUser.jhtml",
+  {
+	userName:"朗神"
+	password:"111"
+	userPhone:"666"
+	sex:0
+	portrait:"1"
   },
 function(data){
            alert(data.message);

@@ -1,12 +1,16 @@
 package com.market.controller;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
 import com.market.entity.User;
 import com.market.service.UserService;
 /**
@@ -65,4 +69,27 @@ public class UserController {
 		 map.put("message", "updatePwdsuccess");
 		 return map;
 	}	
+	  /**
+	   * 添加单个用户
+	   * @param userName
+	   * @param password
+	   * @param userPhone
+	   * @param sex
+	   * @param portrait
+	   */
+	@ResponseBody
+	@RequestMapping(value="addSingleUser")
+	public Map<String,String> addSingleUser(String userName, String password,
+			String userPhone, int sex, String portrait,	HttpServletRequest request) {
+		 Map<String,String> map=new HashMap<String, String>();
+			MultipartHttpServletRequest mRequest = (MultipartHttpServletRequest) request;
+			try{
+				userService.addSingleUser(userName, password, userPhone, sex, portrait, mRequest);
+			}catch(Exception e){
+				 map.put("message", "addUserError");
+				 return map;
+			}
+			 map.put("message", "addUserSuccess");
+			 return map;
+	}
 }

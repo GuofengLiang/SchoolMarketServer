@@ -1,7 +1,2 @@
-/application.properties
-/applicationContext-mvc.xml
-/applicationContext.xml
-/captcha
+/.gitignore
 /com
-/log4j.properties
-/persistence.xml

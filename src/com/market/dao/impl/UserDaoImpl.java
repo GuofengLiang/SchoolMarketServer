@@ -23,7 +23,7 @@ public class UserDaoImpl implements UserDao {
 	
 	@Transactional
 	@Override
-	public void updatePassword(String username,String oldPassword,String newPassword)throws Exception{
+	public void updatePassword(String username, String oldPassword, String newPassword)throws Exception{
 		    Query query = entityManager.createQuery("select u from User u where u.userName=?1");
 		    query.setParameter(1, username);
 			User user= (User) query.getSingleResult();
@@ -32,4 +32,17 @@ public class UserDaoImpl implements UserDao {
 		
 	}
 
+	@Override
+	@Transactional
+	public void addSingleUser(String userName, String password,
+			  String userPhone, int sex, String portrait) {
+		//持久化user
+		User user = new User();
+		user.setUserName(userName);
+		user.setPassword(password);
+		user.setUserPhone(userPhone);
+		user.setSex(sex);
+		user.setPortrait(portrait);
+		entityManager.persist(user);	//保存到数据库
+	}
 }
