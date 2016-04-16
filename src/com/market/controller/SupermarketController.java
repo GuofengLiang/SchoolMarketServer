@@ -3,6 +3,7 @@ package com.market.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,6 +29,14 @@ public class SupermarketController {
 		List<Commodity> commodities=supermarketService.findAllCommodity(supermarketId);
 		return commodities;
 	}
+ @ResponseBody
+ @RequestMapping(value="adminFindAllCommodity")
+ public List<Commodity> adminFindAllCommodity(HttpSession session) {
+	    int supermarketId=(Integer) session.getAttribute("supermarketId");
+		List<Commodity> commodities=supermarketService.findAllCommodity(supermarketId);
+		return commodities;
+	}
+
  /**
   * 根据supermarketId来查询该超市的相关信息
   * @param supermarketId

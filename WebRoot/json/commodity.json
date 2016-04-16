@@ -1,0 +1,13 @@
+{
+"data":
+[
+{
+"commodityId":4,
+"commName":13,
+"price":"3",
+"spercification":"1",
+"sales":"五邑大学",
+"stock":"2016-01-04 00:00",
+"mainclassName":4.0
+},
+{"commodityId":9,"commName":16,"price":"1231","spercification":"1","sales":"jingguan","stock":"2016-01-09 00:00","mainclassName":9.0}]}
