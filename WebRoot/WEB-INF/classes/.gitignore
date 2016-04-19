@@ -1,1 +1,6 @@
+/captcha
+/log4j.properties
+/application.properties
+/applicationContext-mvc.xml
+/applicationContext.xml
 /com

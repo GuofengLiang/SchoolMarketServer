@@ -59,11 +59,11 @@
                         <li class="nav-header">菜单栏</li>
                         <li><a class="ajax-link" href="#"><i class="glyphicon glyphicon-home"></i><span> 个人信息</span></a>
                         </li>
-                          <li><a class="ajax-link" href="#"><i class="glyphicon glyphicon-home"></i><span> 超市管理</span></a>
+                        <li><a class="ajax-link" href="#"><i class="glyphicon glyphicon-home"></i><span> 超市管理</span></a>
                         </li>
 						 <li class="accordion">
-                            <a href="#"><i class="glyphicon glyphicon-plus"></i><span> 商品管理</span></a>
-                            <ul class="nav nav-pills nav-stacked">
+                            <a data-toggle="collapse" href="#sub-item-1"><i class="glyphicon glyphicon-plus"></i><span> 商品管理</span></a>
+                            <ul class="nav nav-pills nav-stacked"  id="sub-item-1">
                                 <li><a href="#">全部商品</a></li>
                                 <li><a href="#">特价商品</a></li>
 								<li><a href="#">推荐商品</a></li>
@@ -71,8 +71,8 @@
                             </ul>
                         </li>
 						 <li class="accordion">
-                            <a href="#"><i class="glyphicon glyphicon-plus"></i><span> 订单管理</span></a>
-                            <ul class="nav nav-pills nav-stacked">
+                            <a data-toggle="collapse" href="#sub-item-2"><i class="glyphicon glyphicon-plus"></i><span> 订单管理</span></a>
+                            <ul class="nav nav-pills nav-stacked" id="sub-item-2">
                                 <li><a href="#">最新订单</a></li>
                                 <li><a href="#">历史订单</a></li>
                             </ul>
@@ -190,13 +190,9 @@
 <script src="js/jquery.dataTables.min.js"></script><!--这个一定要有的 -->
 <script src="js/bootstrap.min.js"></script><!--针对bootstrap自身的动态 -->
 <script src="js/dataTables.bootstrap.js"></script><!-- 表的点击效果 -->
-<!-- library for cookie management -->
-<script src="js/jquery.cookie.js"></script>
 <!-- library for making tables responsive -->
 <script src="js/responsive-tables.js"></script>
 <!-- history.js for cross-browser state change on ajax -->
-<script src="js/jquery.history.js"></script>
-<!-- application script for Charisma demo -->
 
 
 <script>
