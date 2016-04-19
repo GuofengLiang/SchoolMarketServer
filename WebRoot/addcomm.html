@@ -95,10 +95,10 @@
    <div>
     <ul class="breadcrumb">
         <li>
-            <a href="#">首页</a>
+            <a href="#">商品管理</a>
         </li>
         <li>
-            <a href="#">商品管理</a>
+            <a href="#">添加商品</a>
         </li>
     </ul>
   </div>
@@ -106,25 +106,58 @@
   <div class="row">
     <div class="col-md-12">
 		<div class="panel panel-default">
-			<div class="panel-heading" style="height:5em;">商品列表<a href="addcomm.html" style="float: right" id="addCommodity" class="button button-raised button-primary button-pill">添加商品</a></div>
+			<div class="panel-heading" style="height:5em;">商品列表<a href="#" style="float: right" id="addCommodity" class="button button-raised button-primary button-pill"><span class="glyphicon glyphicon-share-alt">返回</span></a></div>
 			<div class="panel-body">
-					<table id="commodity"
-						class="table table-bordered table-striped table-hover"
-						cellspacing="0" width="100%" style="">
-						<thead style="font-size: 11px">
-							<tr>
-					        <th style="width: 20%;text-align: center">商品名称</th>
-					        <th style="width: 10%;text-align: center">价格</th>
-					        <th style="width: 10%;text-align: center">规格</th>
-							<th style="width: 10%;text-align: center">销量</th>
-							<th style="width: 10%;text-align: center">库存</th>
-							<th style="width: 15%;text-align: center">分类</th>
-					        <th style="width: 25%;text-align: center">操作</th>
-					       </tr>
-						</thead>
-						<tbody style="font-size: 11px;text-align: center">
-						</tbody>
-					</table>
+			<form id="uploadForm" enctype="multipart/form-data" method="post">
+				<div class="row">
+						<div class="col-md-2" style="width:100px;padding-left:10px;line-height: 28px"><span class="red">*</span>商品名称：</div>
+							<div class="col-md-3">
+									<input id="commName" type="text" class="form-control"  placeholder="">
+									<span class="err_red"></span>
+							</div>
+						<div class="col-md-2" style="width:50px;padding:0;line-height: 28px"><span class="red">*</span>价格：</div>
+							<div class="col-md-3">
+									<input id="price" type="text" class="form-control"  placeholder="">
+									<span class="err_red"></span>
+							</div>
+						<div class="col-md-2" style="width:60px;padding:0;line-height: 28px"><span class="red">*</span>规格：</div>
+							<div class="col-md-3">
+							        <input id="specification" type="text" class="form-control"  placeholder="" >
+									<span class="err_red"></span>
+						    </div>
+				</div>
+				<br>
+				<div class="row">
+						<div class="col-md-2" style="width:100px;padding-left:10px;line-height: 28px"><span class="red">*</span>商品描述：</div>
+							<div class="col-md-3">
+									<input id="describes" type="text" class="form-control"  placeholder="">
+									<span class="err_red"></span>
+							</div>
+						<div class="col-md-2" style="width:50px;padding:0;line-height: 28px"><span class="red">*</span>库存：</div>
+							<div class="col-md-3">
+									<input id="stock" type="text" class="form-control"  placeholder="">
+									<span class="err_red"></span>
+							</div>
+						<div class="col-md-2" style="width:60px;padding:0;line-height: 28px"><span class="red">*</span>分类：</div>
+							<div class="col-md-3">
+							        <input id="classComm" type="text" class="form-control"  placeholder="" >
+									<span class="err_red"></span>
+						    </div>
+				</div>
+				<br>
+				<div class="row">
+						<div class="col-md-2" style="width:100px;padding-left:10px;line-height: 28px"><span class="red">*</span>添加图片：</div>
+							<div class="col-md-3">
+									<input type="file" name="picturefile"  onchange="upPicture(picturefile.value);"/>
+									<span class="err_red"></span>
+						   </div>
+						
+		
+				</div>
+				<div class="row">
+				<div><img id="image" src=""/></div>
+				</div>
+				</form>
 			</div>
 		</div>
 	 </div>
@@ -132,59 +165,7 @@
   </div><!-- main end -->
  </div>
 </div>
-<div class="modal fade" id="detailModel" tabindex="-1" role="dialog">
-	<div style="width: 60%;margin: 12% auto">
 
-		<section class="panel">
-			<span id="hide" class="glyphicon glyphicon-remove-circle" style="position: absolute;margin-top: 12%;font-size: 20px;color: snow;cursor:pointer;"></span>
-			<div class="bio-graph-heading">商品详情</div>
-			<div class="panel-body bio-graph-info">
-				    <div class="col-xs-6">
-						<p>
-							<span class="span">商品名称&nbsp;&nbsp;&nbsp;</span>
-							<span id="commName"></span>
-						</p>
-					</div>
-					<div class="col-xs-6">
-						<p>
-							<span class="span">价格&nbsp;&nbsp;&nbsp;</span>
-							<span id="price"></span>
-						</p>
-					</div>
-					<div class="col-xs-6">
-						<p>
-							<span class="span">规格&nbsp;&nbsp;&nbsp;</span>
-							<span id="spercification"></span>
-						</p>
-					</div>
-					<div class="col-xs-6">
-						<p>
-							<span class="span">销量&nbsp;&nbsp;&nbsp;</span>
-							<span id="sales"></span>
-						</p>
-					</div>
-					<div class="col-xs-6">
-						<p>
-							<span class="span">库存&nbsp;&nbsp;&nbsp;</span>
-							<span id="stock"></span>
-						</p>
-					</div>
-					<div class="col-xs-6">
-						<p>
-							<span class="span">大分类&nbsp;&nbsp;&nbsp;</span>
-							<span id="mainclassName"></span>
-						</p>
-					</div>
-					<div class="col-xs-6">
-						<p>
-							<span class="span">小分类&nbsp;&nbsp;&nbsp;</span>
-							<span id="subclassName"></span>
-						</p>
-					</div>
-			</div>
-		</section>
-	</div>
-</div>
 
 <script src="js/jquery-1.11.1.min.js"></script><!--这个一定要有的 -->
 <script src="js/jquery.dataTables.min.js"></script><!--这个一定要有的 -->
@@ -196,67 +177,13 @@
 
 
 <script>
-	$(document)
-			.ready(
-					function() {
-						$(function() {
-							$('#commodity')
-									.dataTable(
-											{
-												"ordering" : false,
-												"ajax" : "json/commodity.json",
-												"columns" : [ {
-													data : "commName"
-												}, {
-													data : "price"
-												}, {
-													data : "spercification"
-												}, {
-													data : "sales"
-												}, {
-													data : "stock"
-												}, {
-													data : "mainclassName"
-												}, {
-													data : "commodityId"
-												} ],
-												"language" : {
-													"lengthMenu" : "每页 _MENU_ 条记录",
-													"zeroRecords" : "没有找到记录",
-													"info" : "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
-													"infoEmpty" : "无记录",
-													"infoFiltered" : "(从 _MAX_ 条记录过滤)",
-													"search" : "搜索 : ",
-													processing : "载入中",//处理页面数据的时候的显示
-													paginate : {//分页的样式文本内容。
-														previous : "上一页",
-														next : "下一页",
-														first : "第一页",
-														last : "最后一页"
-													}
-												},
-												"columnDefs" : [
-														{
-															"render" : function(
-																	data, type,
-																	row) {
-																	return '<td class="center">'+
-																       '<a class="btn btn-success" style="margin-right:5px;"  href="#"><i class="glyphicon glyphicon-zoom-in icon-white " data-toggle="modal" data-target="#detailModel" data="'+data+'">详情</i></a>'+
-																	   '<a class="btn btn-info" style="margin-right:5px;" href="#"><i class="glyphicon glyphicon-edit icon-white">编辑</i></a>'+
-																	   '<a class="btn btn-danger" style="margin-right:5px;" href="#"><i class="glyphicon glyphicon-trash icon-white">删除</i></a>'+
-																	   '</td>';
-																	
-															},
-															"targets" : 6
-														} ],
-											});
-						});
-						//模态层开关监听
-						$("#hide").click(function() {
-							$('#detailModel').modal('hide')
-						});
-
-					});
+    function upPicture(path){
+      alert(path);
+      $("#image").attr("src",path);
+    }
+	$(document).ready({
+	  
+	});
 </script>
 
 </body>
