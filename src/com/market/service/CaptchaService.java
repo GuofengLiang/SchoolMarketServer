@@ -2,11 +2,10 @@ package com.market.service;
 
 import java.awt.image.BufferedImage;
 
-
 /**
  * Service - 验证码处理接口
  * 
- * @author 
+ * @author
  * @version 3.0
  */
 public interface CaptchaService {

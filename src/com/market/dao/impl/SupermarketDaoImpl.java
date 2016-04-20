@@ -16,27 +16,29 @@ import com.market.entity.Supermarket;
 import com.market.javabean.SupermarketBean;
 
 @Repository
-public class SupermarketDaoImpl implements SupermarketDao{
+public class SupermarketDaoImpl implements SupermarketDao {
 	@PersistenceContext
 	protected EntityManager entityManager;
 
 	@Override
 	public List<Commodity> findAllCommodity(int supermarketId) {
-		Query query = entityManager.createQuery("select s from Supermarket s where s.supermarketId=?1");
+		Query query = entityManager
+				.createQuery("select s from Supermarket s where s.supermarketId=?1");
 		query.setParameter(1, supermarketId);
-		Supermarket supermarket=  (Supermarket) query.getSingleResult();
-		Set<Commodity> commodities=supermarket.getCommodity();
+		Supermarket supermarket = (Supermarket) query.getSingleResult();
+		Set<Commodity> commodities = supermarket.getCommodity();
 		List<Commodity> list = new ArrayList<Commodity>(commodities);
-		
+
 		return list;
 	}
 
 	@Override
 	public SupermarketBean findSingleSuper(int supermarketId) {
-		Query query =entityManager.createQuery("select s from Supermarket s where s.supermarketId=?1");
+		Query query = entityManager
+				.createQuery("select s from Supermarket s where s.supermarketId=?1");
 		query.setParameter(1, supermarketId);
-		Supermarket supermarket=  (Supermarket) query.getSingleResult();
-		SupermarketBean supermarketBean=new SupermarketBean();
+		Supermarket supermarket = (Supermarket) query.getSingleResult();
+		SupermarketBean supermarketBean = new SupermarketBean();
 		supermarketBean.setSupermarketId(supermarket.getSupermarketId());
 		supermarketBean.setSupermarketName(supermarket.getSupermarketName());
 		supermarketBean.setNotice(supermarket.getNotice());

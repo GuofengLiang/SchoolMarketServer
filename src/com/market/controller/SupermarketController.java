@@ -16,37 +16,44 @@ import com.market.service.SupermarketService;
 
 @Controller
 public class SupermarketController {
- @Resource(name="supermarketServiceImpl")
- public SupermarketService supermarketService;
- /**
-  * 根据超市id来查询所有的商品
-  * @param supermarketId
-  * @return
-  */
- @ResponseBody
- @RequestMapping(value="findAllCommodity")
- public List<Commodity> findAllCommodity(@RequestParam int supermarketId) {
-		List<Commodity> commodities=supermarketService.findAllCommodity(supermarketId);
-		return commodities;
-	}
- @ResponseBody
- @RequestMapping(value="adminFindAllCommodity")
- public List<Commodity> adminFindAllCommodity(HttpSession session) {
-	    int supermarketId=(Integer) session.getAttribute("supermarketId");
-		List<Commodity> commodities=supermarketService.findAllCommodity(supermarketId);
+	@Resource(name = "supermarketServiceImpl")
+	public SupermarketService supermarketService;
+
+	/**
+	 * 根据超市id来查询所有的商品
+	 * 
+	 * @param supermarketId
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "findAllCommodity")
+	public List<Commodity> findAllCommodity(@RequestParam int supermarketId) {
+		List<Commodity> commodities = supermarketService
+				.findAllCommodity(supermarketId);
 		return commodities;
 	}
 
- /**
-  * 根据supermarketId来查询该超市的相关信息
-  * @param supermarketId
-  * @return
-  */
- @ResponseBody
- @RequestMapping(value="findSingleSuper")
- public SupermarketBean findSingleSuper(@RequestParam int supermarketId) {
-	    SupermarketBean supermarketBean=supermarketService.findSingleSuper(supermarketId);
+	@ResponseBody
+	@RequestMapping(value = "adminFindAllCommodity")
+	public List<Commodity> adminFindAllCommodity(HttpSession session) {
+		int supermarketId = (Integer) session.getAttribute("supermarketId");
+		List<Commodity> commodities = supermarketService
+				.findAllCommodity(supermarketId);
+		return commodities;
+	}
+
+	/**
+	 * 根据supermarketId来查询该超市的相关信息
+	 * 
+	 * @param supermarketId
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "findSingleSuper")
+	public SupermarketBean findSingleSuper(@RequestParam int supermarketId) {
+		SupermarketBean supermarketBean = supermarketService
+				.findSingleSuper(supermarketId);
 		return supermarketBean;
 	}
- 
+
 }

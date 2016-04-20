@@ -6,9 +6,10 @@ public interface OrderDao {
 
 	/**
 	 * 根据订单id来查找订单相关信息
+	 * 
 	 * @author logolin
 	 * @param orderId
-	 * @return 
+	 * @return
 	 */
 	Order findSingleOrder(int orderId);
 }

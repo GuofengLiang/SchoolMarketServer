@@ -12,13 +12,13 @@ import com.market.service.OrderService;
 
 @Controller
 public class OrdereController {
-	@Resource(name="orderServiceImpl")
+	@Resource(name = "orderServiceImpl")
 	public OrderService orderService;
-	
+
 	@ResponseBody
-	@RequestMapping(value="findSingleOrder")
-	public Order findSingleOrder(@RequestParam int orderId){
-		
+	@RequestMapping(value = "findSingleOrder")
+	public Order findSingleOrder(@RequestParam int orderId) {
+
 		Order order = orderService.findSingleOrder(orderId);
 		return order;
 	}

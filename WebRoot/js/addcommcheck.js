@@ -16,6 +16,11 @@ String.prototype.isPInt=function() {
     var str= /^[1-9]*[1-9][0-9]*$/;
     return str.test(this);
 }
+//校验是否为应该格式的图片
+String.prototype.isPicture=function() {
+    var str= /.(jpg|jpeg|png)$/;
+    return str.test(this);
+}
 $("#price").focusin(function(){
 	$(this).parent().children(".err_red").text("");
 }).focusout(function(){ 
@@ -76,3 +81,65 @@ $("#discount").focusin(function(){
     		 	return ;
     		}
     	});
+$("#addCommodity").click(function(){
+    //判断输入值是否为空，若为空那么就把原来的值赋给val（）
+    if($("#commName").val().trim()==""){
+    	$("#commName").parent().children(".err_red").text("商品名不能为空!");
+    	return;
+    }
+
+    if($("#price").val().trim()==""){
+    	$("#price").parent().children(".err_red").text("价格不能为空!");
+    	return;
+    }
+
+    if($("#specification").val().trim()==""){
+    	$("#specification").parent().children(".err_red").text("商品规格不能为空!");
+    	return;
+    }
+
+    if($("#describes").val().trim()==""){
+    	$("#describes").parent().children(".err_red").text("商品描述不能为空!");
+    	return;
+    }
+
+    if($("#stock").val().trim()==""){
+    	$("#stock").parent().children(".err_red").text("库存不能为空!");
+    	return;
+    }
+
+    if($("#specialTime").val().trim()==""){
+    	$("#specialTime").parent().children(".err_red").text("特价截止时间不能为空!");
+    	return;
+    }
+    if($("#upload_image").val()==""){
+    	$("#upload_image").parent().children(".err_red").text("请添加商品图片!");
+    	return;
+    }
+    if(!$("#upload_image").val().isPicture()){
+    	$("#upload_image").parent().children(".err_red").text("请添加jpg|jpeg|png商品图片!");
+    	return;
+    }
+    if($("#discount").val().trim()==""){
+    	$("#discount").parent().children(".err_red").text("折扣不能为空!");
+    	return;
+    }
+    var formData = new FormData($("#uploadForm")[0]);
+    $.ajax({
+		url : 'addSingleCommodity.jhtml',
+		type : 'POST',
+		data : formData,
+		async : false,
+		cache : false,
+		contentType : false,
+		processData : false,
+		success : function(data) {
+			alert(data.message);
+			 location.reload()
+		},
+		error : function(data) {
+			alert(data.message);
+		}
+	});
+    });
+

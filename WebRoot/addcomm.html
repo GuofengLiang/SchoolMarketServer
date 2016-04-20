@@ -46,8 +46,6 @@
                     <li><a href="index.jsp">退出</a></li>
                 </ul>
             </div>
-            <!-- user dropdown ends -->          
-            </ul>
 
         </div>
     </div>  <!-- top end -->
@@ -113,40 +111,40 @@
 			<div class="panel-heading" style="height:5em;">商品列表<a href="managecomm.html" style="float: right" id="back" class="button button-raised button-primary button-pill"><span class="glyphicon glyphicon-share-alt">返回</span></a></div>
 			<div class="panel-body">
 			<form id="uploadForm" enctype="multipart/form-data" method="post">
-				<div class="row"">
+				<div class="row">
 						<div class="col-md-2" style="width:100px;padding-left:10px;line-height: 28px"><span class="red">*</span>商品名称：</div>
 							<div class="col-md-3">
-									<input id="commName" type="text" class="form-control"  placeholder="">
+									<input id="commName" name="commName" type="text" class="form-control"  placeholder="">
 									<span class="err_red"></span>
 							</div>
 						<div class="col-md-2" style="width:50px;padding:0;line-height: 28px"><span class="red">*</span>价格：</div>
 							<div class="col-md-3">
-									<input id="price" type="text" class="form-control"  placeholder="">
+									<input id="price" name="price" type="text" class="form-control"  placeholder="">
 									<span class="err_red"></span>
 							</div>
 						<div class="col-md-2" style="width:60px;padding:0;line-height: 28px"><span class="red">*</span>商品规格：</div>
 							<div class="col-md-3">
-							        <input id="specification" type="text" class="form-control"  placeholder="" >
+							        <input id="specification" name="specification" type="text" class="form-control"  placeholder="" >
 									<span class="err_red"></span>
 						    </div>
 				</div>
 				<div class="row">
 						<div class="col-md-2" style="width:100px;padding-left:10px;line-height: 28px"><span class="red">*</span>商品描述：</div>
 							<div class="col-md-3">
-									<input id="describes" type="text" class="form-control"  placeholder="">
+									<input id="describes" name="describes" type="text" class="form-control"  placeholder="">
 									<span class="err_red"></span>
 							</div>
 						<div class="col-md-2" style="width:50px;padding:0;line-height: 28px"><span class="red">*</span>库存：</div>
 							<div class="col-md-3">
-									<input id="stock" type="text" class="form-control"  placeholder="">
+									<input id="stock" name="stock" type="text" class="form-control"  placeholder="">
 									<span class="err_red"></span>
 							</div>
 						<div class="col-md-2" style="width:60px;padding:0;line-height: 28px"><span class="red">*</span>商品类型：</div>
 							<div class="col-md-3">
-									<select id="selectcommType" class="form-control">
-		                                <option value="0">普通商品</option>
-		                                <option value="1">特价商品</option>
-		                                <option value="2">推荐商品</option>
+									<select id="type" name="type" class="form-control">
+		                                <option value="普通商品">普通商品</option>
+		                                <option value="特价商品">特价商品</option>
+		                                <option value="推荐商品">推荐商品</option>
 	                           		</select>
 									<span class="err_red"></span>
 						</div>
@@ -154,12 +152,12 @@
 				<div class="row" id="specialcomm">
 				       <div class="col-md-2" style="width:100px;padding-left:10px;line-height: 28px"><span class="red">*</span>特价截止时间：</div>
 							<div class="col-md-3">
-									<input id="specialTime" type="text" class="form-control"  placeholder="">
+									<input id="specialTime" name="specialTime" type="text" class="form-control"  placeholder="">
 									<span class="err_red"></span>
 							</div>
 						<div class="col-md-2" style="width:50px;padding:0;line-height: 28px"><span class="red">*</span>折扣：</div>
 							<div class="col-md-3">
-									<input id="discount" type="text" class="form-control"  placeholder="">
+									<input id="discount" name="discount" type="text" class="form-control"  placeholder="">
 									<span class="err_red"></span>
 							</div>
 						
@@ -167,15 +165,18 @@
 				<div class="row">
 						<div class="col-md-2" style="width:100px;padding-left:10px;line-height: 28px"><span class="red">*</span>大分类：</div>
 							<div class="col-md-3">
-									<select id="mainclassName" class="form-control">
-									   <option value="0">暂无，请添加商品分类</option>
+									<select id="mainclassName" name="mainclassName" class="form-control">
+									   <option value="食品零食">食品零食</option>
 	                           		</select>
 									<span class="err_red"></span>
 							</div>
 						<div class="col-md-2" style="width:50px;padding:0;line-height: 28px"><span class="red">*</span>小分类：</div>
 							<div class="col-md-3">
-									<select id="subclassName" class="form-control">
-		                                <option value="0">暂无，请添加商品分类</option>
+									<select id="subclassName" name="subclassName" class="form-control">
+		                                <option value="饼干糕点">饼干糕点</option>
+		                                <option value="膨化食品">膨化食品</option>
+		                                <option value="坚果炒货">坚果炒货</option>
+		                                <option value="果冻蜜饯">果冻蜜饯</option>
 	                           		</select>
 									<span class="err_red"></span>
 							</div>
@@ -215,14 +216,15 @@
 	$(document).ready(
 	 function(){
 	  $('#upload_image').change(function(event) {
+	  $("#upload_image").parent().children(".err_red").text("");
 	  $("#imagediv img").remove();
     // 根据这个 <input> 获取文件的 HTML5 js 对象
-    var files = event.target.files, file;		
+    var files = event.target.files, file;	
     if (files && files.length > 0) {
       // 获取目前上传的文件
       file = files[0];
       // 来在控制台看看到底这个对象是什么
-      console.log(file);
+      console.log(file.name);
       // 那么我们可以做一下诸如文件大小校验的动作
       if(file.size > 1024 * 1024 * 2) {
         alert('图片大小不能超过 2MB!');

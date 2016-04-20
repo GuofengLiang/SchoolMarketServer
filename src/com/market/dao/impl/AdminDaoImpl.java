@@ -8,13 +8,16 @@ import org.springframework.stereotype.Repository;
 
 import com.market.dao.AdminDao;
 import com.market.entity.Admin;
+
 @Repository
 public class AdminDaoImpl implements AdminDao {
 	@PersistenceContext
 	protected EntityManager entityManager;
+
 	@Override
 	public Admin findSingleAdmin(String adminName) {
-		Query query = entityManager.createQuery("select a from Admin a where a.adminName=?1");
+		Query query = entityManager
+				.createQuery("select a from Admin a where a.adminName=?1");
 		query.setParameter(1, adminName);
 		try {
 			Admin amdin = (Admin) query.getSingleResult();

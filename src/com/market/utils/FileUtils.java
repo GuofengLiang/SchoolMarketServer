@@ -12,22 +12,24 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-
 public class FileUtils {
 	private static final String UPLOADDIR = "uploadDir/";
-public static void upload(MultipartHttpServletRequest request) throws Exception{
-	
+
+	public static void upload(MultipartHttpServletRequest request)
+			throws Exception {
+
 		Map<String, MultipartFile> fileMap = request.getFileMap();
 
 		String uploadDir = request.getSession().getServletContext()
-				.getRealPath("/")+UPLOADDIR;
+				.getRealPath("/")
+				+ UPLOADDIR;
 		File file = new File(uploadDir);
 
 		if (!file.exists()) {
 			file.mkdir();
 		}
 		String fileName = null;
-		int i = 0; 
+		int i = 0;
 		for (Iterator<Map.Entry<String, MultipartFile>> it = fileMap.entrySet()
 				.iterator(); it.hasNext(); i++) {
 
@@ -37,52 +39,52 @@ public static void upload(MultipartHttpServletRequest request) throws Exception{
 			fileName = mFile.getOriginalFilename();
 
 			String storeName = rename(fileName);
-			 //创建文件
-			  File uploadFile = new File(uploadDir+storeName);
+			// 创建文件
+			File uploadFile = new File(uploadDir + storeName);
 
 			FileCopyUtils.copy(mFile.getBytes(), uploadFile);
 
 		}
 	}
 
+	/**
+	 * 将上传的文件进行重命名
+	 * 
+	 * @param name
+	 * @return
+	 */
+	public static String rename(String name) {
 
-/**
- * 将上传的文件进行重命名
- * 
- * @param name
- * @return
- */
-public static String rename(String name) {
+		Long now = Long.parseLong(new SimpleDateFormat("yyyyMMddHHmmss")
+				.format(new Date()));
+		Long random = (long) (Math.random() * now);
+		String fileName = now + "" + random;
 
-	Long now = Long.parseLong(new SimpleDateFormat("yyyyMMddHHmmss")
-			.format(new Date()));
-	Long random = (long) (Math.random() * now);
-	String fileName = now + "" + random;
+		if (name.indexOf(".") != -1) {
+			fileName += name.substring(name.lastIndexOf("."));
+		}
 
-	if (name.indexOf(".") != -1) {
-		fileName += name.substring(name.lastIndexOf("."));
+		return fileName;
 	}
 
-	return fileName;
-}
+	/**
+	 * 删除本地文件
+	 * 
+	 * @param path
+	 */
+	public static void deleteAll(File path) {
 
-/**
- * 删除本地文件
- * @param path
- */
-public static  void deleteAll(File path) {
-
-	if (!path.exists())   //路径不存在
-	return;
-	if (path.isFile()) {  //是文件
-	path.delete();
-	return;
-	}
-	File[] files = path.listFiles();
-	for (int i = 0; i < files.length; i++) {
-	deleteAll(files[i]);
-	}
-	path.delete(); 
+		if (!path.exists()) // 路径不存在
+			return;
+		if (path.isFile()) { // 是文件
+			path.delete();
+			return;
+		}
+		File[] files = path.listFiles();
+		for (int i = 0; i < files.length; i++) {
+			deleteAll(files[i]);
+		}
+		path.delete();
 	}
 
 }

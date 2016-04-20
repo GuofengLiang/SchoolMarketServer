@@ -14,15 +14,16 @@ import com.market.javabean.CommodityBean;
 import com.market.javabean.SupermarketBean;
 import com.market.service.CommodityService;
 import com.market.utils.FileUtils;
+
 @Service
 public class CommodityServiceImpl implements CommodityService {
-	@Resource(name="commodityDaoImpl")
-    public CommodityDao commodityDao;
+	@Resource(name = "commodityDaoImpl")
+	public CommodityDao commodityDao;
 
 	@Override
 	public Commodity findSingleComm(int commodityId) {
 
-		Commodity commodity=commodityDao.findSingleComm(commodityId);
+		Commodity commodity = commodityDao.findSingleComm(commodityId);
 		return commodity;
 	}
 
@@ -30,10 +31,13 @@ public class CommodityServiceImpl implements CommodityService {
 	public void addSingleCommodity(String mainclassName, String subclassName,
 			String commName, String picture, float price,
 			String spercification, String describes, int stock, float discount,
-			Date specialTime, int type, int supermarketId,MultipartHttpServletRequest mRequest) throws Exception {
-		    FileUtils.upload(mRequest);
-		    commodityDao.addSingleCommodity(mainclassName, subclassName, commName, picture, price, spercification, describes, stock, discount, specialTime, type, supermarketId);
-		
+			Date specialTime, String type, int supermarketId,
+			MultipartHttpServletRequest mRequest) throws Exception {
+		FileUtils.upload(mRequest);
+		commodityDao.addSingleCommodity(mainclassName, subclassName, commName,
+				picture, price, spercification, describes, stock, discount,
+				specialTime, type, supermarketId);
+
 	}
 
 }

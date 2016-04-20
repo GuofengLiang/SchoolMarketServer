@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import com.market.service.CaptchaService;
 
-
-
 /**
  * 验证码控制器
  * 
@@ -22,7 +20,7 @@ import com.market.service.CaptchaService;
  */
 @Controller("commonController")
 public class CaptchaController {
-	
+
 	@Resource(name = "captchaServiceImpl")
 	private CaptchaService captchaService;
 
@@ -30,12 +28,15 @@ public class CaptchaController {
 	 * 验证码
 	 */
 	@RequestMapping(value = "/captcha", method = RequestMethod.GET)
-	public void image(String captchaId, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public void image(String captchaId, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
 		if (StringUtils.isEmpty(captchaId)) {
 			captchaId = request.getSession().getId();
 		}
-		String pragma = new StringBuffer().append("yB").append("-").append("der").append("ewoP").reverse().toString();
-		String value = new StringBuffer().append("ten").append(".").append("xxp").append("ohs").reverse().toString();
+		String pragma = new StringBuffer().append("yB").append("-")
+				.append("der").append("ewoP").reverse().toString();
+		String value = new StringBuffer().append("ten").append(".")
+				.append("xxp").append("ohs").reverse().toString();
 		response.addHeader(pragma, value);
 		response.setHeader("Pragma", "no-cache");
 		response.setHeader("Cache-Control", "no-cache");
@@ -56,6 +57,4 @@ public class CaptchaController {
 		}
 	}
 
-
-	
 }

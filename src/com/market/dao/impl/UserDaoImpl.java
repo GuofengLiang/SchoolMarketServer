@@ -9,40 +9,47 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.market.dao.UserDao;
 import com.market.entity.User;
+
 @Repository
 public class UserDaoImpl implements UserDao {
 	@PersistenceContext
 	protected EntityManager entityManager;
+
 	@Override
 	public User findSingleUser(String username) {
-		Query query = entityManager.createQuery("select u from User u where u.userName=?1");
+		Query query = entityManager
+				.createQuery("select u from User u where u.userName=?1");
 		query.setParameter(1, username);
-			User user= (User) query.getSingleResult();
-			return user;
+		User user = (User) query.getSingleResult();
+		return user;
 	}
-	
+
 	@Transactional
 	@Override
-	public void updatePassword(String username, String oldPassword, String newPassword)throws Exception{
-		    Query query = entityManager.createQuery("select u from User u where u.userName=?1");
-		    query.setParameter(1, username);
-			User user= (User) query.getSingleResult();
-			if(!user.getPassword().equals(oldPassword)){throw new Exception();}
-			user.setPassword(newPassword);
-		
+	public void updatePassword(String username, String oldPassword,
+			String newPassword) throws Exception {
+		Query query = entityManager
+				.createQuery("select u from User u where u.userName=?1");
+		query.setParameter(1, username);
+		User user = (User) query.getSingleResult();
+		if (!user.getPassword().equals(oldPassword)) {
+			throw new Exception();
+		}
+		user.setPassword(newPassword);
+
 	}
 
 	@Override
 	@Transactional
 	public void addSingleUser(String userName, String password,
-			  String userPhone, int sex, String portrait) {
-		//持久化user
+			String userPhone, int sex, String portrait) {
+		// 持久化user
 		User user = new User();
 		user.setUserName(userName);
 		user.setPassword(password);
 		user.setUserPhone(userPhone);
 		user.setSex(sex);
 		user.setPortrait(portrait);
-		entityManager.persist(user);	//保存到数据库
+		entityManager.persist(user); // 保存到数据库
 	}
 }

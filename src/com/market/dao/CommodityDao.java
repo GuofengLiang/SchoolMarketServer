@@ -6,14 +6,17 @@ import com.market.entity.Commodity;
 
 public interface CommodityDao {
 
-	 /**
-	   * 通过商品id来获取该商品表该id的商品
-	   * @param commodityId
-	   * @return
-	   */
+	/**
+	 * 通过商品id来获取该商品表该id的商品
+	 * 
+	 * @param commodityId
+	 * @return
+	 */
 	Commodity findSingleComm(int commodityId);
+
 	/**
 	 * 添加单个商品
+	 * 
 	 * @param mainclassName
 	 * @param subclassName
 	 * @param commName
@@ -26,17 +29,10 @@ public interface CommodityDao {
 	 * @param specialTime
 	 * @param type
 	 */
-	void addSingleCommodity(
-			String mainclassName,
-			String subclassName,
-			String commName,
-			String picture,
+	void addSingleCommodity(String mainclassName, String subclassName,
+			String commName, String picture,
 			float price,
-			String spercification,//规格，重量
-			String describes,
-			int stock,
-			float discount,
-			Date specialTime,
-			int type,
-			int supermarketId);
+			String spercification,// 规格，重量
+			String describes, int stock, float discount, Date specialTime,
+			String type, int supermarketId);
 }

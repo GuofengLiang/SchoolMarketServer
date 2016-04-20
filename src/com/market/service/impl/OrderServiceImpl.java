@@ -10,12 +10,12 @@ import com.market.service.OrderService;
 
 @Service
 public class OrderServiceImpl implements OrderService {
-	@Resource(name="orderDaoImpl")
+	@Resource(name = "orderDaoImpl")
 	public OrderDao orderDao;
 
 	@Override
 	public Order findSingleOrder(int orderId) {
-		
+
 		Order order = orderDao.findSingleOrder(orderId);
 		return order;
 	}

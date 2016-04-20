@@ -9,10 +9,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+
 /**
  * 收货地址表
- * @author 
- *
+ * 
+ * @author
+ * 
  */
 @Entity
 public class Address {
@@ -20,61 +22,71 @@ public class Address {
 	/**
 	 * 收货地址编号
 	 */
-	@Id @GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(nullable=false)
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(nullable = false)
 	private int addressId;
 	/**
 	 * 用户id
 	 */
-	@ManyToOne(fetch = FetchType.EAGER,optional = false)
-	@JoinColumn(name="user_id")
+	@ManyToOne(fetch = FetchType.EAGER, optional = false)
+	@JoinColumn(name = "user_id")
 	private User user;
 	/**
 	 * 详细地址
 	 */
-	@Column(length=40,nullable=false)
+	@Column(length = 40, nullable = false)
 	private String addressDetail;
-	
+
 	/**
 	 * 收件人
 	 */
-	@Column(length=4,nullable=false)
+	@Column(length = 4, nullable = false)
 	private String consignee;
 	/**
 	 * 电话号码
 	 */
-	@Column(length=11)
+	@Column(length = 11)
 	private String phone;
 
 	public int getAddressId() {
 		return addressId;
 	}
+
 	public void setAddressId(int addressId) {
 		this.addressId = addressId;
 	}
+
 	public User getUser() {
 		return user;
 	}
+
 	public void setUser(User user) {
 		this.user = user;
 	}
+
 	public String getAddressDetail() {
 		return addressDetail;
 	}
+
 	public void setAddressDetail(String addressDetail) {
 		this.addressDetail = addressDetail;
 	}
+
 	public String getConsignee() {
 		return consignee;
 	}
+
 	public void setConsignee(String consignee) {
 		this.consignee = consignee;
 	}
+
 	public String getPhone() {
 		return phone;
 	}
+
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	
+
 }

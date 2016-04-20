@@ -21,7 +21,7 @@ import com.octo.captcha.image.gimpy.GimpyFactory;
 /**
  * 验证码图片生成
  * 
- * @author 
+ * @author
  * @version 3.0
  */
 public class CaptchaEngine extends ListImageCaptchaEngine {
@@ -53,23 +53,40 @@ public class CaptchaEngine extends ListImageCaptchaEngine {
 	/**
 	 * 随机字体
 	 */
-	private static final Font[] FONTS = new Font[] { new Font("nyala", Font.BOLD, MAX_FONT_SIZE), new Font("Arial", Font.BOLD, MAX_FONT_SIZE), new Font("nyala", Font.BOLD, MAX_FONT_SIZE), new Font("Bell", Font.BOLD, MAX_FONT_SIZE), new Font("Bell MT", Font.BOLD, MAX_FONT_SIZE), new Font("Credit", Font.BOLD, MAX_FONT_SIZE), new Font("valley", Font.BOLD, MAX_FONT_SIZE),
+	private static final Font[] FONTS = new Font[] {
+			new Font("nyala", Font.BOLD, MAX_FONT_SIZE),
+			new Font("Arial", Font.BOLD, MAX_FONT_SIZE),
+			new Font("nyala", Font.BOLD, MAX_FONT_SIZE),
+			new Font("Bell", Font.BOLD, MAX_FONT_SIZE),
+			new Font("Bell MT", Font.BOLD, MAX_FONT_SIZE),
+			new Font("Credit", Font.BOLD, MAX_FONT_SIZE),
+			new Font("valley", Font.BOLD, MAX_FONT_SIZE),
 			new Font("Impact", Font.BOLD, MAX_FONT_SIZE) };
 
 	/**
 	 * 随机颜色
 	 */
-	private static final Color[] COLORS = new Color[] { new Color(255, 255, 255), new Color(255, 220, 220), new Color(220, 255, 255), new Color(220, 220, 255), new Color(255, 255, 220), new Color(220, 255, 220) };
+	private static final Color[] COLORS = new Color[] {
+			new Color(255, 255, 255), new Color(255, 220, 220),
+			new Color(220, 255, 255), new Color(220, 220, 255),
+			new Color(255, 255, 220), new Color(220, 255, 220) };
 
 	/**
 	 * 验证码图片生成
 	 */
 	@Override
 	protected void buildInitialFactories() {
-		FontGenerator fontGenerator = new RandomFontGenerator(MIN_FONT_SIZE, MAX_FONT_SIZE, FONTS);
-		BackgroundGenerator backgroundGenerator = new FileReaderRandomBackgroundGenerator(IMAGE_WIDTH, IMAGE_HEIGHT, new ClassPathResource(BACKGROUND_IMAGE_PATH).getPath());
-		TextPaster textPaster = new DecoratedRandomTextPaster(MIN_WORD_LENGTH, MAX_WORD_LENGTH, new RandomListColorGenerator(COLORS), new TextDecorator[] {});
-		addFactory(new GimpyFactory(new RandomWordGenerator(CHAR_STRING), new ComposedWordToImage(fontGenerator, backgroundGenerator, textPaster)));
+		FontGenerator fontGenerator = new RandomFontGenerator(MIN_FONT_SIZE,
+				MAX_FONT_SIZE, FONTS);
+		BackgroundGenerator backgroundGenerator = new FileReaderRandomBackgroundGenerator(
+				IMAGE_WIDTH, IMAGE_HEIGHT, new ClassPathResource(
+						BACKGROUND_IMAGE_PATH).getPath());
+		TextPaster textPaster = new DecoratedRandomTextPaster(MIN_WORD_LENGTH,
+				MAX_WORD_LENGTH, new RandomListColorGenerator(COLORS),
+				new TextDecorator[] {});
+		addFactory(new GimpyFactory(new RandomWordGenerator(CHAR_STRING),
+				new ComposedWordToImage(fontGenerator, backgroundGenerator,
+						textPaster)));
 	}
 
 }
