@@ -24,7 +24,7 @@ public class SubClassifyController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "findAllSubClassify")
-	public  List<SubClassifyBean> findAllSubClassify(@RequestParam int mainclassId) {
+	public  List<SubClassifyBean> findAllSubClassify(int mainclassId) {
 		List<SubClassifyBean> subClassifies = subClassifyService.findAllSubClassify(mainclassId);
 		return subClassifies;
 	}

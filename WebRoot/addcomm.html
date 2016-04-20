@@ -166,17 +166,13 @@
 						<div class="col-md-2" style="width:100px;padding-left:10px;line-height: 28px"><span class="red">*</span>大分类：</div>
 							<div class="col-md-3">
 									<select id="mainclassName" name="mainclassName" class="form-control">
-									   <option value="食品零食">食品零食</option>
 	                           		</select>
 									<span class="err_red"></span>
 							</div>
 						<div class="col-md-2" style="width:50px;padding:0;line-height: 28px"><span class="red">*</span>小分类：</div>
 							<div class="col-md-3">
 									<select id="subclassName" name="subclassName" class="form-control">
-		                                <option value="饼干糕点">饼干糕点</option>
-		                                <option value="膨化食品">膨化食品</option>
-		                                <option value="坚果炒货">坚果炒货</option>
-		                                <option value="果冻蜜饯">果冻蜜饯</option>
+		                   
 	                           		</select>
 									<span class="err_red"></span>
 							</div>
@@ -243,6 +239,37 @@
     }
   });
 	 });
+	 $(function(){
+	  $.post("json/subclassify.json",
+	      function(data){
+	        data.forEach(function(obj){
+	           $("#mainclassName").append("<option value="+obj.subclassId+">"+obj.subclassName+"</option>");
+	         });
+	          var mainclassId=$("#mainclassName").val();
+		     $.post("findAllSubClassify.jhtml",
+		      {
+		       "mainclassId":mainclassId
+		      },
+		      function(data){
+		        data.forEach(function(obj){
+		           $("#subclassName").append("<option value="+obj.subclassId+">"+obj.subclassName+"</option>");
+		         });
+		      });
+	      });
+	 });
+	  $("#mainclassName").change(function()
+	  {      $("#subclassName").children().remove();
+	        var mainclassId=$("#mainclassName").val();
+		     $.post("findAllSubClassify.jhtml",
+		      {
+		       "mainclassId":mainclassId
+		      },
+		      function(data){
+		        data.forEach(function(obj){
+		           $("#subclassName").append("<option value="+obj.subclassId+">"+obj.subclassName+"</option>");
+		         });
+		      });
+	  });
 </script>
 <script>
  $("#specialTime").datetimepicker({
