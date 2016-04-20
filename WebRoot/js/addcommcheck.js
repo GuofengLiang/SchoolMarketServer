@@ -35,11 +35,11 @@ $("#price").focusin(function(){
     		 	return ;
     		}
     	});
-$("#specification").focusin(function(){
+$("#spercification").focusin(function(){
 	$(this).parent().children(".err_red").text("");
 }).focusout(function(){ 
     		$(this).parent().children(".err_red").text("");
-    		if($("#specification").val().trim()==""){
+    		if($("#spercification").val().trim()==""){
     			$(this).parent().children(".err_red").text("商品规格不能为空!");
     		 	return ;
     		}			
@@ -93,8 +93,8 @@ $("#addCommodity").click(function(){
     	return;
     }
 
-    if($("#specification").val().trim()==""){
-    	$("#specification").parent().children(".err_red").text("商品规格不能为空!");
+    if($("#spercification").val().trim()==""){
+    	$("#spercification").parent().children(".err_red").text("商品规格不能为空!");
     	return;
     }
 
