@@ -29,7 +29,7 @@ public interface CommodityDao {
 	 * @param specialTime
 	 * @param type
 	 */
-	void addSingleCommodity(String mainclassName, String subclassName,
+	void addSingleCommodity(int mainclassId, int subclassId,
 			String commName, String picture,
 			float price,
 			String spercification,// 规格，重量

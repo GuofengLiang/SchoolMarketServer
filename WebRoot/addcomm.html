@@ -240,10 +240,10 @@
   });
 	 });
 	 $(function(){
-	  $.post("json/subclassify.json",
+	  $.post("findAllMainClassify.jhtml",
 	      function(data){
 	        data.forEach(function(obj){
-	           $("#mainclassName").append("<option value="+obj.subclassId+">"+obj.subclassName+"</option>");
+	           $("#mainclassName").append("<option value="+obj.mainclassId+">"+obj.mainclassName+"</option>");
 	         });
 	          var mainclassId=$("#mainclassName").val();
 		     $.post("findAllSubClassify.jhtml",

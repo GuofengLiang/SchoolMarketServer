@@ -33,19 +33,19 @@ public class CommodityDaoImpl implements CommodityDao {
 
 	@Override
 	@Transactional
-	public void addSingleCommodity(String mainclassName, String subclassName,
+	public void addSingleCommodity(int mainclassId, int subclassId,
 			String commName, String picture, float price,
 			String spercification, String describes, int stock, float discount,
 			Date specialTime, String type, int supermarketId) {
-		// 持久化mainClassify
-		MainClassify mainclass = new MainClassify();
-		mainclass.setMainclassName(mainclassName);
-		entityManager.persist(mainclass);
-		// 持久化subClassify
-		SubClassify subclass = new SubClassify();
-		subclass.setSubclassName(subclassName);
+		//根据mainclassId获得一个大分类
+		Query query1 = entityManager.createQuery("select m from MainClassify m where m.mainclassId=?1");
+		query1.setParameter(1, mainclassId);
+		MainClassify mainclass = (MainClassify) query1.getSingleResult();
+		//根据subclassId获得一个小分类
+		Query query2 = entityManager.createQuery("select s from SubClassify s where s.subclassId=?1");
+		query2.setParameter(1, subclassId);
+		SubClassify subclass = (SubClassify) query2.getSingleResult();
 		subclass.setMainclassId(mainclass);
-		entityManager.persist(subclass);
 		// 持久化commodity
 		Commodity commodity = new Commodity();
 		commodity.setCommName(commName);
@@ -61,10 +61,10 @@ public class CommodityDaoImpl implements CommodityDao {
 		commodity.setSubclassId(subclass);
 		entityManager.persist(commodity);
 		// 得到supermarket
-		Query query = entityManager
+		Query query3= entityManager
 				.createQuery("select s from Supermarket s where s.supermarketId=?1");
-		query.setParameter(1, supermarketId);
-		Supermarket supermarket = (Supermarket) query.getSingleResult();
+		query3.setParameter(1, supermarketId);
+		Supermarket supermarket = (Supermarket) query3.getSingleResult();
 		// 保存
 		supermarket.getCommodity().add(commodity);
 

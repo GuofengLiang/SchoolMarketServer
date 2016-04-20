@@ -28,13 +28,13 @@ public class CommodityServiceImpl implements CommodityService {
 	}
 
 	@Override
-	public void addSingleCommodity(String mainclassName, String subclassName,
+	public void addSingleCommodity(int mainclassId, int subclassId,
 			String commName,float price,
 			String spercification, String describes, int stock, float discount,
 			Date specialTime, String type, int supermarketId,
 			MultipartHttpServletRequest mRequest) throws Exception {
 		String picture=FileUtils.upload(mRequest);
-		commodityDao.addSingleCommodity(mainclassName, subclassName, commName,
+		commodityDao.addSingleCommodity(mainclassId, subclassId, commName,
 				picture, price, spercification, describes, stock, discount,
 				specialTime, type, supermarketId);
 

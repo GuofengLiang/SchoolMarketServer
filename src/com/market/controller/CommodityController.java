@@ -46,8 +46,10 @@ public class CommodityController {
 		Map<String, String> map = new HashMap<String, String>();
 		int supermarketId = (Integer) session.getAttribute("supermarketId");
 		MultipartHttpServletRequest mRequest = (MultipartHttpServletRequest) request;
+		int mainclassId=Integer.parseInt(mainclassName);
+		int subclassId=Integer.parseInt(subclassName);
 		try {
-			commodityService.addSingleCommodity(mainclassName, subclassName,
+			commodityService.addSingleCommodity(mainclassId, subclassId,
 					commName, price, spercification, describes, stock,
 					discount, Format.string2Date(specialTime), type,
 					supermarketId, mRequest);
