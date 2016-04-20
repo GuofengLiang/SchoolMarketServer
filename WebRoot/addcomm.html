@@ -13,7 +13,7 @@
 	<link href="css/button.css" rel="stylesheet"><!-- 按钮的样式 -->
 	<link rel="stylesheet" type="text/css" href="css/dataTables.bootstrap.css"> <!-- 表的样式 -->
 	<link href="css/style.css" rel="stylesheet"><!-- 整个布局样式 -->
-
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet"><!-- 时间选择器的样式 -->
 
 </head>
 
@@ -106,10 +106,10 @@
   <div class="row">
     <div class="col-md-12">
 		<div class="panel panel-default">
-			<div class="panel-heading" style="height:5em;">商品列表<a href="#" style="float: right" id="back" class="button button-raised button-primary button-pill"><span class="glyphicon glyphicon-share-alt">返回</span></a></div>
+			<div class="panel-heading" style="height:5em;">商品列表<a href="managecomm.html" style="float: right" id="back" class="button button-raised button-primary button-pill"><span class="glyphicon glyphicon-share-alt">返回</span></a></div>
 			<div class="panel-body">
 			<form id="uploadForm" enctype="multipart/form-data" method="post">
-				<div class="row">
+				<div class="row"">
 						<div class="col-md-2" style="width:100px;padding-left:10px;line-height: 28px"><span class="red">*</span>商品名称：</div>
 							<div class="col-md-3">
 									<input id="commName" type="text" class="form-control"  placeholder="">
@@ -120,13 +120,12 @@
 									<input id="price" type="text" class="form-control"  placeholder="">
 									<span class="err_red"></span>
 							</div>
-						<div class="col-md-2" style="width:60px;padding:0;line-height: 28px"><span class="red">*</span>规格：</div>
+						<div class="col-md-2" style="width:60px;padding:0;line-height: 28px"><span class="red">*</span>商品规格：</div>
 							<div class="col-md-3">
 							        <input id="specification" type="text" class="form-control"  placeholder="" >
 									<span class="err_red"></span>
 						    </div>
 				</div>
-				<br>
 				<div class="row">
 						<div class="col-md-2" style="width:100px;padding-left:10px;line-height: 28px"><span class="red">*</span>商品描述：</div>
 							<div class="col-md-3">
@@ -138,17 +137,42 @@
 									<input id="stock" type="text" class="form-control"  placeholder="">
 									<span class="err_red"></span>
 							</div>
+						<div class="col-md-2" style="width:60px;padding:0;line-height: 28px"><span class="red">*</span>商品类型：</div>
+							<div class="col-md-3">
+									<select id="selectcommType" class="form-control">
+		                                <option value="0">普通商品</option>
+		                                <option value="1">特价商品</option>
+		                                <option value="2">推荐商品</option>
+	                           		</select>
+									<span class="err_red"></span>
+						</div>
 				</div>
-				<br>
+				<div class="row" id="specialcomm">
+				       <div class="col-md-2" style="width:100px;padding-left:10px;line-height: 28px"><span class="red">*</span>特价截止时间：</div>
+							<div class="col-md-3">
+									<input id="specialTime" type="text" class="form-control"  placeholder="">
+									<span class="err_red"></span>
+							</div>
+						<div class="col-md-2" style="width:50px;padding:0;line-height: 28px"><span class="red">*</span>折扣：</div>
+							<div class="col-md-3">
+									<input id="discount" type="text" class="form-control"  placeholder="">
+									<span class="err_red"></span>
+							</div>
+						
+				</div>
 				<div class="row">
 						<div class="col-md-2" style="width:100px;padding-left:10px;line-height: 28px"><span class="red">*</span>大分类：</div>
 							<div class="col-md-3">
-									<input id="mainclassName" type="text" class="form-control"  placeholder="">
+									<select id="mainclassName" class="form-control">
+									   <option value="0">暂无，请添加商品分类</option>
+	                           		</select>
 									<span class="err_red"></span>
 							</div>
 						<div class="col-md-2" style="width:50px;padding:0;line-height: 28px"><span class="red">*</span>小分类：</div>
 							<div class="col-md-3">
-									<input id="subclassName" type="text" class="form-control"  placeholder="">
+									<select id="subclassName" class="form-control">
+		                                <option value="0">暂无，请添加商品分类</option>
+	                           		</select>
 									<span class="err_red"></span>
 							</div>
 				</div>
@@ -179,7 +203,8 @@
 <script src="js/dataTables.bootstrap.js"></script><!-- 表的点击效果 -->
 <!-- library for making tables responsive -->
 <script src="js/responsive-tables.js"></script>
-<!-- history.js for cross-browser state change on ajax -->
+<script src="js/bootstrap-datetimepicker.min.js"></script><!--时间选择器自身动态插件-->
+<script src="js/bootstrap-datetimepicker.zh-CN.js"></script><!-- 时间选择器的中文化插件-->
 
 
 <script>
@@ -213,7 +238,17 @@
   });
 	 });
 </script>
+<script>
+ $("#specialTime").datetimepicker({
+			format: "yyyy-mm-dd hh:ii",
+			startDate : 2010 ,
+			startView : 4,
+			minView :0,
+			autoclose : true,
+			language: 'zh-CN',
 
+		});
+</script>
 </body>
 </html>
 
