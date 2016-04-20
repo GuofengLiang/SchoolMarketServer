@@ -3,6 +3,7 @@ package com.market.dao;
 import java.util.List;
 
 import com.market.entity.SubClassify;
+import com.market.javabean.SubClassifyBean;
 
 public interface SubClassifyDao {
 	/**
@@ -10,5 +11,5 @@ public interface SubClassifyDao {
 	 * @param mainclassId
 	 * @return
 	 */
-   List<SubClassify> findAllSubClassify(int mainclassId);
+   List<SubClassifyBean> findAllSubClassify(int mainclassId);
 }

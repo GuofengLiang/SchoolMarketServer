@@ -10,11 +10,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.market.entity.SubClassify;
+import com.market.javabean.SubClassifyBean;
 import com.market.service.SubClassifyService;
 
 @Controller
 public class SubClassifyController {
-	@Resource(name="SubClassifyServiceImpl")
+	@Resource(name="subClassifyServiceImpl")
 	public SubClassifyService subClassifyService;
 	/**
 	 * 根据mainclassId获取大分类的子类
@@ -23,8 +24,8 @@ public class SubClassifyController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "findAllSubClassify")
-	public  List<SubClassify> findAllSubClassify(@RequestParam int mainclassId) {
-		List<SubClassify> subClassifies = subClassifyService.findAllSubClassify(mainclassId);
+	public  List<SubClassifyBean> findAllSubClassify(@RequestParam int mainclassId) {
+		List<SubClassifyBean> subClassifies = subClassifyService.findAllSubClassify(mainclassId);
 		return subClassifies;
 	}
 

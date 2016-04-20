@@ -3,6 +3,7 @@ package com.market.service;
 import java.util.List;
 
 import com.market.entity.SubClassify;
+import com.market.javabean.SubClassifyBean;
 
 public interface SubClassifyService {
 
@@ -11,5 +12,5 @@ public interface SubClassifyService {
 	 * @param mainclassId
 	 * @return
 	 */
-   List<SubClassify> findAllSubClassify(int mainclassId);
+   List<SubClassifyBean> findAllSubClassify(int mainclassId);
 }
