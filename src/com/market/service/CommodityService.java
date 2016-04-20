@@ -32,7 +32,7 @@ public interface CommodityService {
 	 * @param type
 	 */
 	void addSingleCommodity(String mainclassName, String subclassName,
-			String commName, String picture,
+			String commName,
 			float price,
 			String spercification,// 规格，重量
 			String describes, int stock, float discount, Date specialTime,

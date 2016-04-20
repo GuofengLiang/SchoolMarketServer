@@ -39,7 +39,7 @@ public class CommodityController {
 	@ResponseBody
 	@RequestMapping(value = "addSingleCommodity")
 	public Map<String, String> addSingleCommodity(String mainclassName,
-			String subclassName, String commName, String picture, float price,
+			String subclassName, String commName, float price,
 			String spercification, String describes, int stock,
 			String specialTime, float discount, String type,
 			HttpSession session, HttpServletRequest request) {
@@ -48,7 +48,7 @@ public class CommodityController {
 		MultipartHttpServletRequest mRequest = (MultipartHttpServletRequest) request;
 		try {
 			commodityService.addSingleCommodity(mainclassName, subclassName,
-					commName, picture, price, spercification, describes, stock,
+					commName, price, spercification, describes, stock,
 					discount, Format.string2Date(specialTime), type,
 					supermarketId, mRequest);
 		} catch (Exception e) {

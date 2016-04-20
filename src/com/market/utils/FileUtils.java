@@ -6,8 +6,6 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -15,7 +13,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 public class FileUtils {
 	private static final String UPLOADDIR = "uploadDir/";
 
-	public static void upload(MultipartHttpServletRequest request)
+	public static String upload(MultipartHttpServletRequest request)
 			throws Exception {
 
 		Map<String, MultipartFile> fileMap = request.getFileMap();
@@ -29,6 +27,7 @@ public class FileUtils {
 			file.mkdir();
 		}
 		String fileName = null;
+		String storeName =null;
 		int i = 0;
 		for (Iterator<Map.Entry<String, MultipartFile>> it = fileMap.entrySet()
 				.iterator(); it.hasNext(); i++) {
@@ -38,13 +37,14 @@ public class FileUtils {
 
 			fileName = mFile.getOriginalFilename();
 
-			String storeName = rename(fileName);
+			storeName = rename(fileName);
 			// 创建文件
 			File uploadFile = new File(uploadDir + storeName);
 
 			FileCopyUtils.copy(mFile.getBytes(), uploadFile);
 
 		}
+		return storeName;
 	}
 
 	/**
