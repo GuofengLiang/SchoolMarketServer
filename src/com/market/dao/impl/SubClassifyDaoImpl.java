@@ -16,7 +16,7 @@ public class SubClassifyDaoImpl implements SubClassifyDao {
 	protected EntityManager entityManager;
 	@Override
 	public List<SubClassify> findAllSubClassify(int mainclassId) {
-		Query query = entityManager.createQuery("select s from SubClassify s where s.mainclassId=?1");
+		Query query = entityManager.createQuery("select s from Mainclassify s where s.mainclassId=?1");
 		query.setParameter(1, mainclassId);
 		@SuppressWarnings("unchecked")
 		List<SubClassify> list=query.getResultList();
