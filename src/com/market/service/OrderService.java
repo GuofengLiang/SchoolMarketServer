@@ -1,6 +1,9 @@
 package com.market.service;
 
+import java.util.List;
+
 import com.market.entity.Order;
+import com.market.javabean.OrderBean;
 
 public interface OrderService {
 
@@ -10,4 +13,10 @@ public interface OrderService {
 	 * @return
 	 */
 	Order findSingleOrder(int orderId);
+	/*
+	 * 根据用户id查找订单
+	 * @param userId
+	 * @return
+	 */
+	List<OrderBean> findAllOrders(int userId);
 }

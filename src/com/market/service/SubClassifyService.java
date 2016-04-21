@@ -13,4 +13,13 @@ public interface SubClassifyService {
 	 * @return
 	 */
    List<SubClassifyBean> findAllSubClassify(int mainclassId);
+   /**
+    * 查询所有子分类的信息
+    * @return
+    */
+   List<SubClassify> findAllSubClassifies();
+   /**
+    * 添加子分类
+    */
+   void addSubClassify(String subclassName, int mainclassId) throws Exception;
 }

@@ -11,4 +11,8 @@ public interface MainClassifyService {
 	 * @return
 	 */
 	List<MainClassify> findAllMainClassify();
+	/**
+	 * 添加主分类
+	 */
+	void addMainClassify(String mainclassName) throws Exception;
 }

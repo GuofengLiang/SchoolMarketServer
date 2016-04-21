@@ -21,4 +21,8 @@ public class MainClassifyServiceImpl implements MainClassifyService {
 		return mainClassifies;
 	}
 
+	@Override
+	public void addMainClassify(String mainclassName) {
+		mainClassifyDao.addMainClassify(mainclassName);
+	}
 }
