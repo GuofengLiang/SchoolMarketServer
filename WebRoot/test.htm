@@ -13,9 +13,10 @@
 <script type="text/javascript">
 <!--测试添加子分类-->
 $("#test").click(function(){
-$.post("findAllOrders.jhtml",
+$.post("alterMainClassify.jhtml",
   {
-	userId:"1"
+	mainclassId:"1",
+	mainclassName:"超帅"
   },
 function(data){
            alert(data.message);

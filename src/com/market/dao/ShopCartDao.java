@@ -3,7 +3,6 @@ package com.market.dao;
 import java.util.List;
 
 import com.market.entity.ShopCart;
-import com.market.entity.User;
 
 public interface ShopCartDao {
 

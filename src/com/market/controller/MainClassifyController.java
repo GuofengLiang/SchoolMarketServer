@@ -40,4 +40,30 @@ public class MainClassifyController {
 			map.put("message", "addMainClassifySuccess");
 			return map;
 	}
+	/**
+	 * 修改主分类
+	 */
+	@ResponseBody
+	@RequestMapping(value="alterMainClassify")
+	public Map<String, String> alterMainClassify(@RequestParam int mainclassId, String mainclassName) {
+		Map<String, String> map = new HashMap<String, String>();
+		try {
+			mainClassifyService.alterMainClassify(mainclassId, mainclassName);
+		}
+		 catch (Exception e) {
+				map.put("message", "mergeMainClassifyError");
+				return map;
+			}
+			map.put("message", "mergeMainClassifySuccess");
+			return map;
+	}
+	/**
+	 * 根据mainclassId来查询该主分类的信息
+	 */
+	@ResponseBody
+	@RequestMapping(value = "findSingleMainClassify")
+	public MainClassify findSingleMainClassify(int mainclassId) {
+		MainClassify mainClassify = mainClassifyService.findSingleMainClassify(mainclassId);
+		return mainClassify;
+	}
 }

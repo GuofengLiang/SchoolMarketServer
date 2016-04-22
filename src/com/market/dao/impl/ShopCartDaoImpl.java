@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 
 import com.market.dao.ShopCartDao;
 import com.market.entity.ShopCart;
-import com.market.entity.User;
 
 @Repository
 public class ShopCartDaoImpl implements ShopCartDao {

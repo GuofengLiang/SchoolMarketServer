@@ -33,4 +33,25 @@ public class MainClassifyDaoImpl implements MainClassifyDao {
 		entityManager.persist(mainClassify);
 	}
 
+	/**
+	 * 修改主分类
+	 */
+	@Override
+	@Transactional
+	public void alterMainClassify(int mainclassId, String mainclassName) {
+		Query query = entityManager.createQuery("select m from MainClassify m where m.mainclassId=?1");
+		query.setParameter(1, mainclassId);
+		MainClassify mainClassify = (MainClassify)query.getSingleResult();
+		mainClassify.setMainclassName(mainclassName);
+	}
+	/**
+	 * 根据mainclassId来查找主分类
+	 */
+	@Override
+	public MainClassify findSingleMainClassify(int mainclassId) {
+		Query query = entityManager.createQuery("select m from MainClassify m where m.mainclassId=?1");
+		query.setParameter(1, mainclassId);
+		MainClassify mainClassify = (MainClassify)query.getSingleResult();
+		return mainClassify;
+	}
 }

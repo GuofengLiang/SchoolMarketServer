@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.market.dao.OrderDao;
 import com.market.entity.Order;
-import com.market.javabean.OrderBean;
 import com.market.service.OrderService;
 
 @Service
@@ -23,8 +22,8 @@ public class OrderServiceImpl implements OrderService {
 		return order;
 	}
 	@Override
-	public List<OrderBean> findAllOrders(int userId) {
-		List<OrderBean> orders = orderDao.findAllOrders(userId);
+	public List<Order> findAllOrders(int userId) {
+		List<Order> orders = orderDao.findAllOrders(userId);
 		return orders;
 	}
 }

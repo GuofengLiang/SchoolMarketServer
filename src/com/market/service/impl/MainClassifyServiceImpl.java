@@ -21,8 +21,26 @@ public class MainClassifyServiceImpl implements MainClassifyService {
 		return mainClassifies;
 	}
 
+	/**
+	 * 添加主分类
+	 */
 	@Override
 	public void addMainClassify(String mainclassName) {
 		mainClassifyDao.addMainClassify(mainclassName);
+	}
+	/**
+	 * 修改主分类
+	 */
+	@Override
+	public void alterMainClassify(int mainclassId, String mainclassName) throws Exception {
+		mainClassifyDao.alterMainClassify(mainclassId, mainclassName);
+	}
+	/**
+	 * 根据mainclassId来查询该主分类的信息
+	 */
+	@Override
+	public MainClassify findSingleMainClassify(int mainclassId) {
+		MainClassify mainClassify = mainClassifyDao.findSingleMainClassify(mainclassId);
+		return mainClassify;
 	}
 }
