@@ -157,6 +157,7 @@
 <script>
 	$(document).ready(
 	 function(){
+	 <!--添加大分类-->
 	  $("#addmaincheck").click(function(){
 	    $.post("addMainClassify.jhtml",
 	      {
@@ -164,8 +165,10 @@
 	      },
 	      function(data){
 	        alert(data.message);
+	        window.location.reload();//重新加载页面
 	      });
 	  });
+	   <!--添加小分类-->
 	   $("#addsubcheck").click(function(){
 	    $.post("addSubClassify.jhtml",
 	      {
@@ -177,6 +180,7 @@
 	      });
 	  });
 	  });
+	  <!--加载页面是，自动获取所有大分类-->
 	 $(function(){
 	  $.post("findAllMainClassify.jhtml",
 	      function(data){

@@ -32,6 +32,7 @@ public class SubClassifyDaoImpl implements SubClassifyDao {
 		for(int i=0;i<list.size();i++){
 			SubClassifyBean subClassifyBean=new SubClassifyBean();
 			subClassifyBean.setSubclassId(list.get(i).getSubclassId());
+			subClassifyBean.setSubclassName(list.get(i).getSubclassName());
 			listbean.add(subClassifyBean);
 		}
 		return listbean;

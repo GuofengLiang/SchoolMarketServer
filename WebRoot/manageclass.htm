@@ -108,7 +108,7 @@
 		<div class="panel panel-default">
 			<div class="panel-heading" style="height:5em;">分类列表<a href="addclass.html" style="float: right" id="addclass" class="button button-raised button-primary button-pill">添加分类</a></div>
 			<div class="panel-body">
-					<table id="commodity"
+					<table id="diplayclass"
 						class="table table-bordered table-striped table-hover"
 						cellspacing="0" width="100%" style="">
 						<thead style="font-size: 11px">
@@ -135,6 +135,7 @@
 			<span id="hide" class="glyphicon glyphicon-remove-circle" style="position: absolute;margin-top: 12%;font-size: 20px;color: snow;cursor:pointer;"></span>
 			<div class="bio-graph-heading">修改分类</div>
 			<div class="panel-body bio-graph-info">
+			   <form>
 			   <div class="row">
 						<div class="col-md-2" style="width:100px;padding-left:10px;line-height: 28px"><span class="red">*</span>大分类：</div>
 							<div class="col-md-3">
@@ -148,8 +149,9 @@
 							</div>
 				</div>
 				<div class="row">
-				  <a href="addcomm.html" style="margin:0 auto" id="changecheck" class="button button-raised button-primary button-pill">修改</a>
+				  <a id="changecheck" class="button button-raised button-primary button-pill">修改</a>
 				 </div>
+				 </form>
 			</div>
 		</section>
 	</div>
@@ -171,7 +173,7 @@
 						$(function() {
 						    var mainName;
 						    var subName;
-							$('#commodity')
+							$('#diplayclass')
 									.dataTable(
 											{
 												"ordering" : false,
@@ -203,7 +205,7 @@
 															"render" : function(
 																	data, type,
 																	row) {
-																	mainclassName=data;
+																	mainName=data;
 																	return data;
 																	
 															},
@@ -213,7 +215,7 @@
 															"render" : function(
 																	data, type,
 																	row) {
-																	subclassName=data;
+																	subName=data;
 																	return data;
 																	
 															},
@@ -224,7 +226,7 @@
 																	data, type,
 																	row) {
 																	return '<td>'+
-																       '<a  id="change" class="btn btn-success" style="margin-right:5px;"  href="#"><i  class="glyphicon glyphicon-zoom-in icon-white " data-toggle="modal" data-target="#detailModel" data="'+data+'" mainName="'+mainName+'" subName="'+subName+'">修改</i></a>'+
+																       '<span><a  id="change"  class="btn btn-success" style="margin-right:5px;"  href="#" data-toggle="modal" data-target="#detailModel" data="'+data+'" mainName="'+mainName+'" subName="'+subName+'"><i class="glyphicon glyphicon-zoom-in icon-white " >修改</i></a></span>'+
 																	   '</td>';
 																	
 															},
@@ -232,32 +234,38 @@
 														} ],
 											});
 						});
-						
-						
-						$("#change").click(function(){
-						  alert("1");
-						   alert($(this).attr("mainName"));
-						   $("#mainclassName").val($(this).attr("mainName"));
-						   $("#subclassName").val($(this).attr("subName"));
-						});
-						
+						var subId
+						var mainclassName;
+						var subclassName;
+                    $('#diplayclass tbody').on(
+                        'click',
+                        '#change',
+                        function () {
+                           subId=$(this).attr("data")
+                           mainclassName=$(this).attr("mainName");
+                           subclassName=$(this).attr("subName");
+                           $("#mainclassName").val(mainclassName);
+						   $("#subclassName").val(subclassName);
+                        });
 						$("#changecheck").click(function(){
-						   var oldsubId=$("change").attr("data");
-						   var oldmain=$("change").attr("mainName");
-						   var oldsub=$("change").attr("subName");
 						   var newmain=$("#mainclassName").val();
-						   var newsub=$("#subName").val();
-						   if(oldmain.equal(newmain)&&oldsub.equal(newsub)){
+						   var newsub=$("#subclassName").val();
+						   if(newmain==""||newsub==""){
+						    alert("不能为空,请重新输入！");
+						    return;
+						   }
+						   if(mainclassName==newmain&&subclassName==newsub){
 						     alert("你没有修改数据，不能提交！");
 						   }else{
 						     $.post("alterClassify.jhtml",
 						        {
-						         subclassId:oldsubId,
+						         subclassId:subId,
 						         mainclassName:newmain,
 						         subclassName:newsub
 						        },
 						        function(data){
 						         alert(data.message);
+						         window.location.reload();//重新加载页面
 						        });
 						   }
 						});
