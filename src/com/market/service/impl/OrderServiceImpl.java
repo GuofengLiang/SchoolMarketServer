@@ -1,5 +1,7 @@
 package com.market.service.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -19,5 +21,9 @@ public class OrderServiceImpl implements OrderService {
 		Order order = orderDao.findSingleOrder(orderId);
 		return order;
 	}
-
+	@Override
+	public List<Order> findAllOrders(int userId) {
+		List<Order> orders = orderDao.findAllOrders(userId);
+		return orders;
+	}
 }

@@ -1,5 +1,7 @@
 package com.market.controller;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
@@ -23,4 +25,10 @@ public class OrdereController {
 		return order;
 	}
 
+	@ResponseBody
+	@RequestMapping(value = "findAllOrders")
+	public List<Order> findAllOrders(@RequestParam int userId) {
+		List<Order> orders = orderService.findAllOrders(userId);
+		return orders;
+	}
 }

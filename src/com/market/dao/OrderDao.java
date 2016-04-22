@@ -1,5 +1,7 @@
 package com.market.dao;
 
+import java.util.List;
+
 import com.market.entity.Order;
 
 public interface OrderDao {
@@ -12,4 +14,10 @@ public interface OrderDao {
 	 * @return
 	 */
 	Order findSingleOrder(int orderId);
+	/*
+	 * 根据用户id查找订单
+	 * @param userId
+	 * @return
+	 */
+	List<Order> findAllOrders(int userId);
 }

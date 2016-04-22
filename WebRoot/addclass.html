@@ -117,7 +117,7 @@
 									<span class="err_red"></span>
 							</div>
 						
-						<div class="col-md-1">
+						<div class="col-md-2">
 						 <a style="margin:0 auto" id="addmaincheck" class="button button-raised button-primary button-pill">修改</a>
 						</div>
 				</div>
@@ -135,7 +135,7 @@
 									<input id="subclassName" name="subclassName" class="form-control"/>
 									<span class="err_red"></span>
 							</div>
-						<div class="col-md-1">
+						<div class="col-md-2">
 						 <a style="margin:0 auto" id="addsubcheck" class="button button-raised button-primary button-pill">修改</a>
 						</div>
 				</div>
@@ -158,7 +158,7 @@
 	$(document).ready(
 	 function(){
 	  $("#addmaincheck").click(function(){
-	    $.post("",
+	    $.post("addMainClassify.jhtml",
 	      {
 	       mainclassName:$("#mainclassName").val()
 	      },
@@ -167,10 +167,10 @@
 	      });
 	  });
 	   $("#addsubcheck").click(function(){
-	    $.post("",
+	    $.post("addSubClassify.jhtml",
 	      {
 	       subclassName:$("#subclassName").val(),
-	       mainclassName:$("#mainName").val()
+	       mainclassId:$("#mainName").val()
 	      },
 	      function(data){
 	        alert(data.message);
@@ -181,7 +181,7 @@
 	  $.post("findAllMainClassify.jhtml",
 	      function(data){
 	        data.forEach(function(obj){
-	           $("#mainclassName").append("<option value="+obj.mainclassId+">"+obj.mainclassName+"</option>");
+	           $("#mainName").append("<option value="+obj.mainclassId+">"+obj.mainclassName+"</option>");
 	         });
 	      });
 	 });

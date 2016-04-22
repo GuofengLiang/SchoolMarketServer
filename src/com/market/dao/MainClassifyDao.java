@@ -16,4 +16,16 @@ public interface MainClassifyDao {
 	 * @param mainclassId
 	 */
 	void delectClassify(int mainclassId);
+     /**
+	 * 添加主分类
+	 */
+	void addMainClassify(String mainclassName);
+	/**
+	 * 修改主分类
+	 */
+	void alterMainClassify(int mainclassId, String mainclassName);
+	/**
+	 * 根据mainclassId来查询该主分类的信息
+	 */
+	MainClassify findSingleMainClassify(int mainclassId);
 }

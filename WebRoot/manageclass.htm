@@ -95,10 +95,10 @@
    <div>
     <ul class="breadcrumb">
         <li>
-            <a href="#">首页</a>
+            <a href="#">商品管理</a>
         </li>
         <li>
-            <a href="#">商品管理</a>
+            <a href="#">商品分类</a>
         </li>
     </ul>
   </div>
@@ -106,7 +106,7 @@
   <div class="row">
     <div class="col-md-12">
 		<div class="panel panel-default">
-			<div class="panel-heading" style="height:5em;">商品列表<a href="addclass.html" style="float: right" id="addclass" class="button button-raised button-primary button-pill">添加商品</a></div>
+			<div class="panel-heading" style="height:5em;">分类列表<a href="addclass.html" style="float: right" id="addclass" class="button button-raised button-primary button-pill">添加分类</a></div>
 			<div class="panel-body">
 					<table id="commodity"
 						class="table table-bordered table-striped table-hover"
@@ -169,13 +169,13 @@
 			.ready(
 					function() {
 						$(function() {
-						    var mainclassName;
-						    var subclassName;
+						    var mainName;
+						    var subName;
 							$('#commodity')
 									.dataTable(
 											{
 												"ordering" : false,
-												"ajax" : "json/commodity.json",
+												"ajax" : "findAllSubClassifies.jhtml",
 												"columns" : [ {
 													data : "mainclassName"
 												}, {
@@ -223,8 +223,8 @@
 															"render" : function(
 																	data, type,
 																	row) {
-																	return '<td class="center">'+
-																       '<a id="change" class="btn btn-success" style="margin-right:5px;"  href="#"><i class="glyphicon glyphicon-zoom-in icon-white " data-toggle="modal" data-target="#detailModel" data="'+data+'" mainclassName="'+mainclassName+'" subclassName="'+subclassName+'">修改</i></a>'+
+																	return '<td>'+
+																       '<a  id="change" class="btn btn-success" style="margin-right:5px;"  href="#"><i  class="glyphicon glyphicon-zoom-in icon-white " data-toggle="modal" data-target="#detailModel" data="'+data+'" mainName="'+mainName+'" subName="'+subName+'">修改</i></a>'+
 																	   '</td>';
 																	
 															},
@@ -232,27 +232,32 @@
 														} ],
 											});
 						});
+						
+						
 						$("#change").click(function(){
-						   $("#mainclassName").html($("change").attr("mainclassName"));
-						   $("#subclassName").html($("change").attr("subclassName"));
+						  alert("1");
+						   alert($(this).attr("mainName"));
+						   $("#mainclassName").val($(this).attr("mainName"));
+						   $("#subclassName").val($(this).attr("subName"));
 						});
+						
 						$("#changecheck").click(function(){
 						   var oldsubId=$("change").attr("data");
-						   var oldmain=$("change").attr("mainclassName");
-						   var oldsub=$("change").attr("subclassName");
+						   var oldmain=$("change").attr("mainName");
+						   var oldsub=$("change").attr("subName");
 						   var newmain=$("#mainclassName").val();
-						   var newsub=$("#subclassName").val();
+						   var newsub=$("#subName").val();
 						   if(oldmain.equal(newmain)&&oldsub.equal(newsub)){
 						     alert("你没有修改数据，不能提交！");
 						   }else{
-						     $.post("",
+						     $.post("alterClassify.jhtml",
 						        {
 						         subclassId:oldsubId,
 						         mainclassName:newmain,
 						         subclassName:newsub
 						        },
 						        function(data){
-						        
+						         alert(data.message);
 						        });
 						   }
 						});
