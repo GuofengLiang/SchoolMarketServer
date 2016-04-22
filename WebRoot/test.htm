@@ -13,10 +13,11 @@
 <script type="text/javascript">
 <!--测试添加子分类-->
 $("#test").click(function(){
-$.post("alterMainClassify.jhtml",
+$.post("alterClassify.jhtml",
   {
-	mainclassId:"1",
-	mainclassName:"超帅"
+	subclassId:"3",
+	subclassName:"斗笔仰",
+	mainclassName:"火影"
   },
 function(data){
            alert(data.message);

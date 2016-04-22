@@ -2,6 +2,7 @@ package com.market.dao;
 
 import java.util.List;
 
+import com.market.entity.MainClassify;
 import com.market.entity.SubClassify;
 import com.market.javabean.SubClassifyBean;
 
@@ -19,8 +20,23 @@ public interface SubClassifyDao {
    List<SubClassify> findAllSubClassifies();
    /**
     * 添加子分类
-    * @ subclassId
-    * @ subclassName
+    * @param subclassId
+    * @param subclassName
     */
    void addSubClassify(String subclassName, int mainclassId);
+   /**
+    * 根据subclassId查找子分类信息
+    * @param subclassId
+    */
+   SubClassify findSingleSubClassify(int subclassId);
+   /**
+    * 修改分类的信息
+    * @param subclassId
+    * @param subclassName
+    */
+   void alterClassify(int subclassId, String subclassName, String mainclassName);
+	/**
+	 * 根据mainclassId来查询该主分类的信息
+	 */
+	MainClassify findSingleMainClassify(int mainclassId);
 }

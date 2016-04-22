@@ -27,11 +27,11 @@ public class SubClassifyServiceImpl implements SubClassifyService {
 		List<SubClassifyBean> subClassifies = subClassifyDao.findAllSubClassify(mainclassId);
 		return subClassifies;
 	}
-	@Override
 	/**
     * 查询所有子分类的信息
     * @return
     */
+	@Override
 	public List<SubClassify> findAllSubClassifies() {
 		List<SubClassify> subClass = subClassifyDao.findAllSubClassifies();
 		return subClass;
@@ -39,7 +39,24 @@ public class SubClassifyServiceImpl implements SubClassifyService {
 	/**
 	 * 添加子分类
 	 */
+	@Override
 	public void addSubClassify(String subclassName, int mainclassId) throws Exception {
 		subClassifyDao.addSubClassify(subclassName, mainclassId);
+	}
+	/**
+	 * 根据subclassId查找子分类信息
+	 */
+	@Override
+	public SubClassify findSingleSubClassify(int subclassId) {
+		SubClassify subClassify = subClassifyDao.findSingleSubClassify(subclassId);
+		return subClassify;
+	}
+	/**
+	 * 修改分类的信息
+	 */
+	@Override
+	public void alterClassify(int subclassId, String subclassName, String mainclassName) throws Exception {
+		subClassifyDao.alterClassify(subclassId, subclassName, mainclassName);
+	//	return subClassify;
 	}
 }

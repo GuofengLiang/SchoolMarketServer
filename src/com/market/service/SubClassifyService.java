@@ -22,4 +22,15 @@ public interface SubClassifyService {
     * 添加子分类
     */
    void addSubClassify(String subclassName, int mainclassId) throws Exception;
+   /**
+    * 根据subclassId查找子分类信息
+    * @param subclassId
+    */
+   SubClassify findSingleSubClassify(int subclassId);
+   /**
+    * 修改分类的信息
+    * @param subclassId
+    * @param subclassName
+    */
+   void alterClassify(int subclassId, String subclassName, String mainclassName) throws Exception;
 }

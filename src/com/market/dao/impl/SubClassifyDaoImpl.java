@@ -18,6 +18,9 @@ import com.market.javabean.SubClassifyBean;
 public class SubClassifyDaoImpl implements SubClassifyDao {
 	@PersistenceContext
 	protected EntityManager entityManager;
+	/**
+	 * 根据mainclassId查找其下所有的子分类
+	 */
 	@Override
 	public List<SubClassifyBean> findAllSubClassify(int mainclassId) {
 		Query query = entityManager.createQuery("select s from SubClassify s where s.mainclassId.mainclassId=?1");
@@ -59,5 +62,38 @@ public class SubClassifyDaoImpl implements SubClassifyDao {
 		subClassify.setMainclassId(mainClassify);
 		entityManager.persist(subClassify);
 	}
-
+	/**
+	 * 根据subclassId查找单个子分类信息
+	 */
+	@Override
+	@Transactional
+	public SubClassify findSingleSubClassify(int subclassId) {
+		Query query = entityManager.createQuery("select s from SubClassify s where s.subclassId=?1");
+		query.setParameter(1, subclassId);
+		SubClassify subClassify = (SubClassify) query.getSingleResult();
+		return subClassify;
+	}
+	   /**
+		 * 根据mainclassId来查找主分类
+		 */
+	@Override
+	@Transactional
+	public MainClassify findSingleMainClassify(int mainclassId) {
+			Query query = entityManager.createQuery("select m from MainClassify m where m.mainclassId=?1");
+			query.setParameter(1, mainclassId);
+			MainClassify mainClassify = (MainClassify)query.getSingleResult();
+			return mainClassify;
+		}
+	/**
+	 * 修改分类的信息
+	 */
+	@Override
+	@Transactional
+	public void alterClassify(int subclassId, String subclassName, String mainclassName) {
+		   SubClassify subClassify = findSingleSubClassify(subclassId);
+		   MainClassify mainClassify = findSingleMainClassify(subClassify.getMainclassId().getMainclassId());
+		   mainClassify.setMainclassName(mainclassName);
+		   subClassify.setSubclassName(subclassName);
+		//   return subClassify;
+	   }
 }

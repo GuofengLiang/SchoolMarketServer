@@ -16,7 +16,9 @@ import com.market.entity.MainClassify;
 public class MainClassifyDaoImpl implements MainClassifyDao {
 	@PersistenceContext
 	protected EntityManager entityManager;
-
+	/**
+	 * 找到所有的主分类信息
+	 */
 	@Override
 	public List<MainClassify> findAllMainClassify() {
 		Query query = entityManager.createQuery("select s from MainClassify s");
@@ -24,6 +26,9 @@ public class MainClassifyDaoImpl implements MainClassifyDao {
 		List<MainClassify> mainClassifies =query.getResultList();
 		return mainClassifies;
 	}
+	/**
+	 * 添加主分类
+	 */
 	@Override
 	@Transactional
 	public void addMainClassify(String mainclassName) {
@@ -39,9 +44,9 @@ public class MainClassifyDaoImpl implements MainClassifyDao {
 	@Override
 	@Transactional
 	public void alterMainClassify(int mainclassId, String mainclassName) {
-		Query query = entityManager.createQuery("select m from MainClassify m where m.mainclassId=?1");
-		query.setParameter(1, mainclassId);
-		MainClassify mainClassify = (MainClassify)query.getSingleResult();
+		//Query query = entityManager.createQuery("select m from MainClassify m where m.mainclassId=?1");
+		//query.setParameter(1, mainclassId);
+		MainClassify mainClassify = findSingleMainClassify(mainclassId);	//(MainClassify)query.getSingleResult();
 		mainClassify.setMainclassName(mainclassName);
 	}
 	/**

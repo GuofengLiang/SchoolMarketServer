@@ -8,13 +8,11 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.market.entity.SubClassify;
 import com.market.javabean.SubClassifyBean;
 import com.market.service.SubClassifyService;
-import com.market.utils.Format;
 
 @Controller
 public class SubClassifyController {
@@ -32,6 +30,10 @@ public class SubClassifyController {
 		return subClassifies;
 	}
 
+	/**
+	 * 查找所有的子分类信息
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping(value = "findAllSubClassifies")
 	public List<SubClassify> findAllSubClassifies() {
@@ -52,6 +54,32 @@ public class SubClassifyController {
 			return map;
 		}
 		map.put("message", "addSubClassifySuccess");
+		return map;
+	}
+	/**
+	 * 根据subclassId查找子分类信息
+	 */
+	@ResponseBody
+	@RequestMapping(value = "findSingleSubClassify")
+	public SubClassify findSingleSubClassify(int subclassId) {
+		SubClassify subClassify = subClassifyService.findSingleSubClassify(subclassId);
+		return subClassify;
+	}
+
+	/**
+	 * 修改分类的信息
+	 */
+	@ResponseBody
+	@RequestMapping(value = "alterClassify")
+	public Map<String, String> alterClassify(int subclassId, String subclassName, String mainclassName) {
+		Map<String, String> map = new HashMap<String, String>();
+		try {
+			subClassifyService.alterClassify(subclassId, subclassName, mainclassName);
+		} catch (Exception e) {
+			map.put("message", "alterClassifyError");
+			return map;
+		}
+		map.put("message", "alterClassifySuccess");
 		return map;
 	}
 }
