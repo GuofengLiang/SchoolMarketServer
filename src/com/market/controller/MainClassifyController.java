@@ -1,6 +1,8 @@
 package com.market.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -23,5 +25,23 @@ public class MainClassifyController {
 		List<MainClassify> mainClassifies = mainClassifyService.findAllMainClassify();
 		return mainClassifies;
 	}
-	
+	/**
+	 * 这个接口暂时没用到
+	 * @param mainclassId
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value="delectClassify")
+	public Map<String,String> delectClassify(int mainclassId) {
+		Map<String,String> map=new HashMap<String,String>();
+		try{
+			mainClassifyService.delectClassify(mainclassId);
+		}catch(Exception e){
+			e.printStackTrace();
+			map.put("message", "delectError");
+			return map;
+		}
+		  map.put("message", "delectSuccess");
+		return map;
+	}
 }

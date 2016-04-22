@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>校园便利店</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- The styles -->
+    <link id="bs-css" href="css/bootstrap-cerulean.min.css" rel="stylesheet">
+    <link href="css/charisma-app.css" rel="stylesheet">
+    <link href='css/responsive-tables.css' rel='stylesheet'>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/button.css" rel="stylesheet"><!-- 按钮的样式 -->
+	<link rel="stylesheet" type="text/css" href="css/dataTables.bootstrap.css"> <!-- 表的样式 -->
+	<link href="css/style.css" rel="stylesheet"><!-- 整个布局样式 -->
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet"><!-- 时间选择器的样式 -->
+    <style>
+     .err_red{
+  		color:red;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="navbar navbar-default" role="navigation"><!-- top -->
+
+        <div class="navbar-inner">
+            <button type="button" class="navbar-toggle pull-left animated flip">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html"> <img alt="Charisma Logo" src="img/logo20.png" class="hidden-xs"/>
+                <span>校园便利店</span></a>
+
+            <!-- user dropdown starts -->
+            <div class="btn-group pull-right">
+                <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    <i class="glyphicon glyphicon-user"></i><span class="hidden-sm hidden-xs"> 用户</span>
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="#">修改密码</a></li>
+                    <li class="divider"></li>
+                    <li><a href="index.jsp">退出</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>  <!-- top end -->
+<div class="ch-container">
+    <div class="row">
+        <div class="col-sm-2 col-lg-2"> <!-- left menu-->
+            <div class="sidebar-nav">
+                <div class="nav-canvas">
+                    <div class="nav-sm nav nav-stacked">
+
+                    </div>
+                    <ul class="nav nav-pills nav-stacked main-menu">
+                        <li class="nav-header">菜单栏</li>
+                        <li><a class="ajax-link" href="#"><i class="glyphicon glyphicon-leaf"></i><span> 个人信息</span></a>
+                        </li>
+                        <li><a class="ajax-link" href="#"><i class="glyphicon glyphicon-home"></i><span> 超市管理</span></a>
+                        </li>
+						 <li class="accordion">
+                            <a data-toggle="collapse" href="#sub-item-1"><i class="glyphicon glyphicon-list"></i><span> 商品管理</span></a>
+                            <ul class="nav nav-pills nav-stacked"  id="sub-item-1">
+                                <li><a href="#">全部商品</a></li>
+                                <li><a href="#">特价商品</a></li>
+								<li><a href="#">推荐商品</a></li>
+								<li><a href="#">商品分类</a></li>
+                            </ul>
+                        </li>
+						 <li class="accordion">
+                            <a data-toggle="collapse" href="#sub-item-2"><i class="glyphicon glyphicon-list"></i><span> 订单管理</span></a>
+                            <ul class="nav nav-pills nav-stacked" id="sub-item-2">
+                                <li><a href="#">最新订单</a></li>
+                                <li><a href="#">历史订单</a></li>
+                            </ul>
+                        </li>
+                        <li><a class="ajax-link" href="#"><i
+                                    class="glyphicon glyphicon-user"></i><span> 用户管理</span></a></li>
+                        <li><a class="ajax-link" href="#"><i class="glyphicon glyphicon-list-alt"></i><span> 广告管理</span></a>
+                        </li>
+						<li><a class="ajax-link" href="#"><i class="glyphicon glyphicon-envelope"></i><span> 信息管理</span></a>
+                        </li>
+                        
+          
+                    </ul>
+                </div>
+            </div>
+        </div> <!-- left end -->
+
+     
+ <div id="content" class="col-lg-10 col-sm-10"><!-- main -->
+   <div>
+    <ul class="breadcrumb">
+        <li>
+            <a href="#">分类管理</a>
+        </li>
+        <li>
+            <a href="#">添加分类</a>
+        </li>
+    </ul>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+		<div class="panel panel-default">
+			<div class="panel-heading" style="height:5em;">商品列表<a href="manageclass.htm" style="float: right" id="back" class="button button-raised button-primary button-pill"><span class="glyphicon glyphicon-share-alt">返回</span></a></div>
+			<div class="panel-body">
+			    <div class="row">
+						<div class="col-md-2" style="width:100px;padding-left:10px;line-height: 28px"><span class="red">*</span>大分类：</div>
+							<div class="col-md-3">
+									<input id="mainclassName" name="mainclassName" class="form-control"/>
+									<span class="err_red"></span>
+							</div>
+						
+						<div class="col-md-1">
+						 <a style="margin:0 auto" id="addmaincheck" class="button button-raised button-primary button-pill">修改</a>
+						</div>
+				</div>
+				<br>
+				<br>
+				<div class="col-md-2" style="width:100px;padding-left:10px;line-height: 28px"><span class="red">*</span>上级分类：</div>
+							<div class="col-md-3">
+									<select id="mainName" name="mainName" class="form-control">
+	                           		</select>
+									<span class="err_red"></span>
+							</div>
+				<div class="row">
+						<div class="col-md-2" style="width:100px;padding-left:10px;line-height: 28px"><span class="red">*</span>小分类：</div>
+							<div class="col-md-3">
+									<input id="subclassName" name="subclassName" class="form-control"/>
+									<span class="err_red"></span>
+							</div>
+						<div class="col-md-1">
+						 <a style="margin:0 auto" id="addsubcheck" class="button button-raised button-primary button-pill">修改</a>
+						</div>
+				</div>
+			</div>
+		</div>
+	 </div>
+   </div>
+  </div><!-- main end -->
+ </div>
+</div>
+
+
+<script src="js/jquery-1.11.1.min.js"></script><!--这个一定要有的 -->
+<script src="js/jquery.dataTables.min.js"></script><!--这个一定要有的 -->
+<script src="js/bootstrap.min.js"></script><!--针对bootstrap自身的动态 -->
+<script src="js/dataTables.bootstrap.js"></script><!-- 表的点击效果 -->
+<!-- library for making tables responsive -->
+<script src="js/responsive-tables.js"></script>
+<script>
+	$(document).ready(
+	 function(){
+	  $("#addmaincheck").click(function(){
+	    $.post("",
+	      {
+	       mainclassName:$("#mainclassName").val()
+	      },
+	      function(data){
+	        alert(data.message);
+	      });
+	  });
+	   $("#addsubcheck").click(function(){
+	    $.post("",
+	      {
+	       subclassName:$("#subclassName").val(),
+	       mainclassName:$("#mainName").val()
+	      },
+	      function(data){
+	        alert(data.message);
+	      });
+	  });
+	  });
+	 $(function(){
+	  $.post("findAllMainClassify.jhtml",
+	      function(data){
+	        data.forEach(function(obj){
+	           $("#mainclassName").append("<option value="+obj.mainclassId+">"+obj.mainclassName+"</option>");
+	         });
+	      });
+	 });
+</script>
+</body>
+</html>
+

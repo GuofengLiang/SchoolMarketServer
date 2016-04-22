@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>校园便利店</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- The styles -->
+    <link id="bs-css" href="css/bootstrap-cerulean.min.css" rel="stylesheet">
+    <link href="css/charisma-app.css" rel="stylesheet">
+    <link href='css/responsive-tables.css' rel='stylesheet'>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/button.css" rel="stylesheet"><!-- 按钮的样式 -->
+	<link rel="stylesheet" type="text/css" href="css/dataTables.bootstrap.css"> <!-- 表的样式 -->
+	<link href="css/style.css" rel="stylesheet"><!-- 整个布局样式 -->
+
+
+</head>
+
+<body>
+    <div class="navbar navbar-default" role="navigation"><!-- top -->
+
+        <div class="navbar-inner">
+            <button type="button" class="navbar-toggle pull-left animated flip">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html"> <img alt="Charisma Logo" src="img/logo20.png" class="hidden-xs"/>
+                <span>校园便利店</span></a>
+
+            <!-- user dropdown starts -->
+            <div class="btn-group pull-right">
+                <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    <i class="glyphicon glyphicon-user"></i><span class="hidden-sm hidden-xs"> 用户</span>
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="#">修改密码</a></li>
+                    <li class="divider"></li>
+                    <li><a href="index.jsp">退出</a></li>
+                </ul>
+            </div>
+            <!-- user dropdown ends -->          
+            </ul>
+
+        </div>
+    </div>  <!-- top end -->
+<div class="ch-container">
+    <div class="row">
+        <div class="col-sm-2 col-lg-2"> <!-- left menu-->
+            <div class="sidebar-nav">
+                <div class="nav-canvas">
+                    <div class="nav-sm nav nav-stacked">
+
+                    </div>
+                    <ul class="nav nav-pills nav-stacked main-menu">
+                        <li class="nav-header">菜单栏</li>
+                        <li><a class="ajax-link" href="#"><i class="glyphicon glyphicon-leaf"></i><span> 个人信息</span></a> 
+                        </li>
+                        <li><a class="ajax-link" href="#"><i class="glyphicon glyphicon-home"></i><span> 超市管理</span></a>
+                        </li>
+						 <li class="accordion">
+                            <a data-toggle="collapse" href="#sub-item-1"><i class="glyphicon glyphicon-list"></i><span> 商品管理</span></a>
+                            <ul class="nav nav-pills nav-stacked"  id="sub-item-1">
+                                <li><a href="#">全部商品</a></li>
+                                <li><a href="#">特价商品</a></li>
+								<li><a href="#">推荐商品</a></li>
+								<li><a href="#">商品分类</a></li>
+                            </ul>
+                        </li>
+						 <li class="accordion">
+                            <a data-toggle="collapse" href="#sub-item-2"><i class="glyphicon glyphicon-list"></i><span> 订单管理</span></a>
+                            <ul class="nav nav-pills nav-stacked" id="sub-item-2">
+                                <li><a href="#">最新订单</a></li>
+                                <li><a href="#">历史订单</a></li>
+                            </ul>
+                        </li>
+                        <li><a class="ajax-link" href="#"><i
+                                    class="glyphicon glyphicon-user"></i><span> 用户管理</span></a></li>
+                        <li><a class="ajax-link" href="#"><i class="glyphicon glyphicon-list-alt"></i><span> 广告管理</span></a>
+                        </li>
+						<li><a class="ajax-link" href="#"><i class="glyphicon glyphicon-envelope"></i><span> 信息管理</span></a>
+                        </li>
+                        
+          
+                    </ul>
+                </div>
+            </div>
+        </div> <!-- left end -->
+
+     
+ <div id="content" class="col-lg-10 col-sm-10"><!-- main -->
+   <div>
+    <ul class="breadcrumb">
+        <li>
+            <a href="#">首页</a>
+        </li>
+        <li>
+            <a href="#">商品管理</a>
+        </li>
+    </ul>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+		<div class="panel panel-default">
+			<div class="panel-heading" style="height:5em;">商品列表<a href="addclass.html" style="float: right" id="addclass" class="button button-raised button-primary button-pill">添加商品</a></div>
+			<div class="panel-body">
+					<table id="commodity"
+						class="table table-bordered table-striped table-hover"
+						cellspacing="0" width="100%" style="">
+						<thead style="font-size: 11px">
+							<tr>
+					        <th style="width: 20%;text-align: center">大分类</th>
+					        <th style="width: 10%;text-align: center">小分类</th>
+					        <th style="width: 25%;text-align: center">操作</th>
+					       </tr>
+						</thead>
+						<tbody style="font-size: 11px;text-align: center">
+						</tbody>
+					</table>
+			</div>
+		</div>
+	 </div>
+   </div>
+  </div><!-- main end -->
+ </div>
+</div>
+<div class="modal fade" id="detailModel" tabindex="-1" role="dialog">
+	<div style="width: 60%;margin: 12% auto">
+
+		<section class="panel">
+			<span id="hide" class="glyphicon glyphicon-remove-circle" style="position: absolute;margin-top: 12%;font-size: 20px;color: snow;cursor:pointer;"></span>
+			<div class="bio-graph-heading">修改分类</div>
+			<div class="panel-body bio-graph-info">
+			   <div class="row">
+						<div class="col-md-2" style="width:100px;padding-left:10px;line-height: 28px"><span class="red">*</span>大分类：</div>
+							<div class="col-md-3">
+									<input id="mainclassName" name="mainclassName" class="form-control"/>
+									<span class="err_red"></span>
+							</div>
+						<div class="col-md-2" style="width:50px;padding:0;line-height: 28px"><span class="red">*</span>小分类：</div>
+							<div class="col-md-3">
+									<input id="subclassName" name="subclassName" class="form-control"/>
+									<span class="err_red"></span>
+							</div>
+				</div>
+				<div class="row">
+				  <a href="addcomm.html" style="margin:0 auto" id="changecheck" class="button button-raised button-primary button-pill">修改</a>
+				 </div>
+			</div>
+		</section>
+	</div>
+</div>
+
+<script src="js/jquery-1.11.1.min.js"></script><!--这个一定要有的 -->
+<script src="js/jquery.dataTables.min.js"></script><!--这个一定要有的 -->
+<script src="js/bootstrap.min.js"></script><!--针对bootstrap自身的动态 -->
+<script src="js/dataTables.bootstrap.js"></script><!-- 表的点击效果 -->
+<!-- library for making tables responsive -->
+<script src="js/responsive-tables.js"></script>
+<!-- history.js for cross-browser state change on ajax -->
+
+
+<script>
+	$(document)
+			.ready(
+					function() {
+						$(function() {
+						    var mainclassName;
+						    var subclassName;
+							$('#commodity')
+									.dataTable(
+											{
+												"ordering" : false,
+												"ajax" : "json/commodity.json",
+												"columns" : [ {
+													data : "mainclassName"
+												}, {
+													data : "subclassName"
+												}, {
+													data : "subclassId"
+												} ],
+												"language" : {
+													"lengthMenu" : "每页 _MENU_ 条记录",
+													"zeroRecords" : "没有找到记录",
+													"info" : "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
+													"infoEmpty" : "无记录",
+													"infoFiltered" : "(从 _MAX_ 条记录过滤)",
+													"search" : "搜索 : ",
+													processing : "载入中",//处理页面数据的时候的显示
+													paginate : {//分页的样式文本内容。
+														previous : "上一页",
+														next : "下一页",
+														first : "第一页",
+														last : "最后一页"
+													}
+												},
+												"columnDefs" : [
+												        {
+															"render" : function(
+																	data, type,
+																	row) {
+																	mainclassName=data;
+																	return data;
+																	
+															},
+															"targets" : 0
+														} ,
+														{
+															"render" : function(
+																	data, type,
+																	row) {
+																	subclassName=data;
+																	return data;
+																	
+															},
+															"targets" : 1
+														} ,
+														{
+															"render" : function(
+																	data, type,
+																	row) {
+																	return '<td class="center">'+
+																       '<a id="change" class="btn btn-success" style="margin-right:5px;"  href="#"><i class="glyphicon glyphicon-zoom-in icon-white " data-toggle="modal" data-target="#detailModel" data="'+data+'" mainclassName="'+mainclassName+'" subclassName="'+subclassName+'">修改</i></a>'+
+																	   '</td>';
+																	
+															},
+															"targets" : 2
+														} ],
+											});
+						});
+						$("#change").click(function(){
+						   $("#mainclassName").html($("change").attr("mainclassName"));
+						   $("#subclassName").html($("change").attr("subclassName"));
+						});
+						$("#changecheck").click(function(){
+						   var oldsubId=$("change").attr("data");
+						   var oldmain=$("change").attr("mainclassName");
+						   var oldsub=$("change").attr("subclassName");
+						   var newmain=$("#mainclassName").val();
+						   var newsub=$("#subclassName").val();
+						   if(oldmain.equal(newmain)&&oldsub.equal(newsub)){
+						     alert("你没有修改数据，不能提交！");
+						   }else{
+						     $.post("",
+						        {
+						         subclassId:oldsubId,
+						         mainclassName:newmain,
+						         subclassName:newsub
+						        },
+						        function(data){
+						        
+						        });
+						   }
+						});
+						//模态层开关监听
+						$("#hide").click(function() {
+							$('#detailModel').modal('hide')
+						});
+
+					});
+</script>
+
+</body>
+</html>
+

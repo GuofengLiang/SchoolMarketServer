@@ -11,72 +11,17 @@
 <script src="js/jquery-1.11.1.min.js"></script>
 
 <script type="text/javascript">
-<!--测试登陆-->
-$("#test111").click(function(){
-$.post("userLogin.jhtml",
-  {
-   username:"123",
-   password:"123"
-  },
-function(data){
-           alert(data.message);
-});
-});
-<!--测试修改密码-->
-$("#test4").click(function(){
-$.post("updatePassword.jhtml",
-  {
-   oldPassword:"123",
-   newPassword:"1234567"
-  },
-function(data){
-           alert(data.message);
-});
-});
-<!--测试添加商品-->
 $("#test").click(function(){
-$.post("addSingleCommodity.jhtml",
+alert("1");
+$.post("delectClassify.jhtml",
   {
-   mainclassName:"饮料饮品",
-   subclassName:"茶饮料",
-   commName:"脉动",
-   picture:"maidong.jpg",
-   price:4.0,
-   spercification:"600ml",
-   describes:"脉动好生活",
-   stock:2,
-   discount:7.8,
-   type:0
+   mainclassId:1
   },
 function(data){
            alert(data.message);
 });
 });
-<!--测试登陆-->
-$("#test5").click(function(){
-$.post("login.jhtml",
-  {
-   adminName:"123",
-   password:"123"
-  },
-function(data){
-           alert(data.message);
-});
-});
-<!--测试添加用户-->
-$("#test44").click(function(){
-$.post("addSingleUser.jhtml",
-  {
-	userName:"朗神"
-	password:"111"
-	userPhone:"666"
-	sex:0
-	portrait:"1"
-  },
-function(data){
-           alert(data.message);
-});
-});
+
 </script>
 <!-- 
 http://schoolserver.nat123.net/updateUserPassword.jhtml

@@ -21,4 +21,10 @@ public class MainClassifyServiceImpl implements MainClassifyService {
 		return mainClassifies;
 	}
 
+	@Override
+	public void delectClassify(int mainclassId) {
+		mainClassifyDao.delectClassify(mainclassId);
+		
+	}
+
 }
