@@ -1,5 +1,7 @@
 package com.market.javabean;
 
+import java.util.Date;
+
 public class CommodityBean {
 
 	/**
@@ -36,8 +38,36 @@ public class CommodityBean {
 	private int stock;
 
 	/**
-	 * 购物车
+	 * 折扣
 	 */
+	private float discount;
+	/**
+	 * 特价时间
+	 * @return
+	 */
+	private Date specialTime;
+	/**
+	 * 商品类型
+	 */
+	private String type;
+	/**
+	 * 主分类id
+	 */
+	private int mainclassId;
+	/**
+	 * 主分类名
+	 * @return
+	 */
+	private String mainclassName;
+	/**
+	 * 次分类id
+	 */
+	private int subclassId;
+	/**
+	 * 次分类名
+	 * @return
+	 */
+	private String subclassName;
 	public int getCommodityId() {
 		return commodityId;
 	}
@@ -100,5 +130,61 @@ public class CommodityBean {
 
 	public void setStock(int stock) {
 		this.stock = stock;
+	}
+
+	public float getDiscount() {
+		return discount;
+	}
+
+	public void setDiscount(float discount) {
+		this.discount = discount;
+	}
+
+	public Date getSpecialTime() {
+		return specialTime;
+	}
+
+	public void setSpecialTime(Date specialTime) {
+		this.specialTime = specialTime;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public int getMainclassId() {
+		return mainclassId;
+	}
+
+	public void setMainclassId(int mainclassId) {
+		this.mainclassId = mainclassId;
+	}
+
+	public String getMainclassName() {
+		return mainclassName;
+	}
+
+	public void setMainclassName(String mainclassName) {
+		this.mainclassName = mainclassName;
+	}
+
+	public int getSubclassId() {
+		return subclassId;
+	}
+
+	public void setSubclassId(int subclassId) {
+		this.subclassId = subclassId;
+	}
+
+	public String getSubclassName() {
+		return subclassName;
+	}
+
+	public void setSubclassName(String subclassName) {
+		this.subclassName = subclassName;
 	}
 }

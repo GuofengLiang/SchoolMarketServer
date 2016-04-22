@@ -28,8 +28,7 @@ public class SupermarketController {
 	@ResponseBody
 	@RequestMapping(value = "findAllCommodity")
 	public List<Commodity> findAllCommodity(@RequestParam int supermarketId) {
-		List<Commodity> commodities = supermarketService
-				.findAllCommodity(supermarketId);
+		List<Commodity> commodities = supermarketService.findAllCommodity(supermarketId);
 		return commodities;
 	}
 

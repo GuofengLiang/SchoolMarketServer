@@ -107,10 +107,13 @@ $("#addCommodity").click(function(){
     	$("#stock").parent().children(".err_red").text("库存不能为空!");
     	return;
     }
-
-    if($("#specialTime").val().trim()==""){
-    	$("#specialTime").parent().children(".err_red").text("特价截止时间不能为空!");
-    	return;
+    if($("#type").val()=="特价商品"){
+    	 if($("#specialTime").val().trim()==""){
+    	    	$("#specialTime").parent().children(".err_red").text("特价截止时间不能为空!");
+    	    	return;
+    	    }
+    }else{
+    	$("#specialTime").val("2016-04-22 23:40");
     }
     if($("#upload_image").val()==""){
     	$("#upload_image").parent().children(".err_red").text("请添加商品图片!");
@@ -120,10 +123,15 @@ $("#addCommodity").click(function(){
     	$("#upload_image").parent().children(".err_red").text("请添加jpg|jpeg|png商品图片!");
     	return;
     }
-    if($("#discount").val().trim()==""){
-    	$("#discount").parent().children(".err_red").text("折扣不能为空!");
-    	return;
+    if($("#type").val()=="特价商品"){
+    	if($("#discount").val().trim()==""){
+        	$("#discount").parent().children(".err_red").text("折扣不能为空!");
+        	return;
+        }
+    }else{
+    	$("#discount").val(10);
     }
+    
     var formData = new FormData($("#uploadForm")[0]);
     $.ajax({
 		url : 'addSingleCommodity.jhtml',
