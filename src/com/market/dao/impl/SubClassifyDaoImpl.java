@@ -43,7 +43,7 @@ public class SubClassifyDaoImpl implements SubClassifyDao {
 	    * @return
 	    */
 	public List<SubClassBean> findAllSubClassifies() {
-		Query query = entityManager.createQuery("select s from SubClassify s");
+		Query query = entityManager.createQuery("select s from SubClassify s order by s.subclassId desc");
 		@SuppressWarnings({ "unchecked", "unused" })
 		List<SubClassify> subClass = query.getResultList();
 		List<SubClassBean> subClassBeans=new ArrayList<SubClassBean>();
