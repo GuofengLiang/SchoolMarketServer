@@ -118,7 +118,7 @@
 							</div>
 						
 						<div class="col-md-2">
-						 <a style="margin:0 auto" id="addmaincheck" class="button button-raised button-primary button-pill">修改</a>
+						 <a style="margin:0 auto" id="addmaincheck" class="button button-raised button-primary button-pill">添加</a>
 						</div>
 				</div>
 				<br>
@@ -136,7 +136,7 @@
 									<span class="err_red"></span>
 							</div>
 						<div class="col-md-2">
-						 <a style="margin:0 auto" id="addsubcheck" class="button button-raised button-primary button-pill">修改</a>
+						 <a style="margin:0 auto" id="addsubcheck" class="button button-raised button-primary button-pill">添加</a>
 						</div>
 				</div>
 			</div>
@@ -177,6 +177,7 @@
 	      },
 	      function(data){
 	        alert(data.message);
+	        window.location.reload();//重新加载页面
 	      });
 	  });
 	  });

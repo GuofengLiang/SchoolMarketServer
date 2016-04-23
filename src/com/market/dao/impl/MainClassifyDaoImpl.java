@@ -22,7 +22,7 @@ public class MainClassifyDaoImpl implements MainClassifyDao {
 	 */
 	@Override
 	public List<MainClassify> findAllMainClassify() {
-		Query query = entityManager.createQuery("select s from MainClassify s");
+		Query query = entityManager.createQuery("select s from MainClassify s order by s.mainclassId desc");
 		@SuppressWarnings("unchecked")
 		List<MainClassify> mainClassifies =query.getResultList();
 		return mainClassifies;
