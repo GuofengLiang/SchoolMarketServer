@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.market.entity.Commodity;
 import com.market.entity.Supermarket;
+import com.market.javabean.CommodityBean;
 import com.market.javabean.SupermarketBean;
 
 public interface SupermarketDao {
@@ -13,7 +14,7 @@ public interface SupermarketDao {
 	 * @param supermarketId
 	 * @return
 	 */
-	List<Commodity> findAllCommodity(int supermarketId);
+	List<CommodityBean> findAllCommodity(int supermarketId);
 
 	/**
 	 * 根据supermarketId来查询该超市的相关信息

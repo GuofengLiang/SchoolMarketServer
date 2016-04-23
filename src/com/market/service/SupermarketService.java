@@ -3,6 +3,7 @@ package com.market.service;
 import java.util.List;
 
 import com.market.entity.Commodity;
+import com.market.javabean.CommodityBean;
 import com.market.javabean.SupermarketBean;
 
 public interface SupermarketService {
@@ -12,7 +13,7 @@ public interface SupermarketService {
 	 * @param supermarketId
 	 * @return
 	 */
-	List<Commodity> findAllCommodity(int supermarketId);
+	List<CommodityBean> findAllCommodity(int supermarketId);
 
 	/**
 	 * 根据supermarketId来查询该超市的相关信息

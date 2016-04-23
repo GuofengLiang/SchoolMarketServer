@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.market.dao.SupermarketDao;
 import com.market.entity.Commodity;
+import com.market.javabean.CommodityBean;
 import com.market.javabean.SupermarketBean;
 import com.market.service.SupermarketService;
 
@@ -17,9 +18,8 @@ public class SupermarketServiceImpl implements SupermarketService {
 	public SupermarketDao supermarketDao;
 
 	@Override
-	public List<Commodity> findAllCommodity(int supermarketId) {
-		List<Commodity> commodities = supermarketDao
-				.findAllCommodity(supermarketId);
+	public List<CommodityBean> findAllCommodity(int supermarketId) {
+		List<CommodityBean> commodities = supermarketDao.findAllCommodity(supermarketId);
 		return commodities;
 	}
 
