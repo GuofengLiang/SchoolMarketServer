@@ -1,10 +1,10 @@
 package com.market.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.market.entity.MainClassify;
 import com.market.entity.SubClassify;
-import com.market.javabean.ClassBean;
 import com.market.javabean.SubClassBean;
 import com.market.javabean.SubClassifyBean;
 
@@ -50,5 +50,5 @@ public interface SubClassifyDao {
 	 * 查找所有大分类下的子分类
 	 * @return
 	 */
-	List<ClassBean> findAllClassify();
+	List<Map<String,Object>> findAllClassify();
 }

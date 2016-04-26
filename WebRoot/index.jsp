@@ -45,7 +45,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                        id="validator" placeholder="验证码">
                             </div>
                             <div class="col-md-0"style="line-height: 28px">
-                                <img class="img-rounded" id="imgValidate" title="看不清，点击换一张" src="captcha.jhtml?captchaId=<%=captchaId%>" align="absbottom" style="width: 80px;height: 33px;cursor:hand">
+                                <img class="img-rounded" id="imgValidate" title="看不清，点击换一张" src="<%=base%>/captcha.jhtml?captchaId=<%=captchaId%>" align="absbottom" style="width: 80px;height: 33px;cursor:hand">
                             </div>
                         </div>
 
@@ -89,7 +89,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     data: {adminName:$("#adminName").val(),password:$("#password").val(),validator:$("#validator").val()},
                     success:function(data){
                     if(data.message!="success"){
-                       $("#imgValidate").attr("src", "captcha.jhtml?captchaId=<%=captchaId%>&timestamp=" + (new Date()).valueOf());
+                       $("#imgValidate").attr("src", "<%=base%>/captcha.jhtml?captchaId=<%=captchaId%>&timestamp=" + (new Date()).valueOf());
                       if(data.message=="codeError"){            
                        alert("验证码错误");
                        }
@@ -109,7 +109,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     });
     // 更换验证码
     $("#imgValidate").click( function() {
-        $("#imgValidate").attr("src", "captcha.jhtml?captchaId=<%=captchaId%>&timestamp=" + (new Date()).valueOf());
+        $("#imgValidate").attr("src", "<%=base%>/captcha.jhtml?captchaId=<%=captchaId%>&timestamp=" + (new Date()).valueOf());
     });
 
 </script>

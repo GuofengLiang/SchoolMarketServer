@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.market.entity.SubClassify;
-import com.market.javabean.ClassBean;
 import com.market.javabean.SubClassBean;
 import com.market.javabean.SubClassifyBean;
 import com.market.service.SubClassifyService;
@@ -95,8 +94,8 @@ public class SubClassifyController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "findAllClassify")
-	public List<ClassBean> findAllClassify() {
-		List<ClassBean> classlistBean = subClassifyService.findAllClassify();
-		return classlistBean;
+	public List<Map<String,Object>> findAllClassify() {
+		List<Map<String,Object>> classes = subClassifyService.findAllClassify();
+		return classes;
 	}
 }

@@ -1,6 +1,7 @@
 package com.market.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.persistence.Query;
@@ -9,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import com.market.dao.SubClassifyDao;
 import com.market.entity.SubClassify;
-import com.market.javabean.ClassBean;
 import com.market.javabean.SubClassBean;
 import com.market.javabean.SubClassifyBean;
 import com.market.service.SubClassifyService;
@@ -65,8 +65,8 @@ public class SubClassifyServiceImpl implements SubClassifyService {
 	 * 查找所有主分类下的子分类的信息
 	 */
 	@Override
-	public List<ClassBean> findAllClassify() {
-		List<ClassBean> classlistBean = subClassifyDao.findAllClassify();
+	public List<Map<String,Object>> findAllClassify() {
+		List<Map<String,Object>> classlistBean = subClassifyDao.findAllClassify();
 		return classlistBean;
 	}
 }

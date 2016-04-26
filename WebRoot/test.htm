@@ -11,6 +11,18 @@
 <script src="js/jquery-1.11.1.min.js"></script>
 
 <script type="text/javascript">
+<!--测试登陆-->
+$("#test").click(function(){
+$.post("updateUserPassword.jhtml",
+  {
+   oldPassword:"123456",
+   newPassword:"1234567"
+   
+  },
+function(data){
+           alert(data.message);
+});
+});
 <!--测试添加子分类-->
 $("#test1").click(function(){
 $.post("alterClassify.jhtml",

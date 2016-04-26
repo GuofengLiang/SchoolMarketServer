@@ -2,7 +2,9 @@ package com.market.dao.impl;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -14,7 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.market.dao.SubClassifyDao;
 import com.market.entity.MainClassify;
 import com.market.entity.SubClassify;
-import com.market.javabean.ClassBean;
 import com.market.javabean.SubClassBean;
 import com.market.javabean.SubClassifyBean;
 @Repository
@@ -123,22 +124,17 @@ public class SubClassifyDaoImpl implements SubClassifyDao {
 	 * 查找所有主分类下的子分类的信息
 	 */
 	@Override
-	public List<ClassBean> findAllClassify() {
+	public List<Map<String,Object>> findAllClassify() {
 		List<MainClassify> mainClassifies = findAllMainClassify();
 		
-		List<ClassBean> classlistBean = new ArrayList<ClassBean>();
-		for(int i= 0 ; i<mainClassifies.size(); i++) {
-			ClassBean classBean = new ClassBean();
-			classBean.setMainclassId(mainClassifies.get(i).getMainclassId());
-			classBean.setMainclassName(mainClassifies.get(i).getMainclassName());
-			List<SubClassifyBean> subClass = findAllSubClassify(mainClassifies.get(i).getMainclassId());
-			/*for(int j = 0; j<subClass.size(); j++) {
-				classBean.setSubclassId(subClass.get(j).getSubclassId());
-				classBean.setSubclassName(subClass.get(j).getSubclassName());
-				subClass.addAll((Collection<? extends SubClassifyBean>) classBean);
-			}*/
-			classlistBean.add(classBean);
+		List<Map<String,Object>> classes=new ArrayList<Map<String,Object>>();
+		for(MainClassify mainClassify:mainClassifies) {
+			Map<String,Object> map=new HashMap<String,Object>();
+			List<SubClassifyBean> subClass = findAllSubClassify(mainClassify.getMainclassId());
+			map.put("subClass", subClass);
+			map.put("mainClassify", mainClassify);
+			classes.add(map);
 		}
-		return classlistBean;
+		return classes;
 	}
 }
