@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.market.entity.Order;
+import com.market.javabean.OrderBean;
 import com.market.service.OrderService;
 
 @Controller
@@ -27,8 +28,8 @@ public class OrdereController {
 
 	@ResponseBody
 	@RequestMapping(value = "findAllOrders")
-	public List<Order> findAllOrders(@RequestParam int userId) {
-		List<Order> orders = orderService.findAllOrders(userId);
+	public List<OrderBean> findAllOrders(@RequestParam int userId) {
+		List<OrderBean> orders = orderService.findAllOrders(userId);
 		return orders;
 	}
 }

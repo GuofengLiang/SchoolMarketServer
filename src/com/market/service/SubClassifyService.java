@@ -3,6 +3,7 @@ package com.market.service;
 import java.util.List;
 
 import com.market.entity.SubClassify;
+import com.market.javabean.ClassBean;
 import com.market.javabean.SubClassBean;
 import com.market.javabean.SubClassifyBean;
 
@@ -34,4 +35,9 @@ public interface SubClassifyService {
     * @param subclassName
     */
    void alterClassify(int subclassId, String subclassName, String mainclassName) throws Exception;
+   /**
+	 * 查找所有大分类下的子分类
+	 * @return
+	 */
+	List<ClassBean> findAllClassify();
 }

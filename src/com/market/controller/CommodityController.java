@@ -1,6 +1,7 @@
 package com.market.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -59,5 +60,14 @@ public class CommodityController {
 		}
 		map.put("message", "addCommoditySuccess");
 		return map;
+	}
+	/**
+	 * 根据商品类型type查找商品
+	 */
+	@ResponseBody
+	@RequestMapping(value = "findAllCommByType")
+	public List<Commodity> findAllCommByType(String type) {
+		List<Commodity> commYype = commodityService.findAllCommByType(type);
+		return commYype;
 	}
 }

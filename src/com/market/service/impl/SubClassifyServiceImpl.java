@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.market.dao.SubClassifyDao;
 import com.market.entity.SubClassify;
+import com.market.javabean.ClassBean;
 import com.market.javabean.SubClassBean;
 import com.market.javabean.SubClassifyBean;
 import com.market.service.SubClassifyService;
@@ -59,5 +60,13 @@ public class SubClassifyServiceImpl implements SubClassifyService {
 	public void alterClassify(int subclassId, String subclassName, String mainclassName) throws Exception {
 		subClassifyDao.alterClassify(subclassId, subclassName, mainclassName);
 	//	return subClassify;
+	}
+	/**
+	 * 查找所有主分类下的子分类的信息
+	 */
+	@Override
+	public List<ClassBean> findAllClassify() {
+		List<ClassBean> classlistBean = subClassifyDao.findAllClassify();
+		return classlistBean;
 	}
 }

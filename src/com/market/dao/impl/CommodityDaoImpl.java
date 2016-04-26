@@ -1,6 +1,7 @@
 package com.market.dao.impl;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -68,6 +69,18 @@ public class CommodityDaoImpl implements CommodityDao {
 		// 保存
 		supermarket.getCommodity().add(commodity);
 
+	}
+
+	/**
+	 * 根据type类型来查找商品
+	 */
+	@Override
+	public List<Commodity> findAllCommByType(String type) {
+		Query query = entityManager.createQuery("select s from Commodity s where s.type=?1");
+		query.setParameter(1, type);
+		@SuppressWarnings("unchecked")
+		List<Commodity> commType = query.getResultList();
+		return commType;
 	}
 
 }

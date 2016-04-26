@@ -1,6 +1,7 @@
 package com.market.service.impl;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -38,6 +39,15 @@ public class CommodityServiceImpl implements CommodityService {
 				picture, price, spercification, describes, stock, discount,
 				specialTime, type, supermarketId);
 
+	}
+
+	/**
+	 * 根据type类型来查找商品
+	 */
+	@Override
+	public List<Commodity> findAllCommByType(String type) {
+		List<Commodity> commYype = commodityDao.findAllCommByType(type);
+		return commYype;
 	}
 
 }

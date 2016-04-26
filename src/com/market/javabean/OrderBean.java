@@ -23,12 +23,24 @@ public class OrderBean {
 	 * 订单id
 	 */
 	private int orderId;
+	/**
+	 * 状态
+	 */
+	private int state;
 	public int getOrderId() {
 		return orderId;
 	}
 
 	public void setOrderId(int orderId) {
 		this.orderId = orderId;
+	}
+
+	public int getState() {
+		return state;
+	}
+
+	public void setState(int state) {
+		this.state = state;
 	}
 
 	/**

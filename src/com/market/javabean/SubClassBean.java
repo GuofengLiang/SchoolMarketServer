@@ -1,18 +1,9 @@
 package com.market.javabean;
 
-import com.market.entity.MainClassify;
+import com.market.entity.SubClassify;
 
 public class SubClassBean {
 
-	/**
-	 * 商品次分类id
-	 */
-	private int subclassId;
-
-	/**
-	 * 商品次分类名称
-	 */
-	private String subclassName;
 	/**
 	 * 商品主分类id
 	 */
@@ -21,15 +12,15 @@ public class SubClassBean {
 	 * 商品主分类名称
 	 */
 	private String mainclassName;
+	/**
+	 * 商品次分类id
+	 */
+	private int subclassId;
+	/**
+	 * 商品子分类名称
+	 */
+	private String subclassName;
 	
-
-	public String getMainclassName() {
-		return mainclassName;
-	}
-
-	public void setMainclassName(String mainclassName) {
-		this.mainclassName = mainclassName;
-	}
 
 	public int getSubclassId() {
 		return subclassId;
@@ -53,5 +44,13 @@ public class SubClassBean {
 
 	public void setMainclassId(int mainclassId) {
 		this.mainclassId = mainclassId;
+	}
+
+	public String getMainclassName() {
+		return mainclassName;
+	}
+
+	public void setMainclassName(String mainclassName) {
+		this.mainclassName = mainclassName;
 	}
 }

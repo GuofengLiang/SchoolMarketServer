@@ -1,6 +1,7 @@
 package com.market.service;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -38,4 +39,10 @@ public interface CommodityService {
 			String describes, int stock, float discount, Date specialTime,
 			String type, int supermarketId, MultipartHttpServletRequest mRequest)
 			throws Exception;
+	/**
+	 * 根据商品类型type来查找商品
+	 * @param type
+	 * @return
+	 */
+	List<Commodity> findAllCommByType(String type);
 }

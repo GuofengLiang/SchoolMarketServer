@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.market.entity.MainClassify;
 import com.market.entity.SubClassify;
+import com.market.javabean.ClassBean;
 import com.market.javabean.SubClassBean;
 import com.market.javabean.SubClassifyBean;
 
@@ -40,4 +41,14 @@ public interface SubClassifyDao {
 	 * 根据mainclassId来查询该主分类的信息
 	 */
 	MainClassify findSingleMainClassify(int mainclassId);
+	/**
+	 * 查找所有mainclassify的数据
+	 * @return
+	 */
+	List<MainClassify> findAllMainClassify();
+	/**
+	 * 查找所有大分类下的子分类
+	 * @return
+	 */
+	List<ClassBean> findAllClassify();
 }

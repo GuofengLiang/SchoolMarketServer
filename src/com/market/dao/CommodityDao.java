@@ -1,6 +1,7 @@
 package com.market.dao;
 
 import java.util.Date;
+import java.util.List;
 
 import com.market.entity.Commodity;
 
@@ -35,4 +36,10 @@ public interface CommodityDao {
 			String spercification,// 规格，重量
 			String describes, int stock, float discount, Date specialTime,
 			String type, int supermarketId);
+	/**
+	 * 根据商品类型type来查找商品
+	 * @param type
+	 * @return
+	 */
+	List<Commodity> findAllCommByType(String type);
 }

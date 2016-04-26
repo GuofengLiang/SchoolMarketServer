@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.market.entity.SubClassify;
+import com.market.javabean.ClassBean;
 import com.market.javabean.SubClassBean;
 import com.market.javabean.SubClassifyBean;
 import com.market.service.SubClassifyService;
@@ -88,5 +89,14 @@ public class SubClassifyController {
 		}
 		map.put("message", "alterClassifySuccess");
 		return map;
+	}
+	/**
+	 * 查找所有主分类下的子分类的信息
+	 */
+	@ResponseBody
+	@RequestMapping(value = "findAllClassify")
+	public List<ClassBean> findAllClassify() {
+		List<ClassBean> classlistBean = subClassifyService.findAllClassify();
+		return classlistBean;
 	}
 }

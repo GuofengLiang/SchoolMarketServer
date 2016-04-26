@@ -3,6 +3,7 @@ package com.market.dao;
 import java.util.List;
 
 import com.market.entity.Order;
+import com.market.javabean.OrderBean;
 
 public interface OrderDao {
 
@@ -19,5 +20,5 @@ public interface OrderDao {
 	 * @param userId
 	 * @return
 	 */
-	List<Order> findAllOrders(int userId);
+	List<OrderBean> findAllOrders(int userId);
 }

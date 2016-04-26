@@ -1,6 +1,7 @@
 package com.market.dao.impl;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -13,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.market.dao.SubClassifyDao;
 import com.market.entity.MainClassify;
 import com.market.entity.SubClassify;
+import com.market.javabean.ClassBean;
 import com.market.javabean.SubClassBean;
 import com.market.javabean.SubClassifyBean;
 @Repository
@@ -44,7 +46,7 @@ public class SubClassifyDaoImpl implements SubClassifyDao {
 	    */
 	public List<SubClassBean> findAllSubClassifies() {
 		Query query = entityManager.createQuery("select s from SubClassify s order by s.subclassId desc");
-		@SuppressWarnings({ "unchecked", "unused" })
+		@SuppressWarnings({ "unchecked" })
 		List<SubClassify> subClass = query.getResultList();
 		List<SubClassBean> subClassBeans=new ArrayList<SubClassBean>();
 		for(SubClassify sub:subClass){
@@ -107,4 +109,36 @@ public class SubClassifyDaoImpl implements SubClassifyDao {
 		   subClassify.setSubclassName(subclassName);
 		//   return subClassify;
 	   }
+	/**
+	 * 找到所有的主分类信息
+	 */
+	@Override
+	public List<MainClassify> findAllMainClassify() {
+		Query query = entityManager.createQuery("select s from MainClassify s order by s.mainclassId desc");
+		@SuppressWarnings("unchecked")
+		List<MainClassify> mainClassifies =query.getResultList();
+		return mainClassifies;
+	}
+	/**
+	 * 查找所有主分类下的子分类的信息
+	 */
+	@Override
+	public List<ClassBean> findAllClassify() {
+		List<MainClassify> mainClassifies = findAllMainClassify();
+		
+		List<ClassBean> classlistBean = new ArrayList<ClassBean>();
+		for(int i= 0 ; i<mainClassifies.size(); i++) {
+			ClassBean classBean = new ClassBean();
+			classBean.setMainclassId(mainClassifies.get(i).getMainclassId());
+			classBean.setMainclassName(mainClassifies.get(i).getMainclassName());
+			List<SubClassifyBean> subClass = findAllSubClassify(mainClassifies.get(i).getMainclassId());
+			/*for(int j = 0; j<subClass.size(); j++) {
+				classBean.setSubclassId(subClass.get(j).getSubclassId());
+				classBean.setSubclassName(subClass.get(j).getSubclassName());
+				subClass.addAll((Collection<? extends SubClassifyBean>) classBean);
+			}*/
+			classlistBean.add(classBean);
+		}
+		return classlistBean;
+	}
 }
