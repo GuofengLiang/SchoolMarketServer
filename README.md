@@ -1,6 +1,7 @@
 # SchoolMarketServer
 
 ##校园便利店后台
+## 配套的ios客户端,请进入[HysJuyng的github](https://github.com/HysJuyng/SchoolMarket)浏览
 ###开发环境：
   Myeclipse10.0   
   tomcat7.0   
