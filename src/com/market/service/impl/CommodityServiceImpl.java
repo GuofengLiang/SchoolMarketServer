@@ -2,6 +2,7 @@ package com.market.service.impl;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -22,10 +23,10 @@ public class CommodityServiceImpl implements CommodityService {
 	public CommodityDao commodityDao;
 
 	@Override
-	public Commodity findSingleComm(int commodityId) {
+	public CommodityBean findSingleComm(int commodityId) {
 
-		Commodity commodity = commodityDao.findSingleComm(commodityId);
-		return commodity;
+		CommodityBean commodityBean = commodityDao.findSingleComm(commodityId);
+		return commodityBean;
 	}
 
 	@Override
@@ -45,9 +46,45 @@ public class CommodityServiceImpl implements CommodityService {
 	 * 根据type类型来查找商品
 	 */
 	@Override
-	public List<Commodity> findAllCommByType(String type) {
-		List<Commodity> commYype = commodityDao.findAllCommByType(type);
-		return commYype;
+	public List<CommodityBean> findAllCommByType(String type) {
+		List<CommodityBean> commType = commodityDao.findAllCommByType(type);
+		return commType;
+	}
+	/**
+	 * 根据超市id和主分类id查找商品
+	 */
+	@Override
+	public List<Commodity> findAllCommByMclass(int supermartketId, int mainclassId) {
+		List<Commodity> commodityBean = commodityDao.findAllCommByMclass(supermartketId, mainclassId);
+		return commodityBean;
+	}
+
+	/**
+	 * 根据主分类id来查找该分类下的所有商品
+	 */
+	@Override
+	public List<CommodityBean> findAllCommByMainId(int mainclassId) {
+		List<CommodityBean> commodityBean = commodityDao.findAllCommByMainId(mainclassId);
+		return commodityBean;
+	}
+
+	/**
+	 * 查找热卖商品
+	 * 按照sales来查找销量前六的商品
+	 */
+	@Override
+	public List<CommodityBean> findSixCommBySales() {
+		List<CommodityBean> commodityListBean = commodityDao.findSixCommBySales();
+		return commodityListBean;
+	}
+
+	/**
+	 * 查找推荐商品和热卖商品
+	 */
+	@Override
+	public List<Map<String, Object>> findSaleAndSpecialComm() {
+		List<Map<String, Object>> commodities = commodityDao.findSaleAndSpecialComm();
+		return commodities;
 	}
 
 }

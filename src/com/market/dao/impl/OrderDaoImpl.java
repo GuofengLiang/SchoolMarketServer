@@ -15,7 +15,6 @@ import com.market.javabean.OrderBean;
 
 @Repository
 public class OrderDaoImpl implements OrderDao {
-
 	@PersistenceContext
 	protected EntityManager entityManager;
 	//通过orderId查找订单
@@ -30,7 +29,7 @@ public class OrderDaoImpl implements OrderDao {
 	//根据userId查找订单
 	@Override
 	public List<OrderBean> findAllOrders(int userId) {
-		Query query = entityManager.createQuery("select s from Orders s where s.user.userId=?1");
+		Query query = entityManager.createQuery("select s from Order s where s.user.userId=?1");
 		query.setParameter(1, userId);
 		@SuppressWarnings("unchecked")
 		List<Order> list = query.getResultList();

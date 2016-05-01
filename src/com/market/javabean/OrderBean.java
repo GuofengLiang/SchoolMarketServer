@@ -27,22 +27,7 @@ public class OrderBean {
 	 * 状态
 	 */
 	private int state;
-	public int getOrderId() {
-		return orderId;
-	}
-
-	public void setOrderId(int orderId) {
-		this.orderId = orderId;
-	}
-
-	public int getState() {
-		return state;
-	}
-
-	public void setState(int state) {
-		this.state = state;
-	}
-
+	
 	/**
 	 * 下单时间
 	 */
@@ -103,4 +88,20 @@ public class OrderBean {
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
 	}
+	public int getOrderId() {
+		return orderId;
+	}
+
+	public void setOrderId(int orderId) {
+		this.orderId = orderId;
+	}
+
+	public int getState() {
+		return state;
+	}
+
+	public void setState(int state) {
+		this.state = state;
+	}
+
 }

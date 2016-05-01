@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.market.entity.Commodity;
+import com.market.javabean.AdvertiseBean;
 import com.market.javabean.CommodityBean;
 import com.market.javabean.SupermarketBean;
 import com.market.service.SupermarketService;
@@ -30,7 +31,11 @@ public class SupermarketController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "findAllCommodity")
-	public Map<String,List<CommodityBean>> findAllCommodity(@RequestParam int supermarketId) {
+	public List<CommodityBean> findAllCommodity(@RequestParam int supermarketId) {
+		List<CommodityBean> commodities = supermarketService.findAllCommodity(supermarketId);
+		return commodities;
+	}
+	/*public Map<String,List<CommodityBean>> findAllCommodity(@RequestParam int supermarketId) {
 		Map<String,List<CommodityBean>> map=new HashMap<String,List<CommodityBean>>();
 		try{
 			List<CommodityBean> commodities = supermarketService.findAllCommodity(supermarketId);
@@ -39,7 +44,7 @@ public class SupermarketController {
 			e.printStackTrace();
 		}
 		return map;
-	}
+	}*/
 
 	@ResponseBody
 	@RequestMapping(value = "adminFindAllCommodity")
@@ -67,6 +72,15 @@ public class SupermarketController {
 		SupermarketBean supermarketBean = supermarketService
 				.findSingleSuper(supermarketId);
 		return supermarketBean;
+	}
+	/**
+	 * 根据超市id查找广告信息
+	 */
+	@ResponseBody
+	@RequestMapping(value = "findAllAdvertises")
+	public List<AdvertiseBean> findAllAdvertises(int supermarketId) {
+		List<AdvertiseBean> advertiseListBean = supermarketService.findAllAdvertises(supermarketId);
+		return advertiseListBean;
 	}
 
 }

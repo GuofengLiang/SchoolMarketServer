@@ -11,8 +11,34 @@
 <script src="js/jquery-1.11.1.min.js"></script>
 
 <script type="text/javascript">
-<!--测试登陆-->
+
+
 $("#test").click(function(){
+	$.post("userLoginByPhone.jhtml",
+	  {
+		userPhone:"18814182437",
+		password:"123456"
+	   
+	  },
+	function(data){
+	           alert(data.message);
+	});
+	});
+
+/*$("#test").click(function(){
+	$.post("findAllCommByMclass.jhtml",
+	  {
+		supermartketId:"1",
+		mainclassId:"16"
+	  },
+	function(data){
+	           alert(data.message);
+	});
+	});
+
+<!--测试登陆-->
+
+$("#test4").click(function(){
 $.post("updateUserPassword.jhtml",
   {
    oldPassword:"123456",
@@ -47,7 +73,7 @@ $.post("updateUserPassword.jhtml",
 function(data){
            alert(data.message);
 });
-});
+});*/
 </script>
 <!-- 
 http://schoolserver.nat123.net/updateUserPassword.jhtml

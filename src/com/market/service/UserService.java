@@ -1,8 +1,11 @@
 package com.market.service;
 
+import java.util.Map;
+
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.market.entity.User;
+import com.market.javabean.UserBean;
 
 public interface UserService {
 	/**
@@ -36,4 +39,21 @@ public interface UserService {
 	void addSingleUser(String userName, String password, String userPhone,
 			int sex, String portrait, // 头像
 			MultipartHttpServletRequest mRequest) throws Exception;
+	/**
+	 * 根据用户用户手机号码查找用户信息
+	 * @param userPhone
+	 * @return
+	 */
+	UserBean findUserByPhone(String userPhone);
+	/**
+	 * 根据手机号码查找用户信息
+	 * @return
+	 */
+	User findUserByUPhone(String userPhone);
+	/**
+	 * 根据手机号码查找用户	//用于登录后返回数据
+	 * @param userPhone
+	 * @return
+	 */
+	Map<String,Object> findObjectUserByPhone(String userPhone);
 }

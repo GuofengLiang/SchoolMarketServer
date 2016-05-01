@@ -2,10 +2,12 @@ package com.market.service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.market.entity.Commodity;
+import com.market.javabean.CommodityBean;
 
 public interface CommodityService {
 
@@ -15,7 +17,7 @@ public interface CommodityService {
 	 * @param commodityId
 	 * @return
 	 */
-	Commodity findSingleComm(int commodityId);
+	CommodityBean findSingleComm(int commodityId);
 
 	/**
 	 * 添加单个商品
@@ -44,5 +46,30 @@ public interface CommodityService {
 	 * @param type
 	 * @return
 	 */
-	List<Commodity> findAllCommByType(String type);
+	List<CommodityBean> findAllCommByType(String type);
+	/**
+	 * 根据超市id和主分类id查找商品
+	 * @param supermartketId
+	 * @param mainclassId
+	 * @return
+	 */
+	List<Commodity> findAllCommByMclass(int supermartketId, int mainclassId);
+	/**
+	 * 根据主分类id来查找该分类下的所有商品
+	 * @param mainclassId
+	 * @return
+	 */
+	List<CommodityBean> findAllCommByMainId(int mainclassId);
+	/**
+	 * 查找热卖商品
+	 * 按照sales来查找销量前六的商品
+	 * @param sales
+	 * @return
+	 */
+	List<CommodityBean> findSixCommBySales();
+	/**
+	 * 查找推荐商品和热卖商品
+	 * @return
+	 */
+	List<Map<String,Object>> findSaleAndSpecialComm();
 }

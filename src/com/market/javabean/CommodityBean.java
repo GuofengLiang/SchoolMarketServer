@@ -43,7 +43,6 @@ public class CommodityBean {
 	private float discount;
 	/**
 	 * 特价时间
-	 * @return
 	 */
 	private Date specialTime;
 	/**

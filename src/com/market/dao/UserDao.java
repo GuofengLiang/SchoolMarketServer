@@ -1,10 +1,13 @@
 package com.market.dao;
 
+import java.util.Map;
+
 import com.market.entity.User;
+import com.market.javabean.UserBean;
 
 public interface UserDao {
 	/**
-	 * 通过用户的id来查找用户
+	 * 通过用户名来查找用户
 	 * 
 	 * @param username
 	 * @return
@@ -34,4 +37,22 @@ public interface UserDao {
 	void addSingleUser(String userName, String password, String userPhone,
 			int sex, String portrait // 头像
 	);
+	/**
+	 * 根据用户手机号码查找用户信息
+	 * @param userPhone
+	 * @return
+	 */
+	UserBean findUserByPhone(String userPhone);
+	/**
+	 * 根据用户手机查找用户	//通过手机号码登录用到
+	 * @param userPhone
+	 * @return
+	 */
+	User findUserByUPhone(String userPhone);
+	/**
+	 * 根据手机号码查找用户	//用于登录后返回数据
+	 * @param userPhone
+	 * @return
+	 */
+	Map<String,Object> findObjectUserByPhone(String userPhone);
 }

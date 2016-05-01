@@ -1,17 +1,21 @@
 package com.market.controller;
 
-import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.market.entity.User;
+import com.market.javabean.UserBean;
 import com.market.service.UserService;
 
 /**
@@ -25,6 +29,13 @@ public class UserController {
 	@Resource(name = "userServiceImpl")
 	UserService userService;
 
+	/**
+	 * 用户登录
+	 * @param username
+	 * @param password
+	 * @param session
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping(value = "/userLogin")
 	public Map<String, String> login(String username, String password,
@@ -103,4 +114,40 @@ public class UserController {
 		map.put("message", "addUserSuccess");
 		return map;
 	}
+	/**
+	 * 根据用户用户手机号码查找用户信息
+	 */
+	@ResponseBody
+	@RequestMapping(value = "findUserByPhone")
+	public UserBean findUserByPhone(@RequestParam String userPhone) {
+		UserBean userBean = userService.findUserByPhone(userPhone);
+		return userBean;
+	}
+	/**
+	 * 根据用户手机登录
+	 */
+	@ResponseBody
+	@RequestMapping(value = "userLoginByPhone")
+	public Map<String, Object> loginByPhone(String userPhone, String password,
+			HttpSession session) {
+		Map<String, Object> map = userService.findObjectUserByPhone(userPhone);
+		User user = userService.findUserByUPhone(userPhone);
+		try {
+			if (user == null || user.equals("")) {
+				map.put("message", "userError");
+				return map;
+			}
+			if (!user.getPassword().equals(password)) {
+				map.put("message", "passwordError");
+				return map;
+			}
+		} catch (Exception e) {
+			map.put("message", "userError");
+			return map;
+		}
+		session.setAttribute("userPhone", userPhone);
+		map.put("message", user.getUserName());
+		return map;
+	}
+	
 }

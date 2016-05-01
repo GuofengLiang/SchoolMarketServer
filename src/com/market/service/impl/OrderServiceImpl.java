@@ -22,6 +22,9 @@ public class OrderServiceImpl implements OrderService {
 		Order order = orderDao.findSingleOrder(orderId);
 		return order;
 	}
+	/**
+	 * 根据用户id查找订单信息
+	 */
 	@Override
 	public List<OrderBean> findAllOrders(int userId) {
 		List<OrderBean> orders = orderDao.findAllOrders(userId);

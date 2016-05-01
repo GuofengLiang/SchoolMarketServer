@@ -1,7 +1,6 @@
 package com.market.dao.impl;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,7 +27,7 @@ public class SubClassifyDaoImpl implements SubClassifyDao {
 	@Override
 	public List<SubClassifyBean> findAllSubClassify(int mainclassId) {
 		Query query = entityManager.createQuery("select s from SubClassify s where s.mainclassId.mainclassId=?1");
-		query.setParameter(1, mainclassId);
+		query.setParameter(1, mainclassId);		//  and s.subclassId like '1%'这行是根据subclId来模糊查找1开头的
 		@SuppressWarnings("unchecked")
 		List<SubClassify> list=query.getResultList();
 		List<SubClassifyBean> listbean=new ArrayList<SubClassifyBean>();
@@ -46,7 +45,8 @@ public class SubClassifyDaoImpl implements SubClassifyDao {
 	    * @return
 	    */
 	public List<SubClassBean> findAllSubClassifies() {
-		Query query = entityManager.createQuery("select s from SubClassify s order by s.subclassId desc");
+		Query query = entityManager
+				.createQuery("select s from SubClassify s order by s.subclassId asc");
 		@SuppressWarnings({ "unchecked" })
 		List<SubClassify> subClass = query.getResultList();
 		List<SubClassBean> subClassBeans=new ArrayList<SubClassBean>();
@@ -115,7 +115,7 @@ public class SubClassifyDaoImpl implements SubClassifyDao {
 	 */
 	@Override
 	public List<MainClassify> findAllMainClassify() {
-		Query query = entityManager.createQuery("select s from MainClassify s order by s.mainclassId desc");
+		Query query = entityManager.createQuery("select s from MainClassify s order by s.mainclassId");// desc
 		@SuppressWarnings("unchecked")
 		List<MainClassify> mainClassifies =query.getResultList();
 		return mainClassifies;
@@ -126,7 +126,6 @@ public class SubClassifyDaoImpl implements SubClassifyDao {
 	@Override
 	public List<Map<String,Object>> findAllClassify() {
 		List<MainClassify> mainClassifies = findAllMainClassify();
-		
 		List<Map<String,Object>> classes=new ArrayList<Map<String,Object>>();
 		for(MainClassify mainClassify:mainClassifies) {
 			Map<String,Object> map=new HashMap<String,Object>();

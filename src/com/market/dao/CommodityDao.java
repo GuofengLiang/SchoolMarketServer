@@ -2,8 +2,10 @@ package com.market.dao;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import com.market.entity.Commodity;
+import com.market.javabean.CommodityBean;
 
 public interface CommodityDao {
 
@@ -13,7 +15,7 @@ public interface CommodityDao {
 	 * @param commodityId
 	 * @return
 	 */
-	Commodity findSingleComm(int commodityId);
+	CommodityBean findSingleComm(int commodityId);
 
 	/**
 	 * 添加单个商品
@@ -41,5 +43,36 @@ public interface CommodityDao {
 	 * @param type
 	 * @return
 	 */
-	List<Commodity> findAllCommByType(String type);
+	List<CommodityBean> findAllCommByType(String type);
+	/**
+	 * 根据超市id和主分类id查找商品
+	 * @param supermartketId
+	 * @param mainclassId
+	 * @return
+	 */
+	List<Commodity> findAllCommByMclass(int supermartketId, int mainclassId);
+	/**
+	 * 根据主分类id来查找该分类下的所有商品
+	 * @param mainclassId
+	 * @return
+	 */
+	List<CommodityBean> findAllCommByMainId(int mainclassId);
+	/**
+	 * 查找热卖商品
+	 * 按照sales来查找销量前六的商品
+	 * @param sales
+	 * @return
+	 */
+	List<CommodityBean> findSixCommBySales();
+	/**
+	 * 只显示6个最新推荐商品
+	 * 查找推荐商品
+	 * @return
+	 */
+	List<CommodityBean> findSixCommByRecomoend();
+	/**
+	 * 查找推荐商品和热卖商品
+	 * @return
+	 */
+	List<Map<String,Object>> findSaleAndSpecialComm();
 }

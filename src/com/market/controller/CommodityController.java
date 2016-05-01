@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.market.entity.Commodity;
+import com.market.javabean.CommodityBean;
 import com.market.service.CommodityService;
 import com.market.utils.Format;
 
@@ -32,11 +33,27 @@ public class CommodityController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "findSingleComm")
-	public Commodity findSingleComm(@RequestParam int commodityId) {
-		Commodity commodity = commodityService.findSingleComm(commodityId);
-		return commodity;
+	public CommodityBean findSingleComm(@RequestParam int commodityId) {
+		CommodityBean commodityBean = commodityService.findSingleComm(commodityId);
+		return commodityBean;
 	}
 
+	/**
+	 * 添加单个商品
+	 * @param mainclassName
+	 * @param subclassName
+	 * @param commName
+	 * @param price
+	 * @param spercification
+	 * @param describes
+	 * @param stock
+	 * @param specialTime
+	 * @param discount
+	 * @param type
+	 * @param session
+	 * @param request
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping(value = "addSingleCommodity")
 	public Map<String, String> addSingleCommodity(String mainclassName,
@@ -66,8 +83,49 @@ public class CommodityController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "findAllCommByType")
-	public List<Commodity> findAllCommByType(String type) {
-		List<Commodity> commYype = commodityService.findAllCommByType(type);
+	public List<CommodityBean> findAllCommByType(String type) {
+		List<CommodityBean> commYype = commodityService.findAllCommByType(type);
 		return commYype;
+	}
+	/**
+	 * 根据超市id和主分类id查找商品
+	 */
+	@ResponseBody
+	@RequestMapping(value = "findAllCommByMclass")
+	public Map<String, String> findAllCommByMclass(@RequestParam int supermartketId, int mainclassId) {
+		Map<String, String> map = new HashMap<String, String>();
+		try {
+			List<Commodity> commodityBean = commodityService.findAllCommByMclass(supermartketId, mainclassId);
+		} catch (Exception e) {
+			map.put("message", "findAllCommByMclassError");
+			return map;
+		}
+		map.put("message", "findAllCommByMclassSuccess");
+		return map;
+	}
+	/**
+	 * 根据mainclassId来查询该分类下商品的相关信息
+	 */
+	@ResponseBody
+	@RequestMapping(value = "findAllCommByMainId")
+	public List<CommodityBean> findAllCommByMainId(@RequestParam int mainclassId) {
+		List<CommodityBean> commodityBean = commodityService.findAllCommByMainId(mainclassId);
+		return commodityBean;
+	}
+	/**
+	 * 查找6个热卖商品
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "findSixCommBySales")
+	public List<CommodityBean> findSixCommBySales() {
+		List<CommodityBean> commodityListBean = commodityService.findSixCommBySales();
+		return commodityListBean;
+	}
+	@ResponseBody
+	@RequestMapping(value = "findSaleAndSpecialComm")
+	public List<Map<String, Object>> findSaleAndSpecialComm() {
+		List<Map<String, Object>> commodities = commodityService.findSaleAndSpecialComm();
+		return commodities;
 	}
 }
