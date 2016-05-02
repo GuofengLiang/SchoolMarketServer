@@ -1,5 +1,6 @@
 package com.market.service;
 
+import java.util.Date;
 import java.util.List;
 
 import com.market.entity.Order;
@@ -19,4 +20,18 @@ public interface OrderService {
 	 * @return
 	 */
 	List<OrderBean> findAllOrders(int userId);
+	/**
+	 * 添加单个订单
+	 * @param addressId
+	 * @param userId
+	 * @param state
+	 * @param defaultedAddress
+	 * @param orderTime
+	 * @param deliverTime
+	 * @param freight
+	 * @param total
+	 * @param remarks
+	 */
+	void addSingleOrder(int addressId, int userId, int state, Date orderTime,
+			Date deliverTime, float freight, float total, String remarks);
 }

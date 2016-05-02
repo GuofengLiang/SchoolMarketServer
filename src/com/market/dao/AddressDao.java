@@ -19,4 +19,12 @@ public interface AddressDao {
 	 * @return
 	 */
 	AddressBean findSingleAddress(int addressId);
+	/**
+	 * 添加单个收货地址
+	 * @param userId
+	 * @param addressDetail
+	 * @param consignee
+	 * @param phone
+	 */
+	void addSingleAddress(int userId, String addressDetail, String consignee, String phone, int defaultedAddress);
 }

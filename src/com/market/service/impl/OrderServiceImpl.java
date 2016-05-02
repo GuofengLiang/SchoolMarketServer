@@ -1,5 +1,6 @@
 package com.market.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -29,5 +30,14 @@ public class OrderServiceImpl implements OrderService {
 	public List<OrderBean> findAllOrders(int userId) {
 		List<OrderBean> orders = orderDao.findAllOrders(userId);
 		return orders;
+	}
+	/**
+	 * 添加单个order
+	 */
+	@Override
+	public void addSingleOrder(int addressId, int userId, int state, Date orderTime, Date deliverTime, float freight,
+			float total, String remarks) {
+		orderDao.addSingleOrder(addressId, userId, state, orderTime, deliverTime, freight, total, remarks);
+		
 	}
 }

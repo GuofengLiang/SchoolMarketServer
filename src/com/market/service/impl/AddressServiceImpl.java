@@ -30,5 +30,14 @@ public class AddressServiceImpl implements AddressService {
 		AddressBean addressBean = addressDao.findSingleAddress(addressId);
 		return addressBean;
 	}
+	/**
+	 * 添加单个收货地址
+	 */
+	@Override
+	public void addSingleAddress(int userId, String addressDetail, String consignee, String phone,
+			int defaultedAddress) {
+		addressDao.addSingleAddress(userId, addressDetail, consignee, phone, defaultedAddress);
+		
+	}
 
 }

@@ -1,6 +1,7 @@
 package com.market.dao.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -8,9 +9,12 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.market.dao.OrderDao;
+import com.market.entity.Address;
 import com.market.entity.Order;
+import com.market.entity.User;
 import com.market.javabean.OrderBean;
 
 @Repository
@@ -46,5 +50,33 @@ public class OrderDaoImpl implements OrderDao {
 			listbean.add(orderbean);
 		}
 		return listbean;
+	}
+	/**
+	 * 添加单个订单
+	 */
+	@Override
+	@Transactional
+	public void addSingleOrder(int addressId, int userId, int state, Date orderTime,
+			Date deliverTime, float freight, float total, String remarks) {
+		//通过addressId获取地址
+		Query query1 = entityManager.createQuery("select a from Address a where a.addressId=:addressId");
+		//通过userId获取用户
+		Query query2 = entityManager.createQuery("select u from User u where u.userId=:userId");
+		query1.setParameter("addressId", addressId);
+		Address address = (Address) query1.getSingleResult();
+		query2.setParameter("userId", userId);
+		User user = (User) query2.getSingleResult();
+		//持久化order
+		Order order = new Order();
+		order.setAddressId(address);
+		order.setUser(user);
+		order.setDeliverTime(deliverTime);
+		order.setFreight(freight);
+		order.setOrderTime(orderTime);
+		order.setRemarks(remarks);
+		order.setState(state);
+		order.setTotal(total);
+		entityManager.persist(order);
+		
 	}
 }

@@ -48,6 +48,18 @@ public class Address {
 	 */
 	@Column(length = 11)
 	private String phone;
+	/**
+	 * 默认地址标识
+	 */
+	private int defaultedAddress;	
+
+	public int getDefaultedAddress() {
+		return defaultedAddress;
+	}
+
+	public void setDefaultedAddress(int defaultedAddress) {
+		this.defaultedAddress = defaultedAddress;
+	}
 
 	public int getAddressId() {
 		return addressId;

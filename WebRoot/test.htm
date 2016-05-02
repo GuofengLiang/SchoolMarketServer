@@ -12,13 +12,17 @@
 
 <script type="text/javascript">
 
-
 $("#test").click(function(){
-	$.post("userLoginByPhone.jhtml",
+	$.post("addSingleOrder.jhtml",
 	  {
-		userPhone:"18814182437",
-		password:"123456"
-	   
+		addressId:"4",
+		userId:"3", 
+		state:"0", 
+		orderTime:"2016-04-01 12:32:42", 
+		deliverTime:"2016-04-06 14:09:23", 
+		freight:"1", 
+		total:"6", 
+		remarks:"ahah"
 	  },
 	function(data){
 	           alert(data.message);
@@ -26,19 +30,22 @@ $("#test").click(function(){
 	});
 
 /*$("#test").click(function(){
-	$.post("findAllCommByMclass.jhtml",
+	$.post("addSingleAddress.jhtml",
 	  {
-		supermartketId:"1",
-		mainclassId:"16"
+		userId:"1",
+		addressDetail:"6",
+		consignee:"6",
+		phone:"6", 
+		defaultedAddress:"0"
 	  },
 	function(data){
 	           alert(data.message);
 	});
 	});
-
+*/
 <!--测试登陆-->
 
-$("#test4").click(function(){
+/*$("#test4").click(function(){
 $.post("updateUserPassword.jhtml",
   {
    oldPassword:"123456",

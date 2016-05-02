@@ -1,6 +1,8 @@
 package com.market.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -33,5 +35,18 @@ public class AddressController {
 	public AddressBean findSingleAddress(int addressId) {
 		AddressBean addressBean = addressService.findSingleAddress(addressId);
 		return addressBean;
+	}
+	@ResponseBody
+	@RequestMapping(value = "addSingleAddress")
+	public Map<String, String> addSingleAddress(int userId, String addressDetail, String consignee, String phone, int defaultedAddress) {
+		Map<String, String> map = new HashMap<String, String>();
+		try {
+			addressService.addSingleAddress(userId, addressDetail, consignee, phone, defaultedAddress);
+		} catch (Exception e) {
+			map.put("message", "addSingleAddressError");
+			return map;
+		}
+		map.put("message", "addSingleAddressSuccess");
+		return map;
 	}
 }
