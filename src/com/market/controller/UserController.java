@@ -156,9 +156,34 @@ public class UserController {
 			return map;
 		}
 		session.setAttribute("username",user.getUserName());
-		UserBean userBean = userService.findUserByName(user.getUserName());
+		UserBean userBean = userService.findUserByPhone(userPhone);
 		map.put("message", userBean);
 		return map;
+	}
+	/**
+	 * 根据用户手机号和密码进行注册
+	 */
+	@ResponseBody
+	@RequestMapping(value = "registerNewUser")
+	public Map<String, Object> registerNewUser(String userPhone, String password,
+			HttpSession session){
+		Map<String, Object> map = new HashMap<String, Object>();
+		try {
+			User user = userService.findUserByUPhone(userPhone);
+			if (user!= null) {
+				map.put("message", "userexist");
+				return map;
+			}
+		} catch (Exception e) {
+			userService.registerNewUser(userPhone, password);
+			@SuppressWarnings("null")
+			UserBean userBean =userService.findUserByPhone(userPhone);
+			map.put("message", userBean);
+			
+		}
+		return map;
+
+		
 	}
 	
 }

@@ -112,4 +112,15 @@ public class UserDaoImpl implements UserDao {
 		map.put("user", user);
 		return map;
 	}
+
+	@Override
+	@Transactional
+	public void registerNewUser(String userPhone, String password) {
+		// 持久化user
+		User user = new User();
+		user.setUserPhone(userPhone);
+		user.setPassword(password);
+		entityManager.persist(user); // 保存到数据库
+		
+	}
 }

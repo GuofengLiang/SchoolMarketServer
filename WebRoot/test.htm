@@ -11,7 +11,17 @@
 <script src="js/jquery-1.11.1.min.js"></script>
 
 <script type="text/javascript">
-
+$("#test").click(function(){
+$.post("registerNewUser.jhtml",
+  {
+   userPhone:"18814182438",
+   password:"1234567"
+   
+  },
+function(data){
+           alert(data.message);
+});
+});
 $("#test1").click(function(){
 	$.post("addSingleOrder.jhtml",
 	  {

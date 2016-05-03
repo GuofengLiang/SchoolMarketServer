@@ -76,4 +76,10 @@ public class UserServiceImpl implements UserService {
 		Map<String, Object> map = userDao.findObjectUserByPhone(userPhone);
 		return map;
 	}
+
+	@Override
+	public void registerNewUser(String userPhone, String password) {
+		userDao.registerNewUser(userPhone, password);
+		
+	}
 }

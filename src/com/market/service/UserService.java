@@ -28,7 +28,7 @@ public interface UserService {
 			throws Exception;
 
 	/**
-	 * 添加单个用户
+	 * 添加单个用户信息
 	 * 
 	 * @param userName
 	 * @param password
@@ -39,6 +39,12 @@ public interface UserService {
 	void addSingleUser(String userName, String password, String userPhone,
 			int sex, String portrait, // 头像
 			MultipartHttpServletRequest mRequest) throws Exception;
+	/**
+	 * 注册新用户
+	 * @param userPhone
+	 * @param password
+	 */
+	void registerNewUser(String userPhone, String password);
 	/**
 	 * 根据用户用户名查找用户信息
 	 * @param userPhone
