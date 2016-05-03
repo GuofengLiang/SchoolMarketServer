@@ -30,7 +30,7 @@ public class UserController {
 	UserService userService;
 
 	/**
-	 * 用户登录
+	 * 用户根据用户名跟密码登录
 	 * @param username
 	 * @param password
 	 * @param session
@@ -38,9 +38,9 @@ public class UserController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/userLogin")
-	public Map<String, String> login(String username, String password,
+	public Map<String, Object> login(String username, String password,
 			HttpSession session) {
-		Map<String, String> map = new HashMap<String, String>();
+		Map<String, Object> map = new HashMap<String, Object>();
 		try {
 			User user = userService.findSingleUser(username);
 			if (user == null || user.equals("")) {
@@ -56,7 +56,8 @@ public class UserController {
 			return map;
 		}
 		session.setAttribute("username", username);
-		map.put("message", "success");
+		UserBean userBean = userService.findUserByName(username);
+		map.put("message", userBean);
 		return map;
 	}
 
@@ -89,7 +90,7 @@ public class UserController {
 	}
 
 	/**
-	 * 添加单个用户
+	 * 添加单个用户的基本信息
 	 * 
 	 * @param userName
 	 * @param password
@@ -115,6 +116,15 @@ public class UserController {
 		return map;
 	}
 	/**
+	 * 根据用户用户名查找用户信息
+	 */
+	@ResponseBody
+	@RequestMapping(value = "findSingleUser")
+	public UserBean findSingleUser(@RequestParam String username) {
+		UserBean userBean = userService.findUserByName(username);
+		return userBean;
+	}
+	/**
 	 * 根据用户用户手机号码查找用户信息
 	 */
 	@ResponseBody
@@ -124,13 +134,13 @@ public class UserController {
 		return userBean;
 	}
 	/**
-	 * 根据用户手机登录
+	 * 根据用户手机号和密码进行登录
 	 */
 	@ResponseBody
 	@RequestMapping(value = "userLoginByPhone")
 	public Map<String, Object> loginByPhone(String userPhone, String password,
 			HttpSession session) {
-		Map<String, Object> map = userService.findObjectUserByPhone(userPhone);
+		Map<String, Object> map = new HashMap<String, Object>();
 		User user = userService.findUserByUPhone(userPhone);
 		try {
 			if (user == null || user.equals("")) {
@@ -145,8 +155,9 @@ public class UserController {
 			map.put("message", "userError");
 			return map;
 		}
-		session.setAttribute("userPhone", userPhone);
-		map.put("message", user.getUserName());
+		session.setAttribute("username",user.getUserName());
+		UserBean userBean = userService.findUserByName(user.getUserName());
+		map.put("message", userBean);
 		return map;
 	}
 	

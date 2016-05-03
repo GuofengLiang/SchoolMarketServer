@@ -38,6 +38,12 @@ public interface UserDao {
 			int sex, String portrait // 头像
 	);
 	/**
+	 * 根据用户名查找用户信息
+	 * @param userPhone
+	 * @return
+	 */
+	UserBean findUserByName(String username);
+	/**
 	 * 根据用户手机号码查找用户信息
 	 * @param userPhone
 	 * @return

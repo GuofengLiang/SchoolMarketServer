@@ -40,6 +40,12 @@ public interface UserService {
 			int sex, String portrait, // 头像
 			MultipartHttpServletRequest mRequest) throws Exception;
 	/**
+	 * 根据用户用户名查找用户信息
+	 * @param userPhone
+	 * @return
+	 */
+	UserBean findUserByName(String username);
+	/**
 	 * 根据用户用户手机号码查找用户信息
 	 * @param userPhone
 	 * @return

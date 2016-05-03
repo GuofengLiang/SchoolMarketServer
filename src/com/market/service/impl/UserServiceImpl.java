@@ -40,6 +40,14 @@ public class UserServiceImpl implements UserService {
 	}
 
 	/**
+	 * 根据用户名查找用户信息
+	 */
+	@Override
+	public UserBean findUserByName(String username) {
+		UserBean userBean = userDao.findUserByName(username);
+		return userBean;
+	}
+	/**
 	 * 根据用户手机号码查找用户信息
 	 */
 	@Override
@@ -47,6 +55,7 @@ public class UserServiceImpl implements UserService {
 		UserBean userBean = userDao.findUserByPhone(userPhone);
 		return userBean;
 	}
+
 
 	/**
 	 * 根据用户手机查找用户

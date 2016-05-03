@@ -1,15 +1,12 @@
 package com.market.dao.impl;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import org.hibernate.mapping.Array;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -60,6 +57,22 @@ public class UserDaoImpl implements UserDao {
 		entityManager.persist(user); // 保存到数据库
 	}
 
+	/**
+	 * 根据用户用户名查找用户信息
+	 */
+	@Override
+	public UserBean findUserByName(String username) {
+		Query query = entityManager.createQuery("select s from User s where s.userName=?1");
+		query.setParameter(1, username);
+		User user = (User) query.getSingleResult();
+		UserBean userBean = new UserBean();
+		userBean.setUserId(user.getUserId());
+		userBean.setUserName(user.getUserName());
+		userBean.setUserPhone(user.getUserPhone());
+		userBean.setSex(user.getSex());
+		userBean.setPortrait(user.getPortrait());
+		return userBean;
+	}
 	/**
 	 * 根据用户用户手机号码查找用户信息
 	 */
