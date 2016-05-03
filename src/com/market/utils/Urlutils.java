@@ -10,7 +10,7 @@ public class Urlutils {
 		String baseUrl = url
 				.delete(url.length() - request.getRequestURI().length(),
 						url.length())
-				.append(request.getServletContext().getContextPath())
+//				.append(request.getServletContext().getContextPath())
 				.append("/").toString()
 				+ UPLOADDIR;
 		return baseUrl;

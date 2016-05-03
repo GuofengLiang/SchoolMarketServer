@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -11,14 +12,20 @@ import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.market.dao.AddressDao;
 import com.market.dao.OrderDao;
 import com.market.entity.Address;
 import com.market.entity.Order;
+import com.market.entity.OrderItem;
 import com.market.entity.User;
+import com.market.javabean.AddressBean;
 import com.market.javabean.OrderBean;
+import com.market.javabean.OrderCommBean;
 
 @Repository
 public class OrderDaoImpl implements OrderDao {
+	@Resource(name = "addressDaoImpl")
+	public AddressDao addressDao;
 	@PersistenceContext
 	protected EntityManager entityManager;
 	//通过orderId查找订单
@@ -35,6 +42,7 @@ public class OrderDaoImpl implements OrderDao {
 	public List<OrderBean> findAllOrders(int userId) {
 		Query query = entityManager.createQuery("select s from Order s where s.user.userId=?1");
 		query.setParameter(1, userId);
+		
 		@SuppressWarnings("unchecked")
 		List<Order> list = query.getResultList();
 		List<OrderBean> listbean = new ArrayList<OrderBean>();
@@ -47,6 +55,8 @@ public class OrderDaoImpl implements OrderDao {
 			orderbean.setFreight(list.get(i).getFreight());
 			orderbean.setTotal(list.get(i).getTotal());
 			orderbean.setRemarks(list.get(i).getRemarks());
+			AddressBean addressBean =  addressDao.findSingleAddress(list.get(i).getAddressId().getAddressId());
+			orderbean.setAddressBean(addressBean);
 			listbean.add(orderbean);
 		}
 		return listbean;
@@ -78,5 +88,37 @@ public class OrderDaoImpl implements OrderDao {
 		order.setTotal(total);
 		entityManager.persist(order);
 		
+	}
+	/**
+	 * 根据订单id查找订单商品和数量
+	 */
+	@Override
+	public List<OrderCommBean> findAllOrderComm(int orderId) {
+		Query query = entityManager.createQuery("select o from OrderItem o where o.order.orderId=?1");
+		query.setParameter(1, orderId);
+		@SuppressWarnings("unchecked")
+		List<OrderItem> orderItemList = query.getResultList();
+		List<OrderCommBean> orderCommBeanList = new ArrayList<OrderCommBean>();
+		for(int i = 0; i<orderItemList.size(); i++) {
+			OrderCommBean orderCommBean = new OrderCommBean();
+			orderCommBean.setCommodityId(orderItemList.get(i).getCommodity().getCommodityId());
+			orderCommBean.setCommName(orderItemList.get(i).getCommodity().getCommName());
+			orderCommBean.setDescribes(orderItemList.get(i).getCommodity().getDescribes());
+			orderCommBean.setDiscount(orderItemList.get(i).getCommodity().getDiscount());
+			orderCommBean.setMainclassId(orderItemList.get(i).getCommodity().getMainclassId().getMainclassId());
+			orderCommBean.setMainclassName(orderItemList.get(i).getCommodity().getMainclassId().getMainclassName());
+			orderCommBean.setSubclassId(orderItemList.get(i).getCommodity().getSubclassId().getSubclassId());
+			orderCommBean.setSubclassName(orderItemList.get(i).getCommodity().getSubclassId().getSubclassName());
+			orderCommBean.setPicture(orderItemList.get(i).getCommodity().getPicture());
+			orderCommBean.setPrice(orderItemList.get(i).getCommodity().getPrice());
+			orderCommBean.setSales(orderItemList.get(i).getCommodity().getSales());
+			orderCommBean.setSpecialTime(orderItemList.get(i).getCommodity().getSpecialTime());
+			orderCommBean.setSpercification(orderItemList.get(i).getCommodity().getSpercification());
+			orderCommBean.setStock(orderItemList.get(i).getCommodity().getStock());
+			orderCommBean.setType(orderItemList.get(i).getCommodity().getType());
+			orderCommBean.setOrderNumber(orderItemList.get(i).getCommNumber());
+			orderCommBeanList.add(orderCommBean);
+		}
+		return orderCommBeanList;
 	}
 }

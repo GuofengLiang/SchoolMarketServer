@@ -2,6 +2,10 @@ package com.market.javabean;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class CommodityBean {
 
 	/**
@@ -44,6 +48,8 @@ public class CommodityBean {
 	/**
 	 * 特价时间
 	 */
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm")
 	private Date specialTime;
 	/**
 	 * 商品类型

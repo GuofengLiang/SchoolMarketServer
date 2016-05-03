@@ -29,7 +29,7 @@ public class OrderItem {
 	/**
 	 * 商品id
 	 */
-	@OneToOne(optional = false)
+	@ManyToOne(optional = false)
 	@JoinColumn(name = "commodity_id", unique = true)
 	private Commodity commodity;
 	/**
@@ -41,7 +41,7 @@ public class OrderItem {
 	/**
 	 * 数量
 	 */
-	private int orderNumber;
+	private int commNumber;
 
 	public int getOrderCommId() {
 		return orderCommId;
@@ -59,12 +59,12 @@ public class OrderItem {
 		this.order = order;
 	}
 
-	public int getOrderNumber() {
-		return orderNumber;
+	public int getCommNumber() {
+		return commNumber;
 	}
 
-	public void setOrderNumber(int orderNumber) {
-		this.orderNumber = orderNumber;
+	public void setCommNumber(int commNumber) {
+		this.commNumber = commNumber;
 	}
 
 	public Commodity getCommodity() {

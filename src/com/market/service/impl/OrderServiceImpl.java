@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.market.dao.OrderDao;
 import com.market.entity.Order;
 import com.market.javabean.OrderBean;
+import com.market.javabean.OrderCommBean;
 import com.market.service.OrderService;
 
 @Service
@@ -39,5 +40,10 @@ public class OrderServiceImpl implements OrderService {
 			float total, String remarks) {
 		orderDao.addSingleOrder(addressId, userId, state, orderTime, deliverTime, freight, total, remarks);
 		
+	}
+	@Override
+	public List<OrderCommBean> findAllOrderComm(int orderId) {
+		List<OrderCommBean> orderCommBeanList = orderDao.findAllOrderComm(orderId);
+		return orderCommBeanList;
 	}
 }

@@ -41,8 +41,8 @@ public class Order {
 	/**
 	 * 收货地址编号
 	 */
-	@OneToOne(optional = false)
-	@JoinColumn(name = "address_id", unique = true)
+	@ManyToOne(fetch = FetchType.EAGER, optional = false)
+	@JoinColumn(name = "address_id")
 	private Address addressId;
 	/**
 	 * 用户id

@@ -19,7 +19,6 @@ import com.market.entity.MainClassify;
 import com.market.entity.SubClassify;
 import com.market.entity.Supermarket;
 import com.market.javabean.CommodityBean;
-import com.market.javabean.SubClassifyBean;
 
 @Repository
 public class CommodityDaoImpl implements CommodityDao {

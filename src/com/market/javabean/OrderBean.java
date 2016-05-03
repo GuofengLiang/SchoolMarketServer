@@ -48,6 +48,18 @@ public class OrderBean {
 	 * 备注
 	 */
 	private String remarks;
+	/**
+	 * 收货地址对象
+	 */
+	private AddressBean addressBean;
+
+	public AddressBean getAddressBean() {
+		return addressBean;
+	}
+
+	public void setAddressBean(AddressBean addressBean) {
+		this.addressBean = addressBean;
+	}
 
 	public Date getOrderTime() {
 		return orderTime;

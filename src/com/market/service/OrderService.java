@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.market.entity.Order;
 import com.market.javabean.OrderBean;
+import com.market.javabean.OrderCommBean;
 
 public interface OrderService {
 
@@ -34,4 +35,10 @@ public interface OrderService {
 	 */
 	void addSingleOrder(int addressId, int userId, int state, Date orderTime,
 			Date deliverTime, float freight, float total, String remarks);
+	/**
+	 * 根据订单id查找订单商品和数量
+	 * @param orderId
+	 * @return
+	 */
+	List<OrderCommBean> findAllOrderComm(int orderId);
 }

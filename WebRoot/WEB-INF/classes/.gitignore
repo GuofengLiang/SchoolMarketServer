@@ -1,1 +1,5 @@
+/application.properties
+/applicationContext-mvc.xml
+/applicationContext.xml
+/captcha
 /com
