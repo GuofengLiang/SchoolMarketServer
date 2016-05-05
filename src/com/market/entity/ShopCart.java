@@ -35,8 +35,8 @@ public class ShopCart {
 	/**
 	 * 商品id
 	 */
-	@OneToOne(optional = false)
-	@JoinColumn(name = "commodity_id", unique = true)
+	@ManyToOne(fetch = FetchType.EAGER, optional = false)
+	@JoinColumn(name = "commodity_id")
 	private Commodity commodity;
 	/**
 	 * 数量

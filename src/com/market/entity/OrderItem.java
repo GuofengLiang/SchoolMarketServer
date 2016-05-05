@@ -29,8 +29,8 @@ public class OrderItem {
 	/**
 	 * 商品id
 	 */
-	@ManyToOne(optional = false)
-	@JoinColumn(name = "commodity_id", unique = true)
+	@ManyToOne(fetch = FetchType.EAGER, optional = false)
+	@JoinColumn(name = "commodity_id")
 	private Commodity commodity;
 	/**
 	 * 订单id

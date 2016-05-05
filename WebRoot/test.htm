@@ -13,45 +13,48 @@
 <script type="text/javascript">
 $("#test").click(function(){
 var commListArray = new Array();  
-commListArray.push({commodityId:1,commNumber:4});   
-commListArray.push({commodityId:2,commNumber:3});   
+commListArray.push({commodityId:15,commNumber:4});   
+commListArray.push({commodityId:16,commNumber:3});   
 var buyCommBean = {};  
 buyCommBean.addressId =1;  
 buyCommBean.orderTime =new Date();
 buyCommBean.deliverTime =new Date();
 buyCommBean.freight=12.0;
 buyCommBean.total=12.0;
-buyCommBean.remarks="没得吃";
-buyCommBean.userId="1";
+buyCommBean.remarks="希望快点送过来";
+buyCommBean.userId=1;
 buyCommBean.commListBeans =commListArray;  
-alert(JSON.stringify(buyCommBean));
 $.ajax({  
     type: "POST",  
     url: "addOrder.jhtml",  
     data: JSON.stringify(buyCommBean),//将对象序列化成JSON字符串  
     dataType:"json",  
     contentType : 'application/json;charset=utf-8', //设置请求头信息  
-    success: function(data){   
+    success: function(data){  
+     alert(data.message); 
     }
 });  
 });
-/*
-$("#test").click(function(){
-	$.post("addOrder.jhtml",
-=======
+
+$("#test3").click(function(){
 $.post("registerNewUser.jhtml",
   {
-   userPhone:"18814182438",
-   password:"1234567"
+   userPhone:"1881777177",
+   password:"11111"
    
   },
 function(data){
-           alert(data.message);
+          if(data.message=="userexist"){
+           alert("该电话号码已注册");
+          }else{
+           alert("注册成功");
+          }
+          
 });
 });
+/*
 $("#test1").click(function(){
 	$.post("addSingleOrder.jhtml",
->>>>>>> branch 'master' of https://github.com/GuofengLiang/SchoolMarketServer
 	  {
 		buyCommBean:{
 			"addressId":1,
@@ -93,19 +96,7 @@ $("#test1").click(function(){
 	});
 	});
 */
-<!--测试登陆-->
-
-/*$("#test4").click(function(){
-$.post("updateUserPassword.jhtml",
-  {
-   oldPassword:"123456",
-   newPassword:"1234567"
-   
-  },
-function(data){
-           alert(data.message);
-});
-});
+/*
 <!--测试添加子分类-->
 $("#test1").click(function(){
 $.post("alterClassify.jhtml",

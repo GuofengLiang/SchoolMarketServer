@@ -120,6 +120,7 @@ public class UserDaoImpl implements UserDao {
 		User user = new User();
 		user.setUserPhone(userPhone);
 		user.setPassword(password);
+		user.setUserName(userPhone);//默认为电话号码
 		entityManager.persist(user); // 保存到数据库
 		
 	}
