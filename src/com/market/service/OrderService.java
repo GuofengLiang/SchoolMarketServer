@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.market.entity.Order;
+import com.market.javabean.BuyCommBean;
 import com.market.javabean.OrderBean;
 import com.market.javabean.OrderCommBean;
 
@@ -26,19 +27,28 @@ public interface OrderService {
 	 * @param addressId
 	 * @param userId
 	 * @param state
-	 * @param defaultedAddress
 	 * @param orderTime
 	 * @param deliverTime
 	 * @param freight
 	 * @param total
 	 * @param remarks
-	 */
+	 * @param commodityId
+	 * @param commNumber
+	 
 	void addSingleOrder(int addressId, int userId, int state, Date orderTime,
-			Date deliverTime, float freight, float total, String remarks);
+			Date deliverTime, float freight, float total, String remarks, int commodityId, int commNumber);
+			*/
+	
 	/**
 	 * 根据订单id查找订单商品和数量
 	 * @param orderId
 	 * @return
 	 */
 	List<OrderCommBean> findAllOrderComm(int orderId);
+	
+	/**
+	 * 添加一个订单
+	 * @param buyCommBean
+	 */
+	void addOrder(BuyCommBean buyCommBean);
 }

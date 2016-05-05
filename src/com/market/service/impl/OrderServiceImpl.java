@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.market.dao.OrderDao;
 import com.market.entity.Order;
+import com.market.javabean.BuyCommBean;
 import com.market.javabean.OrderBean;
 import com.market.javabean.OrderCommBean;
 import com.market.service.OrderService;
@@ -34,16 +35,22 @@ public class OrderServiceImpl implements OrderService {
 	}
 	/**
 	 * 添加单个order
-	 */
+	 
 	@Override
 	public void addSingleOrder(int addressId, int userId, int state, Date orderTime, Date deliverTime, float freight,
-			float total, String remarks) {
-		orderDao.addSingleOrder(addressId, userId, state, orderTime, deliverTime, freight, total, remarks);
+			float total, String remarks, int commodityId, int commNumber) {
+		orderDao.addSingleOrder(addressId, userId, state, orderTime, deliverTime, freight, total, remarks, commodityId, commNumber);
 		
 	}
+	*/
+	
 	@Override
 	public List<OrderCommBean> findAllOrderComm(int orderId) {
 		List<OrderCommBean> orderCommBeanList = orderDao.findAllOrderComm(orderId);
 		return orderCommBeanList;
+	}
+	@Override
+	public void addOrder(BuyCommBean buyCommBean) {
+		orderDao.addOrder(buyCommBean);
 	}
 }

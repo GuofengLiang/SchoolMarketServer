@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.market.entity.Order;
+import com.market.javabean.BuyCommBean;
 import com.market.javabean.OrderBean;
 import com.market.javabean.OrderCommBean;
 
@@ -34,9 +35,15 @@ public interface OrderDao {
 	 * @param freight
 	 * @param total
 	 * @param remarks
-	 */
+	 *
 	void addSingleOrder(int addressId, int userId, int state, Date orderTime,
-			Date deliverTime, float freight, float total, String remarks);
+			Date deliverTime, float freight, float total, String remarks, int commodityId, int commNumber);
+			*/
+	/**
+	 * 添加一个订单
+	 * @param buyCommBean
+	 */
+	void addOrder(BuyCommBean buyCommBean);
 	/**
 	 * 根据订单id查找订单商品和数量
 	 * @param orderId

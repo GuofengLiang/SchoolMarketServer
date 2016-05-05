@@ -1,7 +1,6 @@
 package com.market.dao.impl;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -15,10 +14,12 @@ import org.springframework.transaction.annotation.Transactional;
 import com.market.dao.AddressDao;
 import com.market.dao.OrderDao;
 import com.market.entity.Address;
+import com.market.entity.Commodity;
 import com.market.entity.Order;
 import com.market.entity.OrderItem;
 import com.market.entity.User;
 import com.market.javabean.AddressBean;
+import com.market.javabean.BuyCommBean;
 import com.market.javabean.OrderBean;
 import com.market.javabean.OrderCommBean;
 
@@ -63,19 +64,26 @@ public class OrderDaoImpl implements OrderDao {
 	}
 	/**
 	 * 添加单个订单
-	 */
+	 
 	@Override
 	@Transactional
 	public void addSingleOrder(int addressId, int userId, int state, Date orderTime,
-			Date deliverTime, float freight, float total, String remarks) {
+			Date deliverTime, float freight, float total, String remarks, int commodityId, int commNumber) {
 		//通过addressId获取地址
 		Query query1 = entityManager.createQuery("select a from Address a where a.addressId=:addressId");
 		//通过userId获取用户
 		Query query2 = entityManager.createQuery("select u from User u where u.userId=:userId");
+		//通过commodityId获取商品
+		Query query3 = entityManager.createQuery("select c from Commodity c where c.commodityId=:commodityId");
 		query1.setParameter("addressId", addressId);
-		Address address = (Address) query1.getSingleResult();
 		query2.setParameter("userId", userId);
+		query3.setParameter("commodityId", commodityId);
+		
+ 		Address address = (Address) query1.getSingleResult();
+		
 		User user = (User) query2.getSingleResult();
+		
+		Commodity commodity = (Commodity) query3.getSingleResult();
 		//持久化order
 		Order order = new Order();
 		order.setAddressId(address);
@@ -87,7 +95,55 @@ public class OrderDaoImpl implements OrderDao {
 		order.setState(state);
 		order.setTotal(total);
 		entityManager.persist(order);
+		//持久化orderItem
+		OrderItem orderItem = new OrderItem();
+		orderItem.setCommodity(commodity);
+		orderItem.setOrder(order);
+		orderItem.setCommNumber(commNumber);
+		entityManager.persist(orderItem);
 		
+	}*/
+	/**
+	 * 添加一个订单
+	 */
+	@Transactional
+	@Override
+	public void addOrder(BuyCommBean buyCommBean) {
+		//通过addressId获取地址
+				Query query1 = entityManager.createQuery("select a from Address a where a.addressId=:addressId");
+				//通过userId获取用户
+				Query query2 = entityManager.createQuery("select u from User u where u.userId=:userId");
+				
+				query1.setParameter("addressId", buyCommBean.getAddressId());
+				query2.setParameter("userId", buyCommBean.getUserId());
+
+				
+		 		Address address = (Address) query1.getSingleResult();
+				
+				User user = (User) query2.getSingleResult();
+				//持久化order
+				Order order = new Order();
+				order.setAddressId(address);
+				order.setUser(user);
+				order.setDeliverTime(buyCommBean.getDeliverTime());
+				order.setFreight(buyCommBean.getFreight());
+				order.setOrderTime(buyCommBean.getOrderTime());
+				order.setRemarks(buyCommBean.getRemarks());
+				//order.setState(buyCommBean.sta);
+				order.setTotal(buyCommBean.getTotal());
+				entityManager.persist(order);
+				//持久化orderItem
+				for(int i = 0; i<buyCommBean.getCommListBeans().size(); i++) {
+					//通过commodityId获取商品
+					Query query3 = entityManager.createQuery("select c from Commodity c where c.commodityId=:commodityId");
+					query3.setParameter("commodityId", buyCommBean.getCommListBeans().get(i).getCommodityId());
+					Commodity commodity = (Commodity) query3.getSingleResult();
+					OrderItem orderItem = new OrderItem();
+					orderItem.setCommodity(commodity);
+					orderItem.setOrder(order);
+					orderItem.setCommNumber(buyCommBean.getCommListBeans().get(i).getCommNumber());
+					entityManager.persist(orderItem);
+				}
 	}
 	/**
 	 * 根据订单id查找订单商品和数量
