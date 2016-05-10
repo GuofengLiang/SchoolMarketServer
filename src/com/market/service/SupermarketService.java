@@ -2,7 +2,6 @@ package com.market.service;
 
 import java.util.List;
 
-import com.market.entity.Commodity;
 import com.market.javabean.AdvertiseBean;
 import com.market.javabean.CommodityBean;
 import com.market.javabean.SupermarketBean;

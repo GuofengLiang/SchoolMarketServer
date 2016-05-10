@@ -124,4 +124,19 @@ public class UserDaoImpl implements UserDao {
 		entityManager.persist(user); // 保存到数据库
 		
 	}
+
+	/**
+	 * 修改用户信息
+	 */
+	@Override
+	@Transactional
+	public void alterUser(int userId, String userName, String userPhone, int sex, String portrait) {
+		Query query = entityManager.createQuery("select u from User u where u.userId=?1");
+		query.setParameter(1, userId);
+		User user = (User) query.getSingleResult();
+		user.setUserName(userName);
+		user.setUserPhone(userPhone);
+		user.setSex(sex);
+		user.setPortrait(portrait);
+	}
 }

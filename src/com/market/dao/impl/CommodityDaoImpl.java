@@ -270,7 +270,6 @@ public class CommodityDaoImpl implements CommodityDao {
 	    	commodityBean.setType(commodity.get(i).getType());
 	    	commodityListBean.add(commodityBean);
 		}
-		
 		return commodityListBean;
 	}
 	/**
@@ -286,6 +285,16 @@ public class CommodityDaoImpl implements CommodityDao {
 			map.put("推荐商品", RecommendComm);
 			commodities.add(map);
 		return commodities;
+	}
+	/**
+	 * 根据商品名模糊查找商品
+	 */
+	@Override
+	public List<Commodity> fuzzySearchComm() {
+		Query query = entityManager.createQuery("select c from Commodity c where c.commName like 格%");
+		@SuppressWarnings("unchecked")
+		List<Commodity> commodity = query.getResultList();
+		return commodity;
 	}
 
 }

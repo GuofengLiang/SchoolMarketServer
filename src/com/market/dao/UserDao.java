@@ -67,4 +67,13 @@ public interface UserDao {
 	 * @return
 	 */
 	Map<String,Object> findObjectUserByPhone(String userPhone);
+	/**
+	 * 修改用户信息
+	 * @param userId
+	 * @param userName
+	 * @param userPhone
+	 * @param sex
+	 * @param portrait
+	 */
+	void alterUser(int userId, String userName, String userPhone, int sex, String portrait);
 }

@@ -11,31 +11,76 @@
 <script src="js/jquery-1.11.1.min.js"></script>
 
 <script type="text/javascript">
-$("#test").click(function(){
-var commListArray = new Array();  
-commListArray.push({commodityId:15,commNumber:4});   
-commListArray.push({commodityId:16,commNumber:3});   
-var buyCommBean = {};  
-buyCommBean.addressId =1;  
-buyCommBean.orderTime =new Date();
-buyCommBean.deliverTime =new Date();
-buyCommBean.freight=12.0;
-buyCommBean.total=12.0;
-buyCommBean.remarks="希望快点送过来";
-buyCommBean.userId=1;
-buyCommBean.commListBeans =commListArray;  
-$.ajax({  
-    type: "POST",  
-    url: "addOrder.jhtml",  
-    data: JSON.stringify(buyCommBean),//将对象序列化成JSON字符串  
-    dataType:"json",  
-    contentType : 'application/json;charset=utf-8', //设置请求头信息  
-    success: function(data){  
-     alert(data.message); 
-    }
-});  
-});
 
+/*$("#test").click(function(){
+	$.post("userLogin.jhtml",
+	  {
+		username:"123",
+		password:"123"
+	   
+	  },
+	function(data){
+	           alert(data.message);
+	});
+	});
+	
+	$("#test").click(function(){
+	$.post("alterAddress.jhtml",
+	  {
+		userId:1,
+		addressId:3,
+		addressDetail:"修改地址",
+		consignee:"豪勇士",
+		phone:"2347632", 
+		defaultedAddress:1
+	  },
+	  function(data){
+          alert(data.message);
+	  });
+	});
+	
+
+$("#test").click(function(){
+	$.post("addSingleAddress.jhtml",
+	  {
+		userId:9,
+		addressDetail:"修改地址",
+		consignee:"豪勇士",
+		phone:"2347632", 
+		defaultedAddress:1
+	  },
+	  function(data){
+          alert(data.message);
+	  });
+	});
+*/
+
+$("#test").click(function(){
+	var commListArray = new Array();  
+	commListArray.push({commodityId:31,commNumber:1});   
+	commListArray.push({commodityId:23,commNumber:1});   
+	var buyCommBean = {};  
+	buyCommBean.addressId = 14;  
+	buyCommBean.orderTime =new Date();
+	buyCommBean.deliverTime ="流量";
+	buyCommBean.freight=11;
+	buyCommBean.total=11;
+	buyCommBean.remarks="没得吃";
+	buyCommBean.userId=8;
+	buyCommBean.commListBeans =commListArray;  
+	alert(JSON.stringify(buyCommBean));
+	$.ajax({  
+	    type: "POST",  
+	    url: "addOrder.jhtml",
+	    data: JSON.stringify(buyCommBean),//将对象序列化成JSON字符串  
+	    dataType:"json",  
+	    contentType : 'application/json;charset=utf-8', //设置请求头信息  
+	    success: function(data){   
+	    }
+	});  
+	});
+
+/*
 $("#test3").click(function(){
 $.post("registerNewUser.jhtml",
   {
@@ -51,14 +96,14 @@ function(data){
           }
           
 });
-});
+});*/
 /*
-$("#test1").click(function(){
-	$.post("addSingleOrder.jhtml",
+$("#test").click(function(){
+	$.post("addOrder.jhtml",
 	  {
 		buyCommBean:{
 			"addressId":1,
-			"orderTime":new Date(),
+			"orderTime":"这是送达时间",
 			"deliverTime":new Date(),
 			"freight":12.0,
 			"total":12.0,
@@ -67,11 +112,11 @@ $("#test1").click(function(){
 			"commListBeans":
 			[
 			{
-			"commodityId":1,
+			"commodityId":22,
 			"commNumber":4
 			},
 			{
-			"commodityId":2,
+			"commodityId":23,
 			"commNumber":3
 			}
 			]

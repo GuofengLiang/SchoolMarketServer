@@ -122,10 +122,24 @@ public class CommodityController {
 		List<CommodityBean> commodityListBean = commodityService.findSixCommBySales();
 		return commodityListBean;
 	}
+	/**
+	 * 查找热卖商品和特价商品
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping(value = "findSaleAndSpecialComm")
 	public List<Map<String, Object>> findSaleAndSpecialComm() {
 		List<Map<String, Object>> commodities = commodityService.findSaleAndSpecialComm();
 		return commodities;
+	}
+	/**
+	 * 查找热卖商品和特价商品
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "fuzzySearchComm")
+	public List<Commodity> fuzzySearchComm() {
+		List<Commodity> Commodity = commodityService.fuzzySearchComm();
+		return Commodity;
 	}
 }

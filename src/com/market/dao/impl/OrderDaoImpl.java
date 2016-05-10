@@ -117,7 +117,6 @@ public class OrderDaoImpl implements OrderDao {
 				query1.setParameter("addressId", buyCommBean.getAddressId());
 				query2.setParameter("userId", buyCommBean.getUserId());
 
-				
 		 		Address address = (Address) query1.getSingleResult();
 				
 				User user = (User) query2.getSingleResult();
@@ -143,6 +142,8 @@ public class OrderDaoImpl implements OrderDao {
 					orderItem.setOrder(order);
 					orderItem.setCommNumber(buyCommBean.getCommListBeans().get(i).getCommNumber());
 					entityManager.persist(orderItem);
+					commodity.setStock(commodity.getStock() - buyCommBean.getCommListBeans().get(i).getCommNumber());
+					commodity.setSales(commodity.getSales() + buyCommBean.getCommListBeans().get(i).getCommNumber());
 				}
 	}
 	/**

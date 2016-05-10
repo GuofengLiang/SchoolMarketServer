@@ -63,9 +63,8 @@ public class Order {
 	/**
 	 * 配送时间
 	 */
-	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm")
-	private Date deliverTime;
+	@Column(length = 100)
+	private String deliverTime;
 	/**
 	 * 运费
 	 */
@@ -120,11 +119,11 @@ public class Order {
 		this.orderTime = orderTime;
 	}
 
-	public Date getDeliverTime() {
+	public String getDeliverTime() {
 		return deliverTime;
 	}
 
-	public void setDeliverTime(Date deliverTime) {
+	public void setDeliverTime(String deliverTime) {
 		this.deliverTime = deliverTime;
 	}
 

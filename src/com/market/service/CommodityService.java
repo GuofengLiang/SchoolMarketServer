@@ -72,4 +72,8 @@ public interface CommodityService {
 	 * @return
 	 */
 	List<Map<String,Object>> findSaleAndSpecialComm();
+	/**
+	 * 根据商品名模糊查找商品
+	 */
+	List<Commodity> fuzzySearchComm();
 }

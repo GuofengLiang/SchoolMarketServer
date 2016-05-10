@@ -87,4 +87,13 @@ public class CommodityServiceImpl implements CommodityService {
 		return commodities;
 	}
 
+	/**
+	 * 根据商品名模糊查找商品
+	 */
+	@Override
+	public List<Commodity> fuzzySearchComm() {
+		List<Commodity> commodity = commodityDao.fuzzySearchComm();
+		return commodity;
+	}
+
 }

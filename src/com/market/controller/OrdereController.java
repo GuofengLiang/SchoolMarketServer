@@ -1,7 +1,5 @@
 package com.market.controller;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,11 +14,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.market.entity.Order;
 import com.market.javabean.BuyCommBean;
-import com.market.javabean.CommListBean;
 import com.market.javabean.OrderBean;
 import com.market.javabean.OrderCommBean;
 import com.market.service.OrderService;
-import com.market.utils.Format;
 
 @Controller
 public class OrdereController {
@@ -35,7 +31,6 @@ public class OrdereController {
 	@ResponseBody
 	@RequestMapping(value = "findSingleOrder")
 	public Order findSingleOrder(@RequestParam int orderId) {
-
 		Order order = orderService.findSingleOrder(orderId);
 		return order;
 	}

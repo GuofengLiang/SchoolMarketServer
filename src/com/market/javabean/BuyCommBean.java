@@ -3,17 +3,23 @@ package com.market.javabean;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class BuyCommBean {
 	private int addressId;
 	/**
 	 * 下单时间
 	 */
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm")
 	private Date orderTime;
 	
 	/**
 	 * 配送时间
 	 */
-	private Date deliverTime;
+	private String deliverTime;
 	/**
 	 * 运费
 	 */
@@ -43,10 +49,10 @@ public class BuyCommBean {
 	public void setOrderTime(Date orderTime) {
 		this.orderTime = orderTime;
 	}
-	public Date getDeliverTime() {
+	public String getDeliverTime() {
 		return deliverTime;
 	}
-	public void setDeliverTime(Date deliverTime) {
+	public void setDeliverTime(String deliverTime) {
 		this.deliverTime = deliverTime;
 	}
 	public float getFreight() {

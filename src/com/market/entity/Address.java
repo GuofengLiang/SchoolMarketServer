@@ -41,12 +41,12 @@ public class Address {
 	/**
 	 * 收件人
 	 */
-	@Column(length = 4, nullable = false)
+	@Column(length = 40, nullable = false)
 	private String consignee;
 	/**
 	 * 电话号码
 	 */
-	@Column(length = 11)
+	@Column(length = 11, nullable = false)
 	private String phone;
 	/**
 	 * 默认地址标识

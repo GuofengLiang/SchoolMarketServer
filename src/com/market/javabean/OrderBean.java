@@ -31,11 +31,13 @@ public class OrderBean {
 	/**
 	 * 下单时间
 	 */
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm")
 	private Date orderTime;
 	/**
 	 * 配送时间
 	 */
-	private Date deliverTime;
+	private String deliverTime;
 	/**
 	 * 运费
 	 */
@@ -69,11 +71,11 @@ public class OrderBean {
 		this.orderTime = orderTime;
 	}
 
-	public Date getDeliverTime() {
+	public String getDeliverTime() {
 		return deliverTime;
 	}
 
-	public void setDeliverTime(Date deliverTime) {
+	public void setDeliverTime(String deliverTime) {
 		this.deliverTime = deliverTime;
 	}
 

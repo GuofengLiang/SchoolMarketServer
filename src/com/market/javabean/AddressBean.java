@@ -17,6 +17,24 @@ public class AddressBean {
 	 * 收件人
 	 */
 	private String consignee;
+	/**
+	 * 电话号码
+	 */
+	private String phone;
+	/**
+	 * 默认地址标识
+	 */
+	private int defaultedAddress;
+	/**
+	 * 运费
+	 */
+	private float freight;
+	public int getDefaultedAddress() {
+		return defaultedAddress;
+	}
+	public void setDefaultedAddress(int defaultedAddress) {
+		this.defaultedAddress = defaultedAddress;
+	}
 	public int getAddressId() {
 		return addressId;
 	}
@@ -47,8 +65,10 @@ public class AddressBean {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	/**
-	 * 电话号码
-	 */
-	private String phone;
+	public float getFreight() {
+		return freight;
+	}
+	public void setFreight(float freight) {
+		this.freight = freight;
+	}
 }

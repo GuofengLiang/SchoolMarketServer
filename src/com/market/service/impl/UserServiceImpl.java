@@ -82,4 +82,12 @@ public class UserServiceImpl implements UserService {
 		userDao.registerNewUser(userPhone, password);
 		
 	}
+
+	/**
+	 * 修改用户信息
+	 */
+	@Override
+	public void alterUser(int userId, String userName, String userPhone, int sex, String portrait) {
+		userDao.alterUser(userId, userName, userPhone, sex, portrait);
+	}
 }
