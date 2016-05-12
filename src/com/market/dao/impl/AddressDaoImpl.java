@@ -41,7 +41,7 @@ public class AddressDaoImpl implements AddressDao {
 			addressBean.setPhone(address.get(i).getPhone());
 			addressBean.setUserId(address.get(i).getUser().getUserId());
 			addressBean.setDefaultedAddress(address.get(i).getDefaultedAddress());
-			addressBean.setFreight(0);
+			addressBean.setFreight(10);
 			addressListBean.add(addressBean);
 		}
 		return addressListBean;
@@ -73,18 +73,25 @@ public class AddressDaoImpl implements AddressDao {
 	public void addSingleAddress(int userId, String addressDetail, String consignee, String phone, int defaultedAddress) {
 		//通过userId获取用户
 		Query query = entityManager.createQuery("select u from User u where u.userId=?1");
+		Query query1 = entityManager.createQuery("select a from Address a where a.user.userId=?1");
 		query.setParameter(1, userId);
+		query1.setParameter(1, userId);
+		List<Address> addresses = query1.getResultList();
 		User user = (User) query.getSingleResult();
-			//持久化address
-			Address address = new Address();
-			address.setAddressDetail(addressDetail);
-			address.setConsignee(consignee);
-			address.setPhone(phone);
-			address.setUser(user);
-			address.setDefaultedAddress(defaultedAddress);
-			entityManager.persist(address);
-
-
+		if(addresses.size()>0) {
+			Address address1 = DefaultedAddress(userId);	//查找默认地址
+			if(defaultedAddress == 1 && address1.getDefaultedAddress()==1){
+				address1.setDefaultedAddress(0);
+			}
+		}
+		//持久化address
+		Address address = new Address();
+		address.setAddressDetail(addressDetail);
+		address.setConsignee(consignee);
+		address.setPhone(phone);
+		address.setUser(user);
+		address.setDefaultedAddress(defaultedAddress);
+		entityManager.persist(address);
 	}
 
 	/**
@@ -104,7 +111,7 @@ public class AddressDaoImpl implements AddressDao {
 			addressBean.setConsignee(address.getConsignee());
 			addressBean.setDefaultedAddress(address.getDefaultedAddress());
 			addressBean.setPhone(address.getPhone());
-			addressBean.setFreight(0);
+			addressBean.setFreight(10);
 			addressListBean.add(addressBean);
 		}
 		return addressListBean;
@@ -141,7 +148,7 @@ public class AddressDaoImpl implements AddressDao {
 		Query query = entityManager.createQuery("select a from Address a where a.addressId=?1");
 		query.setParameter(1, addressId);
 		Address address = (Address) query.getSingleResult();
-		Address address1 = DefaultedAddress(address.getUser().getUserId());
+		Address address1 = DefaultedAddress(address.getUser().getUserId());	//查找默认地址
 		if(defaultedAddress == 1 && address1.getDefaultedAddress()==1) {
 			address1.setDefaultedAddress(0);
 			
@@ -150,7 +157,6 @@ public class AddressDaoImpl implements AddressDao {
 		address.setConsignee(consignee);
 		address.setDefaultedAddress(defaultedAddress);
 		address.setPhone(phone);
-		
 	}
 
 	/**

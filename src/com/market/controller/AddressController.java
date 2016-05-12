@@ -25,9 +25,17 @@ public class AddressController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "findAllAdress")
-	public List<AddressBean> findAllAdress(@RequestParam int userId) {
-		List<AddressBean> addressBean = addressService.findAllAddress(userId);
-		return addressBean;
+	public Map<String, Object> findAllAdress(@RequestParam int userId) {
+		Map<String,Object> map=new HashMap<String,Object>();
+		List<AddressBean> addressBean;
+		try {
+			addressBean = addressService.findAllAddress(userId);
+		} catch (Exception e) {
+			map.put("message", "findDefaultedAddressError");
+			return map;
+		}
+		map.put("message", addressBean);
+		return map;
 	}
 	/**
 	 * 根据收货地址编号查找收货地址
@@ -70,9 +78,9 @@ public class AddressController {
 	@RequestMapping(value = "findDefaultedAddress")
 	public  Map<String, Object> findDefaultedAddress(@RequestParam int userId) {
 		Map<String,Object> map=new HashMap<String,Object>();
-		List<AddressBean> addressBean = addressService.findDefaultedAddress(userId);
+		List<AddressBean> addressBean;
 		try {
-			
+			addressBean = addressService.findDefaultedAddress(userId);
 		} catch (Exception e) {
 			map.put("message", "findDefaultedAddressError");
 			return map;
@@ -94,7 +102,12 @@ public class AddressController {
 	public Map<String, String> alterAddress(int addressId, String addressDetail, String consignee, String phone, int defaultedAddress) {
 		Map<String,String> map=new HashMap<String,String>();
 		try {
+			AddressBean addressBean = addressService.findSingleAddress(addressId);
 			addressService.alterAddress(addressId, addressDetail, consignee, phone, defaultedAddress);
+			if(addressBean.getDefaultedAddress() == 1 && defaultedAddress == 0) {
+				map.put("message", "donotAlterError");
+				return map;	
+			}
 		} catch (Exception e) {
 			map.put("message", "alterAddressError");
 			return map;
@@ -112,6 +125,11 @@ public class AddressController {
 	public Map<String, String> deleteAddress(int addressId) {
 		Map<String,String> map=new HashMap<String,String>();
 		try {
+			AddressBean addressBean = addressService.findSingleAddress(addressId);
+			if(addressBean.getDefaultedAddress() == 1) {
+				map.put("message", "donotDeleteError");
+				return map;	
+			}
 			addressService.deleteAddress(addressId);
 		} catch (Exception e) {
 			map.put("message", "deleteAddressError");
